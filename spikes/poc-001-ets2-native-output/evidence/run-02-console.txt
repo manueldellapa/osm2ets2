@@ -1,0 +1,11 @@
+AUTOMATIC_VALIDATION_PASSED
+Gate status: AWAITING_MANUAL_VALIDATION
+Run: run-02
+TruckLib: 0.5.1.0
+Map format: 907
+Map: /Users/mdellapa/git/Personale/GitHub/osm2ets2/spikes/poc-001-ets2-native-output/output/run-02/map/poc001_minimal.mbd
+Sector directory: /Users/mdellapa/git/Personale/GitHub/osm2ets2/spikes/poc-001-ets2-native-output/output/run-02/map/poc001_minimal
+Road UID: 0x4F8C798E2AAFFB0B
+Backward node UID: 0x46BAE13AB352A7A1
+Forward node UID: 0x4AAB06802DD6B9F0
+Manifest: /Users/mdellapa/git/Personale/GitHub/osm2ets2/spikes/poc-001-ets2-native-output/output/run-02/automatic-validation.json

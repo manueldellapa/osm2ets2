@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "dependencies": {
+    "net10.0": {
+      "TruckLib": {
+        "type": "Direct",
+        "requested": "[0.5.1, 0.5.1]",
+        "resolved": "0.5.1",
+        "contentHash": "a5+Bx9V7O8kqD8/BXGuBO1BU6K9GBKx7Fq+k5x664uMkXxD7E3+ZUIUAwZeSbywnvOVqiDmYv++7alA5cWNMBA==",
+        "dependencies": {
+          "Microsoft.CodeAnalysis.Common": "5.3.0",
+          "RBush": "4.0.0",
+          "TruckLib.HashFs": "0.2.6",
+          "TruckLib.Models": "0.4.2",
+          "TruckLib.Sii": "0.2.1"
+        }
+      },
+      "GisDeflate": {
+        "type": "Transitive",
+        "resolved": "1.0.2",
+        "contentHash": "BTaJnzsy4Blbw7uBtaiTrQ6gI31L8EMKXi6HRHc+PkkCF26Fz9QzoDm/GURZrxPuLZfJmRLOo1/V347OJYkifA=="
+      },
+      "Microsoft.CodeAnalysis.Analyzers": {
+        "type": "Transitive",
+        "resolved": "5.3.0-2.25625.1",
+        "contentHash": "4Yhh2fnu3G+J0J1lDc8WZVgMjgbynSeTfkl5IFJMFrmiIO0sc7Tjx+f3sFVV8Sd35PrIUWfof0RWc3lAMl7Azg=="
+      },
+      "Microsoft.CodeAnalysis.Common": {
+        "type": "Transitive",
+        "resolved": "5.3.0",
+        "contentHash": "uC0qk3jzTQY7i90ehfnCqaOZpBUGJyPMiHJ3c0jOb8yaPBjWzIhVdNxPbeVzI74DB0C+YgBKPLqUkgFZzua5Mg==",
+        "dependencies": {
+          "Microsoft.CodeAnalysis.Analyzers": "5.3.0-2.25625.1"
+        }
+      },
+      "RBush": {
+        "type": "Transitive",
+        "resolved": "4.0.0",
+        "contentHash": "j3GeRxxLUQdc+UrZnvythdQxi3bd8ayn87VDjfGXrvfodF550n9wR6SgQvpo+YiAv3GJezsu6lK0l47rRqnbdg=="
+      },
+      "Sprache": {
+        "type": "Transitive",
+        "resolved": "2.3.1",
+        "contentHash": "Q+mXeiTxiUYG3lKYF6TS82/SyB4F2613Q1yXTMwg4jWGHEEVC3yrzHtNcI4B3qnDI0+eJsezGJ0V+cToUytHWw=="
+      },
+      "System.IO.Hashing": {
+        "type": "Transitive",
+        "resolved": "10.0.8",
+        "contentHash": "+dJsbPJ3FyUbTZNplFj0RCKePFizmv6ewDV46JE9q/IVH4c3xTCftHfHelLsAKf0jryIPqgMb5GpS0x7TAY3mg=="
+      },
+      "TruckLib.Core": {
+        "type": "Transitive",
+        "resolved": "0.3.0",
+        "contentHash": "f3ZniNl2jldv9BvPAnwyWB8Kmy+HTOqUe0jk4ch0pEbMkYE0IiXM5lcAFcwNYfLHDiIGV7jf+wnF6AXosebwXA=="
+      },
+      "TruckLib.HashFs": {
+        "type": "Transitive",
+        "resolved": "0.2.6",
+        "contentHash": "LH9pG7zDPV3rjQ8PSA9M5nXWeGaVvrVNwzKMsBg5i8t7WtGp7gNy4NdxiRCURk/+tfTCcscyLwACsJ6WLrcjLQ==",
+        "dependencies": {
+          "GisDeflate": "1.0.2",
+          "System.IO.Hashing": "10.0.8",
+          "TruckLib.Models": "0.4.2"
+        }
+      },
+      "TruckLib.Models": {
+        "type": "Transitive",
+        "resolved": "0.4.2",
+        "contentHash": "QHu3MT8gt6I3aXFqqh42+sVNthaqwu0UZQ4xA30Wz2H3z3Wcj7s6cDuIDqx48IJy93fqFlScjn7WbD6hAufUKA==",
+        "dependencies": {
+          "TruckLib.Core": "0.3.0"
+        }
+      },
+      "TruckLib.Sii": {
+        "type": "Transitive",
+        "resolved": "0.2.1",
+        "contentHash": "VuRKbHjAz1OCpHiqhf++g7MzRc2C/L0sVn+yvH5nwL3frHIpn0arNJ7W+nUX/7qtwFH2H52oJXK/x5JjxMKmuA==",
+        "dependencies": {
+          "Sprache": "2.3.1",
+          "TruckLib.Core": "0.3.0"
+        }
+      }
+    }
+  }
+}

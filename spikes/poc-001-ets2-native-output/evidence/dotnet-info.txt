@@ -1,0 +1,45 @@
+.NET SDK:
+ Version:           10.0.400
+ Commit:            14fbf8d527
+ Workload version:  10.0.400-manifests.330ea142
+ MSBuild version:   18.9.6+14fbf8d52
+
+Ambiente di runtime:
+ OS Name:     Mac OS X
+ OS Version:  26.6
+ OS Platform: Darwin
+ RID:         osx-arm64
+ Base Path:   /private/tmp/osm2ets2-dotnet/sdk/10.0.400/
+
+Carichi di lavoro .NET installati:
+Non sono presenti carichi di lavoro installati da visualizzare.
+Configurato per l'uso "workload sets" durante l'installazione di nuovi manifesti.
+Non sono installati set di carico di lavoro. Esegui il "dotnet workload restore" per installare un set del carico di lavoro.
+
+Host:
+  Version:      10.0.11
+  Architecture: arm64
+  Commit:       e2f47b0110
+
+.NET SDKs installed:
+  10.0.400 [/private/tmp/osm2ets2-dotnet/sdk]
+
+.NET runtimes installed:
+  Microsoft.AspNetCore.App 10.0.11 [/private/tmp/osm2ets2-dotnet/shared/Microsoft.AspNetCore.App]
+  Microsoft.NETCore.App 10.0.11 [/private/tmp/osm2ets2-dotnet/shared/Microsoft.NETCore.App]
+
+Other architectures found:
+  None
+
+Environment variables:
+  DOTNET_CLI_HOME                          [/private/tmp/osm2ets2-dotnet-home]
+  DOTNET_CLI_TELEMETRY_OPTOUT              [1]
+
+global.json file:
+  /Users/mdellapa/git/Personale/GitHub/osm2ets2/spikes/poc-001-ets2-native-output/global.json
+
+Learn more:
+  https://aka.ms/dotnet/info
+
+Download .NET:
+  https://aka.ms/dotnet/download

@@ -1,0 +1,129 @@
+FILE /def/world/road_look.sii
+ENTRY File
+UNITS 32
+FILE /def/world/road_look.template.sii
+ENTRY File
+UNITS 395
+MATCH class=road_look name=road.ger1
+MATCH class=road_template_variant name=.tmpl_var.road.ger1
+MATCH class=road_look name=road.ger10
+MATCH class=road_look name=road.ger11
+MATCH class=road_look name=road.ger12
+MATCH class=road_look name=road.ger13
+MATCH class=road_template_variant name=.lane_var.road.ger13.expressway
+MATCH class=road_look name=road.ger14
+MATCH class=road_look name=road.ger15
+MATCH class=road_look name=road.ger16
+MATCH class=road_look name=road.ger17
+MATCH class=road_template_variant name=.lane_variant.road.ger17.exit
+MATCH class=road_template_variant name=.lane_variant.road.ger17.expressway
+MATCH class=road_look name=road.ger18
+MATCH class=road_template_variant name=.lane_variant.road.ger18.exit
+MATCH class=road_template_variant name=.lane_variant.road.ger18.exit2
+MATCH class=road_look name=road.ger19
+DETAIL class=road_look name=road.ger1
+  name: System.String = ger road 1 tmpl
+  template_right: System.String = /road_template/ger/ger_road_1.pmd
+  template_variants_right: System.Collections.Generic.List`1[[System.Object, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]] = System.Collections.Generic.List`1[System.Object]
+    - TruckLib.Sii.OwnerPointer = OwnerPointer { Value = .tmpl_var.road.ger1 }
+  add_parts_right: System.Collections.Generic.List`1[[System.Object, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]] = System.Collections.Generic.List`1[System.Object]
+    - TruckLib.Token = parking_at
+    - TruckLib.Token = parking_de
+  lanes_left: System.Collections.Generic.List`1[[System.Object, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]] = System.Collections.Generic.List`1[System.Object]
+    - TruckLib.Sii.LinkPointer = LinkPointer { Value = traffic_lane.road.local }
+  lanes_right: System.Collections.Generic.List`1[[System.Object, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]] = System.Collections.Generic.List`1[System.Object]
+    - TruckLib.Sii.LinkPointer = LinkPointer { Value = traffic_lane.road.local }
+  compatible_edges_right: System.Collections.Generic.List`1[[System.Object, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]] = System.Collections.Generic.List`1[System.Object]
+    - TruckLib.Token = ger_sw_3m_a
+    - TruckLib.Token = ger_sw_3m_b
+    - TruckLib.Token = ger_sw_3m_c
+    - TruckLib.Token = ger_sw_3m_c1
+    - TruckLib.Token = ger_sw_3m_d
+    - TruckLib.Token = ger_sh_15
+    - TruckLib.Token = ger_curb_15
+    - TruckLib.Token = ger_sh_as_15
+  shoulder_space_left: System.Single = 0,75
+  shoulder_space_right: System.Single = 0,75
+FILE /def/world/road_edge.sii
+ENTRY File
+UNITS 215
+MATCH class=road_edge name=road_edge.ger_sh_15
+API TruckLib.Models.Model
+  property System.Collections.Generic.List`1[TruckLib.Models.Look] Looks
+  property System.Collections.Generic.List`1[TruckLib.Models.Variant] Variants
+  property TruckLib.Models.AxisAlignedBox BoundingBox
+  property System.Numerics.Vector3 BoundingBoxCenter
+  property System.Single BoundingBoxDiagonalSize
+  property System.Collections.Generic.List`1[TruckLib.Models.Bone] Skeleton
+  property System.Collections.Generic.List`1[TruckLib.Models.Part] Parts
+  method System.Collections.Generic.List`1[TruckLib.Models.Look] get_Looks()
+  method Void set_Looks(System.Collections.Generic.List`1[TruckLib.Models.Look])
+  method System.Collections.Generic.List`1[TruckLib.Models.Variant] get_Variants()
+  method Void set_Variants(System.Collections.Generic.List`1[TruckLib.Models.Variant])
+  method TruckLib.Models.AxisAlignedBox get_BoundingBox()
+  method Void set_BoundingBox(TruckLib.Models.AxisAlignedBox)
+  method System.Numerics.Vector3 get_BoundingBoxCenter()
+  method Void set_BoundingBoxCenter(System.Numerics.Vector3)
+  method Single get_BoundingBoxDiagonalSize()
+  method Void set_BoundingBoxDiagonalSize(Single)
+  method System.Collections.Generic.List`1[TruckLib.Models.Bone] get_Skeleton()
+  method Void set_Skeleton(System.Collections.Generic.List`1[TruckLib.Models.Bone])
+  method System.Collections.Generic.List`1[TruckLib.Models.Part] get_Parts()
+  method Void set_Parts(System.Collections.Generic.List`1[TruckLib.Models.Part])
+  method TruckLib.Models.Model Open(System.String)
+  method TruckLib.Models.Model Open(System.String, TruckLib.IFileSystem)
+  method TruckLib.Models.Model Load(Byte[], Byte[])
+  method TruckLib.Models.Model Load(System.IO.Stream, System.IO.Stream)
+  method Void Save(System.String, System.String)
+  method Void SerializePmd(System.IO.BinaryWriter)
+  method Void SerializePmg(System.IO.BinaryWriter)
+API TruckLib.Models.Look
+  property TruckLib.Token Name
+  property System.Collections.Generic.List`1[System.String] Materials
+  method TruckLib.Token get_Name()
+  method Void set_Name(TruckLib.Token)
+  method System.Collections.Generic.List`1[System.String] get_Materials()
+  method Void set_Materials(System.Collections.Generic.List`1[System.String])
+API TruckLib.Models.Variant
+  property TruckLib.Token Name
+  property System.Collections.Generic.List`1[TruckLib.Models.PartAttribute] Attributes
+  method TruckLib.Token get_Name()
+  method Void set_Name(TruckLib.Token)
+  method System.Collections.Generic.List`1[TruckLib.Models.PartAttribute] get_Attributes()
+  method Void set_Attributes(System.Collections.Generic.List`1[TruckLib.Models.PartAttribute])
+MODEL_ENTRY File /road_template/ger/ger_road_1.pmd
+MODEL_LOOKS 5
+  LOOK ger_1
+  LOOK ger_2
+  LOOK ger_3
+  LOOK ger_4
+  LOOK ger_5
+MODEL_VARIANTS 28
+  VARIANT single_de
+  VARIANT dbl_bkn_r_at
+  VARIANT dbl_bb_l_at
+  VARIANT broken_de
+  VARIANT parking
+  VARIANT dbl_sgl_r_at
+  VARIANT double_sf
+  VARIANT single_sf
+  VARIANT dbl_bb_r_at
+  VARIANT warn_at
+  VARIANT broken_at
+  VARIANT city_at
+  VARIANT city_de
+  VARIANT dbl_sgl_l_at
+  VARIANT single_it_sf
+  VARIANT warn_de
+  VARIANT broken_it
+  VARIANT warn
+  VARIANT broken
+  VARIANT double_de
+  VARIANT single_at
+  VARIANT double_it
+  VARIANT dbl_bkn_l_at
+  VARIANT double
+  VARIANT single
+  VARIANT double_it_sf
+  VARIANT no_lanes
+  VARIANT single_it

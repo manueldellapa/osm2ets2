@@ -1,0 +1,17 @@
+Il progetto 'Poc001' contiene i riferimenti al pacchetto seguenti
+   [net10.0]: 
+   Pacchetto di primo livello      Richiesti   Risolti
+   > TruckLib                      [0.5.1]     0.5.1  
+
+   Pacchetto transitivo                    Risolti        
+   > GisDeflate                            1.0.2          
+   > Microsoft.CodeAnalysis.Analyzers      5.3.0-2.25625.1
+   > Microsoft.CodeAnalysis.Common         5.3.0          
+   > RBush                                 4.0.0          
+   > Sprache                               2.3.1          
+   > System.IO.Hashing                     10.0.8         
+   > TruckLib.Core                         0.3.0          
+   > TruckLib.HashFs                       0.2.6          
+   > TruckLib.Models                       0.4.2          
+   > TruckLib.Sii                          0.2.1          
+

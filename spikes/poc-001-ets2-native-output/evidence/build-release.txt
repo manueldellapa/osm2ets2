@@ -1,0 +1,7 @@
+  Poc001 -> /Users/mdellapa/git/Personale/GitHub/osm2ets2/spikes/poc-001-ets2-native-output/bin/Release/net10.0/Poc001.dll
+
+Compilazione completata.
+    Avvisi: 0
+    Errori: 0
+
+Tempo trascorso 00:00:21.43
