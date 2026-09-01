@@ -1,0 +1,664 @@
+************ : log created on : Tuesday September 01 2026 @ 16:39:02
+00:00:00.000 : [sys] running on x86_64 / Windows 11 x64 (version 10.0.26200)
+00:00:00.000 : [sys] Command line:  C:\Program Files (x86)\Steam\steamapps\common\Euro Truck Simulator 2\bin\win_x64\eurotrucks2.exe -edit poc001_minimal -noworkshop
+00:00:00.000 : [cpu] GenuineIntel [Intel(R) Core(TM) i7-8700 CPU @ 3.20GHz] - 1 package, 6 cores, 12 threads.
+00:00:00.000 : [cpu] logical_id  : 0    1    2    3    4    5    6    7    8    9    10   11  
+00:00:00.000 : [cpu] package_id  : 0    0    0    0    0    0    0    0    0    0    0    0   
+00:00:00.000 : [cpu] core_id     : 0    0    1    1    2    2    3    3    4    4    5    5   
+00:00:00.000 : [cpu] thread_id   : 0    1    0    1    0    1    0    1    0    1    0    1   
+00:00:00.000 : [cpu] core_type   : P    P    P    P    P    P    P    P    P    P    P    P   
+00:00:00.000 : [cpu] freq(MHz)   : 3192 3192 3192 3192 3192 3192 3192 3192 3192 3192 3192 3192
+00:00:00.000 : [cpu] sched_class : 0    0    0    0    0    0    0    0    0    0    0    0   
+00:00:00.000 : [sys] using 4 worker thread(s)
+00:00:00.000 : [sys] and 3 worker threads for IO.
+00:00:00.000 : [sys] plus 3 real-time worker threads.
+00:00:00.000 : [sys] using QPC / HPET timer, frequency 10000000Hz
+00:00:00.000 : [mem] physical total: 32687M
+00:00:00.000 : [mem] physical avail: 23105M
+00:00:00.000 : [mem] virtual total: 134217727M
+00:00:00.000 : [mem] virtual avail: 134212548M
+00:00:00.000 : [mem] Allocated 128 MBs for temporary loading buffers
+00:00:00.104 : [xinput] Using XInput version 1.4.0
+00:00:00.147 : [hashfs] version.scs: Created and validated, 2 entries (FD35BB798E8997A2E2920D1C90F09BD23A134236BEA276F986A6A7A535C98C28)
+00:00:00.148 : [hashfs] version.scs: Unmounted.
+00:00:00.148 : [ufs] Loaded pack set version 1.60.1.7 created at 1782738046
+00:00:00.162 : [hashfs] effect.scs: Created and validated, 24481 entries (32A4AEF39EE1F5670575495AF4BECAAC723F5EE99C39581206CED63C167E9D0D)
+00:00:00.162 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/effect.scs mounted to core pool.
+00:00:00.265 : [hashfs] base.scs: Created and validated, 179050 entries (15C6603BB90D64FB8C32871816B5E09A2547D3E7FA5596CFC22E0D42736D2462)
+00:00:00.266 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/base.scs mounted to scs pool.
+00:00:00.267 : [hashfs] base_map.scs: Created and validated, 2178 entries (6A4E7778B020AAB94FDEA8CE9DA3E42CB1ACE2F0E6AE3F16811A828BA448DEC2)
+00:00:00.267 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/base_map.scs mounted to scs pool.
+00:00:00.340 : [hashfs] base_vehicle.scs: Created and validated, 53455 entries (3B041C5963CB591FBA8037095D5A1F58AB6DF77FBB392605660D662B371A376D)
+00:00:00.340 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/base_vehicle.scs mounted to scs pool.
+00:00:00.371 : [hashfs] base_share.scs: Created and validated, 40322 entries (4E595C5773E21F3657BFE856208EFED592885A005F7924EE1295657647C3945C)
+00:00:00.371 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/base_share.scs mounted to scs pool.
+00:00:01.795 : [hashfs] def.scs: Created and validated, 66928 entries (4AFA2DDDB46D7EAE3EEE26957E0BE9AE11805A411B2B12C934994DFA73B9B132)
+00:00:01.795 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/def.scs mounted to scs pool.
+00:00:01.796 : [hashfs] core.scs: Created and validated, 22 entries (FFC8D5E0CA3E904119ED3812ECA087CB3B85FB98706EE1675AFEC352B9270896)
+00:00:01.796 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/core.scs mounted to core pool.
+00:00:01.963 : [hashfs] locale.scs: Created and validated, 522 entries (905E61DD9C56DED07F8E33B1884928F018A9D0E1441C6CFD15542731D216A116)
+00:00:01.963 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/locale.scs mounted to core pool.
+00:00:01.964 : [hashfs] base_cfg.scs: Created and validated, 1 entries (4EE1E9468F3DFC42839E03FF267D0FF23BF2E8962FA6BD312C4E381AF12CA8F5)
+00:00:01.964 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/base_cfg.scs mounted to core pool.
+00:00:01.966 : [ufs] core pool: 4 packs, 24870 files, 156 dirs
+00:00:01.999 : [ufs] scs pool: 5 packs, 332769 files, 9164 dirs
+00:00:01.999 : [ufs] Home directory: 'C:/Users/<user>/Documents/Euro Truck Simulator 2'.
+00:00:02.000 : [fs] device C:/Users/<user>/Documents/Euro Truck Simulator 2 mounted to user pool.
+00:00:02.030 : [hashfs] dlc_actros_tuning.scs: Created and validated, 2321 entries (F75F2AE0F3E230AEC0D52645398C1DE41B02730DB62BDDA69085E7FF2E459296)
+00:00:02.138 : [hashfs] dlc_balkan_e.scs: Created and validated, 8400 entries (CFE481664174BEC7EF9278F05962BE3C3130F04A76E753BA4D23326DAB361129)
+00:00:02.222 : [hashfs] dlc_balkan_w.scs: Created and validated, 8188 entries (37288B57C420212352A83490792EE84C95FC222AFD50065866B5F3A4AD828391)
+00:00:02.388 : [hashfs] dlc_balt.scs: Created and validated, 7604 entries (E9836BBC856CAA14C35D369744F4C2AE9F62D1C363CA89B90BCF203B98C84EAE)
+00:00:02.479 : [hashfs] dlc_bobcat.scs: Created and validated, 3089 entries (6C2F37B390048D34BC0331B94BCC034D5DB57D5AA243E88662A737D5E46C4844)
+00:00:02.528 : [hashfs] dlc_christmas.scs: Created and validated, 3529 entries (AE5F504DC6D9C41EB320CB6149BF55AD4979B1FE362DEDEBD585C0ED1A73BD18)
+00:00:02.615 : [hashfs] dlc_daf_2021.scs: Created and validated, 3038 entries (E776B08BAC2B96764ABC040505E51AF4D3F17C00237A1C9001D69A9D8408B44A)
+00:00:02.647 : [hashfs] dlc_daf_tuning_pack.scs: Created and validated, 2226 entries (BD7AEC02E58F24672FD7E81837D8F78EAD6919EDBC7BAF37094DF806B82648C2)
+00:00:02.713 : [hashfs] dlc_daf_xd.scs: Created and validated, 2548 entries (EF9942B1B5810FD45DCA9B44D20753CF814FF628D36175217025CFDB5FCD3B20)
+00:00:02.724 : [hashfs] dlc_daf_xf_electric.scs: Created and validated, 860 entries (0690C537282FB24C5B25CEDFB7DA4C7F12590F711FF7DDAAB619074D889A5F99)
+00:00:02.730 : [hashfs] dlc_dragon.scs: Created and validated, 733 entries (BB8E64493C855FF5D2F9A6C559F222AEE7939C5D2244A5874B005E092D4C00EA)
+00:00:02.770 : [hashfs] dlc_dutch_style.scs: Created and validated, 5063 entries (E088CF373C049F0FEF15C2A354C061A7B304A13CD85795D72137C7B183B3F55B)
+00:00:02.775 : [hashfs] dlc_east.scs: Created and validated, 924 entries (1FC52F973061A896BD7A28F7C4DED94E0911D942C0BB5FF02B7AD37F8D513B77)
+00:00:02.787 : [hashfs] dlc_fantasy.scs: Created and validated, 1749 entries (BB21DE57949823D5C6BEC1499A6B62E725343B5306867561569B287C709CE0B3)
+00:00:02.815 : [hashfs] dlc_farm_machinery.scs: Created and validated, 2269 entries (57A9648F74D35FB29B3832A1AB0D66BE8F6F493B74C6451979BD437DBBE10E91)
+00:00:02.861 : [hashfs] dlc_feldbinder.scs: Created and validated, 5854 entries (6EF10CA57F175FE0C74660C8F11BAFB748C094D6F129D8E65730C0561112033C)
+00:00:02.870 : [hashfs] dlc_flags_at.scs: Created and validated, 1218 entries (B009DC6A2BB608AD3C47F22ED4070541A3712C414AF0917A3954AD75F4751F08)
+00:00:02.879 : [hashfs] dlc_flags_aus.scs: Created and validated, 1200 entries (220208876BD73C010E0D53858714186FBD4AF0E8B5061C4A796CF809C60FE321)
+00:00:02.890 : [hashfs] dlc_flags_be.scs: Created and validated, 1329 entries (2976BAF8F543ABD101CEDBFB3D28EE493CCCB44FC5D2633F5751B92A904D7024)
+00:00:02.902 : [hashfs] dlc_flags_bg.scs: Created and validated, 1157 entries (0B502DFB7737D0CF9A7883224648C907842CF9D01C5F71113D8F59408C2DF13C)
+00:00:02.911 : [hashfs] dlc_flags_bz.scs: Created and validated, 1150 entries (99D996C8D851D153A755D62556569D45F39847805736626FC4906D243543F877)
+00:00:02.920 : [hashfs] dlc_flags_ca.scs: Created and validated, 1198 entries (B1B8C381C56425392DB9B32A227526354EA18F2741FF0AFB0DF1DC8AF14612A6)
+00:00:02.929 : [hashfs] dlc_flags_ch.scs: Created and validated, 1054 entries (4A751057F32EF1CEE5C54E13468112216E619F466BD1BDB3000F676944D9C45C)
+00:00:02.937 : [hashfs] dlc_flags_cn.scs: Created and validated, 1132 entries (3F07EDC810B287E810F997C43064E41A62712013069AC1382CC077BE84F0269C)
+00:00:02.947 : [hashfs] dlc_flags_cz.scs: Created and validated, 1221 entries (CF7357FD3FE63F3AF20A266C7E22144C26C2F8F4A171A631E859975D2EC84664)
+00:00:02.956 : [hashfs] dlc_flags_de.scs: Created and validated, 1144 entries (256758683F225C11AD5EDCA6B262D3A1D1F0936B1E18E4C5BDD2A61E6F3520E4)
+00:00:02.965 : [hashfs] dlc_flags_dk.scs: Created and validated, 1101 entries (69AABC3693918641C79D087DA158BDC1CFB14CB42A6C75EAC51B6AB3BBAA1C6D)
+00:00:02.980 : [hashfs] dlc_flags_ee.scs: Created and validated, 1570 entries (701896BA4DA4989B64044D901FA9B8F26FF6F9E2F4E8DF97CDE3BDD0710C09AA)
+00:00:02.994 : [hashfs] dlc_flags_es.scs: Created and validated, 1705 entries (D153BDF027950D3FEACFD0B2FBF7206E66A5722132FE2947F5A0E4ADCDF302EE)
+00:00:03.003 : [hashfs] dlc_flags_fi.scs: Created and validated, 1098 entries (7A7A24D13581DFAFCA4481F8AD349F2FC6CD951D226E11D539DF0D14668D2D61)
+00:00:03.012 : [hashfs] dlc_flags_fr.scs: Created and validated, 1102 entries (A81207EBEB46EE2A33D0CB6DE6B32FD3646B9EEAB7D1E08B388855FDCBD34CAA)
+00:00:03.022 : [hashfs] dlc_flags_hu.scs: Created and validated, 1489 entries (6158E5B7169ED09F76C6EB1B71F45A238D16C9E94B89DF2198563371CA121E75)
+00:00:03.033 : [hashfs] dlc_flags_ie.scs: Created and validated, 1209 entries (33B715952C9D12980CF5E7E11081B609C8CE2F7685492AA13927822367543C17)
+00:00:03.041 : [hashfs] dlc_flags_it.scs: Created and validated, 1179 entries (582944468C410FB84D0FC2EC0E25327BC8BD8341F538820A3968261AC2FB6AC9)
+00:00:03.050 : [hashfs] dlc_flags_jp.scs: Created and validated, 1163 entries (37C5FF82594E09192140A9ACD3F51AC82E51A5D6BC2591648E859E2A94520B90)
+00:00:03.059 : [hashfs] dlc_flags_kr.scs: Created and validated, 1210 entries (571BA242F90565AF84F0D8367D4654DE65878C620D8DF8FC1BA1898FCBE357E3)
+00:00:03.072 : [hashfs] dlc_flags_lt.scs: Created and validated, 1216 entries (3F1D0A14DDA6CFF0ED69F84551C23AEAFFADE0C9F166A6BCD8432EA9A059B9CE)
+00:00:03.084 : [hashfs] dlc_flags_lv.scs: Created and validated, 1162 entries (F11753066734257E65B7DF604CF8C2FBFCDC7B45CB97B5CD5CC5280D28A40D11)
+00:00:03.093 : [hashfs] dlc_flags_n.scs: Created and validated, 1101 entries (9E6FFE1E147622E0BBCE290F05E6A4512127F4AC4F540BC593DFB07A34BB8359)
+00:00:03.106 : [hashfs] dlc_flags_nl.scs: Created and validated, 1279 entries (E1E6D977D490A22346187204D3661286108149229C69DA7DDA0D18A382E5E390)
+00:00:03.114 : [hashfs] dlc_flags_pl.scs: Created and validated, 959 entries (06CD9C01E5EAD17F25869C676633A1D6CDDA3BBA5288FF41CB4F68AB0A6C2783)
+00:00:03.130 : [hashfs] dlc_flags_pt.scs: Created and validated, 1619 entries (42E0E06D3F45CA42C46542B0C47887749EB717E2758E503B751C66AFCBFA2DFB)
+00:00:03.139 : [hashfs] dlc_flags_ro.scs: Created and validated, 1074 entries (0002E0B9232AFF34ABB4C8CB14E0F5897F7AC1906EEA0AD7022B2275F26830C9)
+00:00:03.147 : [hashfs] dlc_flags_ru.scs: Created and validated, 1212 entries (AE67C5F3FA1D184CC50063E804A6F310759907252488846A15B1B395ADB78517)
+00:00:03.157 : [hashfs] dlc_flags_s.scs: Created and validated, 1158 entries (258687C95BEE0A74834CDFB93EE98CF43E56F58343ACB99D72D815AB68043B62)
+00:00:03.166 : [hashfs] dlc_flags_sc.scs: Created and validated, 1178 entries (492B9FABF7F6F3432D979A8D4B583A0D9D7088B35BECF6D22CA408C79E12CAF7)
+00:00:03.175 : [hashfs] dlc_flags_sk.scs: Created and validated, 1054 entries (AC9EA5BB0B7A938058E2F3C28A29E56B152A285D338BC4B71521692169748C43)
+00:00:03.184 : [hashfs] dlc_flags_tr.scs: Created and validated, 1146 entries (24A77612F9A5929C5D58AAA87EED48C038CEC87A3592951DF9EC04B478155739)
+00:00:03.193 : [hashfs] dlc_flags_uk.scs: Created and validated, 1151 entries (06514B68A600399B1399B58E06304F1977CC3A9EFDBCBB74DFAE4AF5C567EB32)
+00:00:03.205 : [hashfs] dlc_flags_ukr.scs: Created and validated, 1176 entries (ECB2CF1E4B2516CA8D4F6253D18E6E377A2D636862E87E57A9FD516683B9533F)
+00:00:03.214 : [hashfs] dlc_flags_us.scs: Created and validated, 1203 entries (95FE40461695610E396C0E27C20DEB494AD8CD01FC86727B39A077715D50D36B)
+00:00:03.241 : [hashfs] dlc_forest_harvesting.scs: Created and validated, 3318 entries (D65F3C69F707CFB10D4263FB339C9CEB18997A9ADBF90659EB12E0424B1FE541)
+00:00:03.275 : [hashfs] dlc_fr.scs: Created and validated, 3507 entries (2E27D034853569540F438D3B8C9A15F6BED26B45DDD167736733A185BE677AD4)
+00:00:03.296 : [hashfs] dlc_goodyear.scs: Created and validated, 2058 entries (3357DAE13EF76192FA0181FF045A76260A9A502F39D7C672AA2F1F3237A78935)
+00:00:03.322 : [hashfs] dlc_greece.scs: Created and validated, 10461 entries (39A5F63965AEA086F057A85B4C647A1B41C1D5C4CE2327E36F1985A562AE3AB2)
+00:00:03.338 : [hashfs] dlc_greek_paintjobs.scs: Created and validated, 1740 entries (6DEA05EBA8DD599C0EED9C9E87953EA9FC371F2C012C5CB227C3865C4CB2E622)
+00:00:03.355 : [hashfs] dlc_halloween.scs: Created and validated, 2347 entries (F330142DD7C0A4D254ABF7B8DC132345835249FAFD3C6092E28E480644B6E9FD)
+00:00:03.378 : [hashfs] dlc_heavy_cargo.scs: Created and validated, 1732 entries (682D2AF9D29F2C981E40E876DC319DCB89AAD753E0B2E2E14DE949878B769527)
+00:00:03.423 : [hashfs] dlc_hs_schoch.scs: Created and validated, 6694 entries (BAF0AF7AD42F4F2D9F1B5BCD08D9ED8914A579A7A951A4CC343096F9CFE9571C)
+00:00:03.479 : [hashfs] dlc_iberia.scs: Created and validated, 9262 entries (7BA9F8A7D5D25DB02AB78F7F7BC8043232862F6664EB97FE5887A7EFC462275F)
+00:00:03.512 : [hashfs] dlc_it.scs: Created and validated, 3669 entries (CC882E952691F19EF269DA0713F71DBA6821A8381089050096BEFDA7E52D86D7)
+00:00:03.570 : [hashfs] dlc_iveco_sway.scs: Created and validated, 1556 entries (45BE821099D2607D4B895F90DE69239BAAE882A020F516C02DCF0AA1A2BBDA23)
+00:00:03.612 : [hashfs] dlc_jcb.scs: Created and validated, 3286 entries (307F169E353B44ADA935E73D9351A4463B68B3A9640BB08C9A1461E0F01CED66)
+00:00:03.656 : [hashfs] dlc_kassbohrer.scs: Created and validated, 6820 entries (004ACC781F1E06EE6CF92AA0C94A78C7E5063C152887CE7A1430A96311407B62)
+00:00:03.687 : [hashfs] dlc_kogel.scs: Created and validated, 4329 entries (7FDC32CA1DBDD872734F915519A475A471E80FFB270A77E96D8376A27AE02399)
+00:00:03.786 : [hashfs] dlc_krone.scs: Created and validated, 6741 entries (B0073750897C3C8780EA54CA8EB6C7210999F646C44037C49010EFFF4E15C7DD)
+00:00:03.810 : [hashfs] dlc_krone_agriculture.scs: Created and validated, 1875 entries (B6D76F639C9B7E5D63D754D633F9AE57EC56D463CFC264246BE169807CB1E1C7)
+00:00:03.845 : [hashfs] dlc_lines.scs: Created and validated, 4662 entries (BE51425F464CE1BF5D60769DF35E5AFCA346EEF384447B8E2D67B6E005A74EA0)
+00:00:03.889 : [hashfs] dlc_lunar_new_year.scs: Created and validated, 7472 entries (7EA903428419BC38C4B075512E0D200A8D00011E17A832B477CBC06C9C02DE51)
+00:00:03.957 : [hashfs] dlc_man_tgx_2020.scs: Created and validated, 3190 entries (42F079ED47AAC46932A6236665C645EC930E2FF0ED79CF843EE87AA79636609E)
+00:00:03.975 : [hashfs] dlc_metallics.scs: Created and validated, 1227 entries (7CD898AB3C74EC55C81686A4771C2D4B4D2443B1D4A8F92FFACD8CF9BC880FF9)
+00:00:03.995 : [hashfs] dlc_metallics2.scs: Created and validated, 1362 entries (0986E7B4CE3B007D86A033CD266E5AB1258599A03C4D4056364DDB580F4FBD97)
+00:00:04.021 : [hashfs] dlc_michelin.scs: Created and validated, 3093 entries (8B00D0DEDF1B4FCE8BD4CABFA2E513DF6194A794B91A95F65D2F24740D80BD9D)
+00:00:04.040 : [hashfs] dlc_mighty_griffin.scs: Created and validated, 3473 entries (4C3A6A7A1F18A06A7264D50705ABA86614D1DE9ABF1F50589B8B18C775B31D00)
+00:00:04.054 : [hashfs] dlc_nature.scs: Created and validated, 2062 entries (A1B4CB7B83DCB6D394EC0B96EF543216D3A819BFA13D5A82469900676BD97CD1)
+00:00:04.067 : [hashfs] dlc_north.scs: Created and validated, 3008 entries (78C1827EF820B9EE16945C1AF9E8301D0E942D249A9BCA5003A425125B3EE1AA)
+00:00:04.079 : [hashfs] dlc_oversize.scs: Created and validated, 900 entries (1E8C55543FDFB6737530FE9F9FACD4B221683B3DDF1DF2D3DAA879898E30CAEF)
+00:00:04.082 : [hashfs] dlc_pcg.scs: Created and validated, 192 entries (BA44D40A9CD84D0BDD9A57385926EBFA2ADDB975CBD891E91C9D231519FEEAC6)
+00:00:04.333 : [hashfs] dlc_phys_flags.scs: Created and validated, 13230 entries (44EBC0A62DA1316D42CD798B59BC964ED3190DA4D686A0443B7F13A0AFCAB26E)
+00:00:04.352 : [hashfs] dlc_pink_ribbon.scs: Created and validated, 2049 entries (AFF61752187124014A679427727928B826058971F8BC757C8C63B00E7E3C221D)
+00:00:04.371 : [hashfs] dlc_pirates.scs: Created and validated, 2478 entries (FA72A10B54F2E43F61B6A427164A3E12A6B68FC229E793C7F8A55CABCB591949)
+00:00:04.385 : [hashfs] dlc_prehistoric.scs: Created and validated, 2084 entries (50EEB76D94A7A0CE5C003CECD1010794AF98C28A81CEE0C94B590867608379D0)
+00:00:04.397 : [hashfs] dlc_raven.scs: Created and validated, 1419 entries (7DD5742559C6A76A5885E045D603E50450D5B2D1F47020FC76546329D023CCCE)
+00:00:04.404 : [hashfs] dlc_renault_etech_t.scs: Created and validated, 371 entries (C02EDB1BC6B4F044C7CA3A28F7A8FE6AA2917945AC858C432418A57DB3E7AB83)
+00:00:04.421 : [hashfs] dlc_renault_t_tuning.scs: Created and validated, 2601 entries (0BD4A8EC7544E023B6CBB1A20BB1C8107583C522EB9BF31A6D1E5ED729123C0B)
+00:00:04.425 : [hashfs] dlc_rims.scs: Created and validated, 710 entries (5DCE31FC089DAB981462EE2B97998D665E36DF121B2E10FB766591628D8D8AF6)
+00:00:04.428 : [hashfs] dlc_rocket_league.scs: Created and validated, 164 entries (755268BE14FB04A48C404A57AA5552AB2B350AF019256C3EE8F15D96F22FAA98)
+00:00:04.437 : [hashfs] dlc_scania_s_2024e.scs: Created and validated, 648 entries (129F71AB39387392F8585FBB507C63D30C17AA7AE84192D2A210B6A4F12E5557)
+00:00:04.478 : [hashfs] dlc_schmitz.scs: Created and validated, 6505 entries (7085F88A04C2BB9E3DAF56A6C9A548E88E12F4E455BFB5128B66AA630B1D18E3)
+00:00:04.504 : [hashfs] dlc_schwarzmuller.scs: Created and validated, 3648 entries (B283B8487F65E672FF59CC7A54B13FE3B974B449ABE60D4BCBED21C2A8C61643)
+00:00:04.523 : [hashfs] dlc_space.scs: Created and validated, 2347 entries (A570BE7203AACBEB6B5F33C7D31DAA2D2C4AAE9B3358D1FDC54630F488BB7872)
+00:00:04.544 : [hashfs] dlc_streetart.scs: Created and validated, 2703 entries (1D7E500F27C68145A5793C10CBE3C8511E97DA223147425716F4F070DA6DF8A2)
+00:00:04.571 : [hashfs] dlc_super_stripes.scs: Created and validated, 4521 entries (7394DF7B6AFC7237B10E25A497737CD66810DA355235664371953760DEFFED9D)
+00:00:04.606 : [hashfs] dlc_tirsan.scs: Created and validated, 5734 entries (3D9F1BC925857D65AA2E72D8BAF61E1BB6956E6658A7C3C6CE0329CB52477B0D)
+00:00:04.638 : [hashfs] dlc_toys.scs: Created and validated, 2905 entries (FA7B28576A5457158240533B637B338EA7A3946E2E83D74CA6F1255312F290F2)
+00:00:04.665 : [hashfs] dlc_trailers.scs: Created and validated, 2623 entries (2B261C418058D7FDB5977A530914C8DAAE50E26D3E7B13DFCC9E5657E42A4530)
+00:00:04.682 : [hashfs] dlc_valentine.scs: Created and validated, 2154 entries (C2EECC83552BBCA7F1086CA1C2F8C0995E4D17C2D61F2C153DDD2FD572DCF842)
+00:00:04.694 : [hashfs] dlc_vikings.scs: Created and validated, 1730 entries (9F58C8E5E381850701B77C22CD0D50F2C626AF0C5EB5C43C061DBAE717D15DC7)
+00:00:04.719 : [hashfs] dlc_volvo_construction.scs: Created and validated, 1976 entries (626EDD66C0E425204286140F5E871EAFAC960038181DC5905E4C0E452765E88F)
+00:00:04.815 : [hashfs] dlc_volvo_fh_2021.scs: Created and validated, 1617 entries (64F000C8CFF8312BF7691256A0FFB349C83541340338397F10582C9B9740F56F)
+00:00:04.944 : [hashfs] dlc_volvo_fh_2024.scs: Created and validated, 3554 entries (2717578512570AAFFE9CFCEC9BC7D60C22449B74C0015E056340EBC2DD0E185D)
+00:00:04.967 : [hashfs] dlc_volvo_tuning_pack.scs: Created and validated, 3537 entries (B53CC0EE2AD10C0BDB3E0E05F332D7DBCA7F5EA7B6E19A0AE70AD50B9C81FCC6)
+00:00:05.007 : [hashfs] dlc_wielton.scs: Created and validated, 5035 entries (7FA9958161BF16A1974D4DA215275CC4E9EC7446F1C5DB0F250DC7BE0142F702)
+00:00:05.023 : [hashfs] dlc_winter.scs: Created and validated, 2324 entries (652386681CB5A19E9F517F7FDB272B094D8FED2EA6CB66FC2E8F1959B4394E71)
+00:00:05.028 : <WARNING> [mod] Mod package 'user_map' does not contain a manifest file 'manifest.sii', creating default information set.
+00:00:05.526 : exec /home/config.cfg
+00:00:05.539 : [sys] Executing /home/config.cfg ...
+00:00:05.540 : uset r_hdr_display_gray_offset "0.0"
+00:00:05.541 : uset r_hdr_display_white "-1.0"
+00:00:05.542 : uset r_hdr_display_black "-1.0"
+00:00:05.543 : uset r_sdr_display_gray_offset "0.0"
+00:00:05.544 : uset r_sdr_display_white "1"
+00:00:05.545 : uset r_sdr_display_black "0"
+00:00:05.546 : uset r_far_shadow_disable "0"
+00:00:05.547 : uset r_show_sun_cascades "0"
+00:00:05.548 : uset r_tonemap_debug "0"
+00:00:05.549 : uset r_taa_modulated_drr_strength "0.0"
+00:00:05.550 : uset r_drr_strength "8.0"
+00:00:05.551 : uset r_use_depth_bounds "1"
+00:00:05.552 : uset r_hide_helpers "0"
+00:00:05.553 : uset o_openxr_right_bottom_override "0.0"
+00:00:05.554 : uset o_openxr_right_top_override "0.0"
+00:00:05.555 : uset o_openxr_right_right_override "0.0"
+00:00:05.556 : uset o_openxr_right_left_override "0.0"
+00:00:05.557 : uset o_openxr_left_bottom_override "0.0"
+00:00:05.559 : uset o_openxr_left_top_override "0.0"
+00:00:05.560 : uset o_openxr_left_right_override "0.0"
+00:00:05.561 : uset o_openxr_left_left_override "0.0"
+00:00:05.562 : uset o_openxr_max_vert_fov_override "0.0"
+00:00:05.563 : uset o_openxr_max_hor_fov_override "0.0"
+00:00:05.565 : uset o_openxr_init_duration_ms "100"
+00:00:05.566 : uset o_openxr_one_period_ahead "0"
+00:00:05.567 : uset o_openxr_acquire_after_begin "1"
+00:00:05.569 : uset o_openxr_async_wait "0"
+00:00:05.572 : uset o_openxr_external_loader "0"
+00:00:05.575 : uset o_openxr_force_symmetrical_fov "0"
+00:00:05.576 : uset o_openxr_log_changes "0"
+00:00:05.578 : uset o_openxr_debug_level "0"
+00:00:05.580 : uset o_openvr_any_adapter "0"
+00:00:05.583 : uset o_openvr_interleaved_reproject "0"
+00:00:05.584 : uset o_oculus_any_adapter "0"
+00:00:05.586 : uset s_sound_debug "0"
+00:00:05.587 : uset s_init_intro_music_mute "0"
+00:00:05.590 : uset s_init_intro_music_volume "0.5"
+00:00:05.593 : uset s_init_ui_music_mute "0"
+00:00:05.595 : uset s_init_ui_music_volume "0.5"
+00:00:05.597 : uset s_init_master_mute "0"
+00:00:05.600 : uset s_init_master_volume "0.75"
+00:00:05.603 : uset s_output_driver ""
+00:00:05.605 : uset s_live_update "0"
+00:00:05.607 : uset s_suspend_sound "1"
+00:00:05.608 : uset g_mm_help_shown "0"
+00:00:05.610 : uset g_frame_image_fmt "jpg"
+00:00:05.611 : uset g_frames_path ""
+00:00:05.612 : uset g_convoy_allow_load "0"
+00:00:05.613 : uset g_max_convoy_size "8"
+00:00:05.614 : uset g_last_hidden_dlc_widget_name ""
+00:00:05.616 : uset g_last_seen_dlc_release_date "0"
+00:00:05.618 : uset g_last_seen_patch_notes_hash "0"
+00:00:05.620 : uset g_academy_book_count "0"
+00:00:05.622 : uset g_anti_slip "1"
+00:00:05.623 : uset g_abs "1"
+00:00:05.625 : uset g_bumps "1.0"
+00:00:05.625 : uset g_editor_zoom_speed "1.0"
+00:00:05.627 : uset g_map_note_user_id "0"
+00:00:05.628 : uset g_color_feedback "0"
+00:00:05.629 : uset g_disable_hud_activation "0"
+00:00:05.630 : uset r_interior_raindrops "0"
+00:00:05.631 : uset g_interior_camera_zero_pitch "0"
+00:00:05.633 : uset r_multimon_exterior_in_aux "0"
+00:00:05.633 : uset r_multimon_interior_in_main "1"
+00:00:05.635 : uset r_multimon_rotation_aux "0"
+00:00:05.635 : uset r_multimon_rotation_right "0"
+00:00:05.636 : uset r_multimon_rotation_left "0"
+00:00:05.637 : uset r_multimon_rotation_center "0"
+00:00:05.638 : uset r_multimon_vert_offset_right "0"
+00:00:05.640 : uset r_multimon_vert_offset_left "0"
+00:00:05.641 : uset r_multimon_border_fov_right "0"
+00:00:05.642 : uset r_multimon_border_fov_left "0"
+00:00:05.643 : uset r_multimon_fov_vertical "0"
+00:00:05.643 : uset r_multimon_fov_horizontal "50"
+00:00:05.644 : uset r_multimon_mode "0"
+00:00:05.646 : uset r_buffer_page_size "10"
+00:00:05.647 : uset r_deferred_debug "0"
+00:00:05.648 : uset r_mirror_scale_y "1"
+00:00:05.649 : uset r_mirror_scale_x "1"
+00:00:05.649 : uset r_scale_y "0.829493"
+00:00:05.651 : uset r_scale_x "0.925926"
+00:00:05.652 : uset r_normal_maps "1"
+00:00:05.653 : uset r_sunshafts "1"
+00:00:05.654 : uset r_color_saturation "1.0"
+00:00:05.656 : uset r_color_yellow_blue "0.0"
+00:00:05.658 : uset r_color_magenta_green "0.0"
+00:00:05.659 : uset r_color_cyan_red "0.0"
+00:00:05.660 : uset r_color_correction "1"
+00:00:05.662 : uset r_light_flares "1"
+00:00:05.663 : uset r_cloud_shadows "1"
+00:00:05.664 : uset r_dof_filter_size "0.5"
+00:00:05.665 : uset r_dof_transition "400.0"
+00:00:05.666 : uset r_dof_start "200.0"
+00:00:05.667 : uset r_dof "1"
+00:00:05.668 : uset r_ssao "1"
+00:00:05.669 : uset r_taa_luma_sharpen "1.0"
+00:00:05.670 : uset r_taa_tuning "0"
+00:00:05.671 : uset r_aa "0"
+00:00:05.672 : uset r_interior_shadow "0"
+00:00:05.673 : uset r_fake_shadows "2"
+00:00:05.674 : uset r_sun_shadow_texture_size "4096"
+00:00:05.676 : uset r_sun_shadow_quality "1"
+00:00:05.677 : uset r_mirror_group "3"
+00:00:05.678 : uset r_mirror_view_distance "80"
+00:00:05.680 : uset r_deferred_mirrors "1"
+00:00:05.682 : uset r_nowmi "0"
+00:00:05.683 : uset r_startup_progress "0"
+00:00:05.685 : uset r_setup_done "1"
+00:00:05.686 : uset r_peak_brightness "1.0"
+00:00:05.687 : uset r_hmd_controller_shadows "0"
+00:00:05.689 : uset r_hmd_draw_controllers "0"
+00:00:05.690 : uset r_hmd_water_pixels_per_deg "20.0"
+00:00:05.692 : uset r_ipd_scale "1.0"
+00:00:05.694 : uset r_manual_stereo_mirror_mode "1"
+00:00:05.695 : uset r_manual_stereo_ui_lod_bias "-0.75"
+00:00:05.697 : uset r_manual_stereo_ui_mipmaps "1"
+00:00:05.699 : uset r_manual_stereo_ui_buffer_scale "2.0"
+00:00:05.701 : uset r_manual_stereo_buffer_scale "1.0"
+00:00:05.703 : uset r_manual_stereo_ui_pitch_game "-10.0"
+00:00:05.710 : uset r_manual_stereo_ui_yaw_game "-40.0"
+00:00:05.711 : uset r_manual_stereo_ui_pitch "-30.0"
+00:00:05.713 : uset r_manual_stereo_ui_yaw "0.0"
+00:00:05.714 : uset r_manual_stereo_ui_y_game "-0.2"
+00:00:05.715 : uset r_manual_stereo_ui_x_game "0.5"
+00:00:05.717 : uset r_manual_stereo_ui_y "-0.5"
+00:00:05.718 : uset r_manual_stereo_ui_x "0.0"
+00:00:05.719 : uset r_manual_stereo_ui_static_fov "40"
+00:00:05.721 : uset r_manual_stereo_ui_fov_game "100"
+00:00:05.724 : uset r_manual_stereo_ui_fov "65"
+00:00:05.726 : uset r_manual_stereo_ui_radius_game "0.0"
+00:00:05.727 : uset r_manual_stereo_ui_radius "3.0"
+00:00:05.729 : uset r_manual_stereo_ui_dist_game "0.5"
+00:00:05.730 : uset r_manual_stereo_ui_dist "1"
+00:00:05.732 : uset r_minimal_unfinished_frames "0"
+00:00:05.734 : uset r_no_frame_tracking "0"
+00:00:05.736 : uset r_mode_refresh "0"
+00:00:05.737 : uset r_mode_height "1085"
+00:00:05.739 : uset r_mode_width "1728"
+00:00:05.741 : uset r_path ""
+00:00:05.743 : uset r_device ""
+00:00:05.745 : uset i_cursor_semantic_force_spd_mlt "0.35"
+00:00:05.747 : uset i_cursor_force_spd_mlt "0.75"
+00:00:05.749 : uset i_controller_cursor_speed "800.0"
+00:00:05.753 : uset g_stream_exts ".ogg;.mp3"
+00:00:05.754 : uset g_album_image "0"
+00:00:05.755 : uset g_thrustmaster "1"
+00:00:05.762 : uset g_tobii "1"
+00:00:05.763 : uset g_trackir "1"
+00:00:05.764 : uset g_lod_factor_pedestrian "1.0"
+00:00:05.766 : uset g_pedestrian "1"
+00:00:05.767 : uset g_light_span_factor "1"
+00:00:05.768 : uset g_light_distance_factor "1"
+00:00:05.770 : uset g_vehicle_flare_lights "1"
+00:00:05.771 : uset g_auto_traffic_headlights "1"
+00:00:05.772 : uset g_lod_factor_parked "1.0"
+00:00:05.774 : uset g_lod_factor_traffic "1.0"
+00:00:05.775 : uset g_traffic "1.0"
+00:00:05.776 : uset g_kdop_preview "0"
+00:00:05.777 : uset g_screenshot_on_bug_quality "100"
+00:00:05.778 : uset g_screenshot_on_bug "0"
+00:00:05.779 : uset g_debug_map_limits "0"
+00:00:05.780 : uset g_city_name_move "0"
+00:00:05.782 : uset g_assert_dump "0"
+00:00:05.783 : uset g_developer "0"
+00:00:05.784 : uset g_semantical_pause_inactivity "120"
+00:00:05.785 : uset g_pause_on_disconnect "1"
+00:00:05.786 : uset g_semantical_ff_inactivity "300"
+00:00:05.787 : uset g_steam_rich_presence "1"
+00:00:05.789 : uset g_steam_browser "1"
+00:00:05.791 : uset g_steam_screenshots "2"
+00:00:05.793 : uset g_artist_id "0"
+00:00:05.793 : uset g_save_format "0"
+00:00:05.795 : uset g_trailer_cables_mode "2"
+00:00:05.796 : uset g_intelligent_transmission "0"
+00:00:05.797 : uset g_spec_trans_refill_tank "1"
+00:00:05.798 : uset g_flyspeed "100.0"
+00:00:05.800 : uset g_online_loading_screens "-1"
+00:00:05.801 : uset g_news "-1"
+00:00:05.803 : uset g_lang_init "it_it"
+00:00:05.804 : uset g_col_offset_factor "1.0"
+00:00:05.805 : uset g_col_fill_backface "0"
+00:00:05.807 : uset g_col_fill_alpha "0.0"
+00:00:05.808 : uset g_colbox "0"
+00:00:05.809 : uset g_radio_saved_state "0"
+00:00:05.811 : uset g_radio_stream_safe "0"
+00:00:05.813 : uset g_radio_mode "3"
+00:00:05.814 : uset g_ignore_low_fps "0"
+00:00:05.815 : uset g_truck_light_specular "1"
+00:00:05.817 : uset g_gfx_all_scales "0"
+00:00:05.818 : uset g_gfx_advanced "0"
+00:00:05.819 : uset g_gfx_quality "-1"
+00:00:05.820 : uset g_hq_3d_scale "0.0"
+00:00:05.821 : uset g_hq_3d_screenshot "0"
+00:00:05.822 : uset g_menu_aa_limit "8"
+00:00:05.823 : uset g_additional_water_fov "20.0f"
+00:00:05.825 : uset g_water_reflect_actor "0"
+00:00:05.826 : uset g_rain_sensor "0"
+00:00:05.827 : uset g_rain_reflect_hookups "0"
+00:00:05.828 : uset g_rain_reflect_actor "0"
+00:00:05.829 : uset g_rain_reflect_traffic "0"
+00:00:05.830 : uset g_rain_reflect_cache "0"
+00:00:05.830 : uset g_rain_reflection "1"
+00:00:05.831 : uset g_reflection_scale "0"
+00:00:05.832 : uset g_reflection "1"
+00:00:05.833 : uset g_grass_density "2"
+00:00:05.834 : uset g_veg_detail "2"
+00:00:05.835 : uset g_save_indicator "1"
+00:00:05.836 : uset g_game_version "1.60.1.7"
+00:00:05.837 : uset g_force_online_lscrs "0"
+00:00:05.838 : uset g_hw_info "1"
+00:00:05.839 : uset g_glass_debugging_level "0"
+00:00:05.841 : uset g_line_sort "0"
+00:00:05.842 : uset g_cargo_sort "0"
+00:00:05.843 : uset g_bloom_standard_deviation "0.5"
+00:00:05.845 : uset g_bloom_override "0"
+00:00:05.846 : uset g_bloom "1.0"
+00:00:05.847 : uset g_global_force_load_selector "0"
+00:00:05.849 : uset g_desktop_fadeout "60"
+00:00:05.850 : uset g_item_check_speed "-1"
+00:00:05.851 : uset g_debug_allocators "-1"
+00:00:05.852 : uset g_suspension_auto_reset "1"
+00:00:05.854 : uset g_upshift_coef "0.3"
+00:00:05.855 : uset g_downshift_coef "0.8"
+00:00:05.856 : uset g_minicon "0"
+00:00:05.858 : uset g_console_state "0"
+00:00:05.859 : uset g_console "0"
+00:00:05.860 : uset g_fps "0"
+00:00:05.861 : uset ui_tooltip_delay "0.4"
+00:00:05.863 : uset r_imgui_scale "1.0"
+00:00:05.864 : uset r_vulkan_runtime ""
+00:00:05.865 : uset r_windowed_borderless "-1"
+00:00:05.866 : uset r_fullscreen_borderless "-1"
+00:00:05.867 : uset r_fullscreen "1"
+00:00:05.868 : uset r_output "-1"
+00:00:05.869 : uset r_adapter "-1"
+00:00:05.870 : uset r_vsync "1"
+00:00:05.871 : uset r_anisotropy_factor "0.2"
+00:00:05.872 : uset r_texture_detail "0"
+00:00:05.873 : uset cf_beacon_light "1"
+00:00:05.874 : uset cf_asus_aura "1"
+00:00:05.875 : uset cf_razer_chroma "1"
+00:00:05.877 : uset v_bug_break "0"
+00:00:05.879 : uset t_ignore_hmd_timing "0"
+00:00:05.881 : uset t_limit_fps_inactive "30"
+00:00:05.883 : uset t_limit_fps "300"
+00:00:05.884 : uset t_locked_fps "0"
+00:00:05.885 : uset t_averaging_window_duration "100"
+00:00:05.886 : uset t_averaging_window_length "10"
+00:00:05.964 : Euro Truck Simulator 2 init ver.1.60.1.7s (rev. 26c95e307fd5)
+00:00:05.966 : [gfx] Selected rendering device 'dx11'.
+00:00:05.994 : [nvapi] NVAPI initialized
+00:00:05.997 : [gfx] AGS not detected. (6)
+00:00:06.210 : [net]  LOG INFO: Started
+00:00:06.219 : [ACHIEVEMENTS] Loaded achievement data with 106 achievements.
+00:00:06.222 : Setting UI reference mode to: 1440x900...
+00:00:06.225 : [dxgi] Detected following adapters:
+00:00:06.231 : [dxgi] 0 - NVIDIA GeForce RTX 3070 (32.0.15.9186) [8018 MB]
+00:00:06.240 : [dxgi] 2 - NVIDIA GeForce RTX 3070 (32.0.15.9186) [8018 MB]
+00:00:06.243 : [dxgi] Using adapter: NVIDIA GeForce RTX 3070 (32.0.15.9186) [8018 MB]
+00:00:06.246 : [gfx] Using the DXGI display backend
+00:00:06.548 : [dx11] Using SM5X rendering path
+00:00:06.550 : [dxgi] Selected swapchain color mode:
+00:00:06.551 : [disp] srgb (sdr) - sRGB - B8G8R8A8_UNORM_SRGB +native
+00:00:06.557 : [dxgi] Resizing backbuffers: 1440 900 (flags: 0)
+00:00:06.559 : [dx11] Backbuffer acquired
+00:00:06.561 : [disp] Adapter 0:  on DXGI backend
+00:00:06.562 : [disp] Display 0 : \\.\DISPLAY97 - CRTC @ (0, 0, 1728, 1085)
+00:00:06.564 : [disp] Detected color modes:
+00:00:06.565 : [disp] srgb (sdr) - sRGB - B8G8R8A8_UNORM_SRGB +native
+00:00:06.567 : [disp] bt709_lim (sdr) - BT.709 Limited - B8G8R8A8_UNORM +native
+00:00:06.569 : [disp] Display MinLum: 0.500000, MaxLum 270.000000, MaxAvgLum: 270.000000
+00:00:07.003 : [r_effect] Rescan took 0.4s
+00:00:07.375 : [sound] Available drivers: #1
+00:00:07.377 : [sound] Driver 0 = Audio remoto (44100 Hz) ({3084b32a-b46f-80ba-6459-1890eb1ada8c})
+00:00:07.583 : [sound] Selecting default audio driver (0).
+00:00:07.673 : Game is running on Steamdeck: no, g_steam_steamdeck_mode 0
+00:00:07.777 : [mods] Active 1 mods (local: 1, workshop: 0)
+00:00:07.778 : [mods] Active local mod user_map (name: user_map, version: , author: )
+00:00:07.780 : <WARNING> [mod] Mod package 'user_map' does not contain a manifest file 'manifest.sii', creating default information set.
+00:00:07.781 : [fs] device C:/Users/<user>/Documents/Euro Truck Simulator 2/mod/user_map mounted to mod pool.
+00:00:07.783 : [mod_package_manager] Mod "user_map" has been mounted. (package_name: user_map, version: , source: User mods)
+00:00:07.784 : <WARNING> [ufs] disabling pool lookup - sysfs device type not supported: C:/Users/<user>/Documents/Euro Truck Simulator 2/mod/user_map
+00:00:07.904 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_actros_tuning.scs mounted to scs pool.
+00:00:07.906 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_balkan_e.scs mounted to scs pool.
+00:00:07.907 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_balkan_w.scs mounted to scs pool.
+00:00:07.909 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_balt.scs mounted to scs pool.
+00:00:07.911 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_bobcat.scs mounted to scs pool.
+00:00:07.912 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_christmas.scs mounted to scs pool.
+00:00:07.914 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_daf_2021.scs mounted to scs pool.
+00:00:07.915 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_daf_tuning_pack.scs mounted to scs pool.
+00:00:07.916 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_daf_xd.scs mounted to scs pool.
+00:00:07.918 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_daf_xf_electric.scs mounted to scs pool.
+00:00:07.920 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_dragon.scs mounted to scs pool.
+00:00:07.921 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_dutch_style.scs mounted to scs pool.
+00:00:07.923 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_east.scs mounted to scs pool.
+00:00:07.924 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_fantasy.scs mounted to scs pool.
+00:00:07.926 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_farm_machinery.scs mounted to scs pool.
+00:00:07.927 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_feldbinder.scs mounted to scs pool.
+00:00:07.929 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_flags_at.scs mounted to scs pool.
+00:00:07.930 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_flags_aus.scs mounted to scs pool.
+00:00:07.932 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_flags_be.scs mounted to scs pool.
+00:00:07.933 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_flags_bg.scs mounted to scs pool.
+00:00:07.935 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_flags_bz.scs mounted to scs pool.
+00:00:07.936 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_flags_ca.scs mounted to scs pool.
+00:00:07.937 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_flags_ch.scs mounted to scs pool.
+00:00:07.938 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_flags_cn.scs mounted to scs pool.
+00:00:07.939 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_flags_cz.scs mounted to scs pool.
+00:00:07.941 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_flags_de.scs mounted to scs pool.
+00:00:07.943 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_flags_dk.scs mounted to scs pool.
+00:00:07.943 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_flags_ee.scs mounted to scs pool.
+00:00:07.945 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_flags_es.scs mounted to scs pool.
+00:00:07.946 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_flags_fi.scs mounted to scs pool.
+00:00:07.948 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_flags_fr.scs mounted to scs pool.
+00:00:07.949 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_flags_hu.scs mounted to scs pool.
+00:00:07.951 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_flags_ie.scs mounted to scs pool.
+00:00:07.952 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_flags_it.scs mounted to scs pool.
+00:00:07.954 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_flags_jp.scs mounted to scs pool.
+00:00:07.955 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_flags_kr.scs mounted to scs pool.
+00:00:07.956 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_flags_lt.scs mounted to scs pool.
+00:00:07.957 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_flags_lv.scs mounted to scs pool.
+00:00:07.959 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_flags_n.scs mounted to scs pool.
+00:00:07.961 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_flags_nl.scs mounted to scs pool.
+00:00:07.962 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_flags_pl.scs mounted to scs pool.
+00:00:07.963 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_flags_pt.scs mounted to scs pool.
+00:00:07.964 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_flags_ro.scs mounted to scs pool.
+00:00:07.965 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_flags_ru.scs mounted to scs pool.
+00:00:07.966 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_flags_s.scs mounted to scs pool.
+00:00:07.967 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_flags_sc.scs mounted to scs pool.
+00:00:07.969 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_flags_sk.scs mounted to scs pool.
+00:00:07.969 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_flags_tr.scs mounted to scs pool.
+00:00:07.971 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_flags_uk.scs mounted to scs pool.
+00:00:07.972 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_flags_ukr.scs mounted to scs pool.
+00:00:07.974 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_flags_us.scs mounted to scs pool.
+00:00:07.976 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_forest_harvesting.scs mounted to scs pool.
+00:00:07.977 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_fr.scs mounted to scs pool.
+00:00:07.979 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_goodyear.scs mounted to scs pool.
+00:00:07.980 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_greece.scs mounted to scs pool.
+00:00:07.982 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_greek_paintjobs.scs mounted to scs pool.
+00:00:07.983 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_halloween.scs mounted to scs pool.
+00:00:07.985 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_heavy_cargo.scs mounted to scs pool.
+00:00:07.986 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_hs_schoch.scs mounted to scs pool.
+00:00:07.988 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_iberia.scs mounted to scs pool.
+00:00:07.989 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_it.scs mounted to scs pool.
+00:00:07.991 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_iveco_sway.scs mounted to scs pool.
+00:00:07.992 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_jcb.scs mounted to scs pool.
+00:00:07.994 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_kassbohrer.scs mounted to scs pool.
+00:00:07.995 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_kogel.scs mounted to scs pool.
+00:00:07.997 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_krone.scs mounted to scs pool.
+00:00:07.998 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_krone_agriculture.scs mounted to scs pool.
+00:00:08.000 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_lines.scs mounted to scs pool.
+00:00:08.001 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_lunar_new_year.scs mounted to scs pool.
+00:00:08.003 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_man_tgx_2020.scs mounted to scs pool.
+00:00:08.005 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_metallics.scs mounted to scs pool.
+00:00:08.006 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_metallics2.scs mounted to scs pool.
+00:00:08.007 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_michelin.scs mounted to scs pool.
+00:00:08.009 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_mighty_griffin.scs mounted to scs pool.
+00:00:08.010 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_nature.scs mounted to scs pool.
+00:00:08.012 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_north.scs mounted to scs pool.
+00:00:08.014 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_oversize.scs mounted to scs pool.
+00:00:08.015 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_pcg.scs mounted to scs pool.
+00:00:08.017 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_phys_flags.scs mounted to scs pool.
+00:00:08.018 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_pink_ribbon.scs mounted to scs pool.
+00:00:08.020 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_pirates.scs mounted to scs pool.
+00:00:08.021 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_prehistoric.scs mounted to scs pool.
+00:00:08.023 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_raven.scs mounted to scs pool.
+00:00:08.024 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_renault_etech_t.scs mounted to scs pool.
+00:00:08.026 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_renault_t_tuning.scs mounted to scs pool.
+00:00:08.027 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_rims.scs mounted to scs pool.
+00:00:08.029 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_rocket_league.scs mounted to scs pool.
+00:00:08.030 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_scania_s_2024e.scs mounted to scs pool.
+00:00:08.032 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_schmitz.scs mounted to scs pool.
+00:00:08.033 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_schwarzmuller.scs mounted to scs pool.
+00:00:08.035 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_space.scs mounted to scs pool.
+00:00:08.037 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_streetart.scs mounted to scs pool.
+00:00:08.038 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_super_stripes.scs mounted to scs pool.
+00:00:08.040 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_tirsan.scs mounted to scs pool.
+00:00:08.041 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_toys.scs mounted to scs pool.
+00:00:08.043 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_trailers.scs mounted to scs pool.
+00:00:08.044 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_valentine.scs mounted to scs pool.
+00:00:08.046 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_vikings.scs mounted to scs pool.
+00:00:08.047 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_volvo_construction.scs mounted to scs pool.
+00:00:08.048 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_volvo_fh_2021.scs mounted to scs pool.
+00:00:08.050 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_volvo_fh_2024.scs mounted to scs pool.
+00:00:08.051 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_volvo_tuning_pack.scs mounted to scs pool.
+00:00:08.052 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_wielton.scs mounted to scs pool.
+00:00:08.054 : [fs] device C:/Program Files (x86)/Steam/steamapps/common/Euro Truck Simulator 2/dlc_winter.scs mounted to scs pool.
+00:00:08.130 : [ufs] scs pool: 109 packs, 578019 files, 43329 dirs
+00:00:08.157 : Loading asset catalog data...
+00:00:08.954 : <WARNING> Missing default icon for cargo 'battery'.
+00:00:08.956 : <WARNING> Missing default icon for cargo 'chem_granule'.
+00:00:08.956 : <WARNING> Missing default icon for cargo 'chlorine_t'.
+00:00:08.963 : <WARNING> Missing default icon for cargo 'sugar_b'.
+00:00:08.963 : <WARNING> Missing default icon for cargo 'sulfur'.
+00:00:08.964 : <WARNING> Missing default icon for cargo 'sulfuric_t'.
+00:00:08.969 : <WARNING> Missing default icon for cargo 'art_dumper'.
+00:00:08.969 : <WARNING> Missing default icon for cargo 'tank'.
+00:00:08.969 : <WARNING> Missing default icon for cargo 'wagon'.
+00:00:09.067 : Collecting Vehicle definitions...
+00:00:09.122 : Loaded traffic trailers of type 'truck_semi': 30
+00:00:09.124 : Loaded traffic trailers of type 'truck_long': 0
+00:00:09.130 : Loaded traffic trailers of type 'train_cargo': 13
+00:00:09.137 : Loaded traffic trailers of type 'car': 7
+00:00:09.140 : Loaded traffic trailers of type 'bus': 1
+00:00:09.149 : Loaded traffic trailers of type 'truck': 35
+00:00:09.173 : Loaded traffic trailers of type 'tram': 104
+00:00:09.197 : Loaded traffic trailers of type 'train': 130
+00:00:09.207 : Loaded traffic trailers of type 'special': 11
+00:00:09.220 : Loaded traffic vehicles of type 'car': 99
+00:00:09.226 : Loaded traffic vehicles of type 'car_custom': 56
+00:00:09.237 : Loaded traffic vehicles of type 'truck': 72
+00:00:09.242 : Loaded traffic vehicles of type 'truck_light': 29
+00:00:09.245 : Loaded traffic vehicles of type 'truck_medium': 14
+00:00:09.248 : Loaded traffic vehicles of type 'truck_heavy': 5
+00:00:09.251 : Loaded traffic vehicles of type 'truck_long': 0
+00:00:09.256 : Loaded traffic vehicles of type 'truck_custom': 30
+00:00:09.260 : Loaded traffic vehicles of type 'bus': 32
+00:00:09.263 : Loaded traffic vehicles of type 'bus_custom': 5
+00:00:09.269 : Loaded traffic vehicles of type 'tram': 62
+00:00:09.273 : Loaded traffic vehicles of type 'train': 19
+00:00:09.279 : Loaded traffic vehicles of type 'train_wire': 55
+00:00:09.282 : Loaded traffic vehicles of type 'train_custom': 4
+00:00:09.289 : Loaded traffic vehicles of type 'police': 68
+00:00:09.292 : Loaded traffic vehicles of type 'fire': 38
+00:00:09.296 : Loaded traffic vehicles of type 'medical': 34
+00:00:09.298 : Loaded traffic vehicles of type 'escort_front': 1
+00:00:09.301 : Loaded traffic vehicles of type 'escort_back': 1
+00:00:09.305 : Loaded traffic vehicles of type 'special': 9
+00:00:09.305 : Loaded addon hookups: 252
+00:00:09.305 : Linking cities with countries...
+00:00:09.355 : Collecting prefab descriptors...
+00:00:09.588 : Loading prefab descriptors...
+00:00:09.841 : Loading ferry connections...
+00:00:09.842 : Loading cargo trailer assignment...
+00:00:09.917 : Loading company cargo assignment...
+00:00:12.490 : [bullet] Starting server
+00:00:12.538 : Asset catalog init finished. (12ms)
+00:00:12.543 : [fs] device C:/Users/<user>/AppData/Local/Temp/.scs mounted to user pool.
+00:00:12.561 : [editor] Loaded settings
+00:00:12.562 : Loading custom colors from '/home/editor/custom_colors.sii'
+00:00:12.564 : Loading items defaults from '/home/editor/defaults.ini'
+00:00:12.636 : <ERROR> [fs] Failed to open file '/def/background_map_legends.sii' in the read_only mode.
+00:00:12.646 : <ERROR> [fs] Failed to open file '/def/background_map_legends.sii' in the read_only mode.
+00:00:12.646 : <ERROR> load_filtered_unit_array() - Failed to open file (/def/background_map_legends.sii)
+00:00:12.651 : Loading tag database
+00:00:12.652 : Private tag database successfully loaded.
+00:00:12.982 : Opening content browser
+00:00:12.984 : Precaching dialogs
+00:00:12.986 : Loading company defs ....
+00:00:13.112 : Load finished in 125ms
+00:00:13.134 : mm_flush
+00:00:13.135 : flush_neg_cache local
+00:00:13.135 : Map '/map/poc001_minimal.mbd' loading started ....
+00:00:13.141 : Map base sectors successfully loaded.
+00:00:13.141 : Map sectors loading started ....
+00:00:13.143 : Map sectors loading finished ....
+00:00:13.143 : Map loaded
+00:00:13.145 : Building kdop tree for all sectors.
+00:00:13.145 : Sectors' trees finished.
+00:00:13.185 : Window resize notification received: 1726 945
+00:00:13.186 : [dx11] Backbuffer released
+00:00:13.186 : [dxgi] Resizing backbuffers: 1726 945 (flags: 0)
+00:00:13.188 : [dx11] Backbuffer acquired
+00:00:58.132 : Item Road with UID: 0x4F8C798E2AAFFB0B found.
+00:00:59.880 : undo store
+00:01:00.815 : undo store
+00:01:04.165 : undo store
+00:01:05.158 : undo store
+00:02:55.725 : [fs] device C:/Users/<user>/Documents/Euro Truck Simulator 2/mod/user_map mounted to user pool.
+00:02:55.744 : Check map 18ms
+00:02:55.748 : Building kdop tree for all sectors.
+00:02:55.748 : Sectors' trees finished.
+00:02:55.749 : rebuild_roundabouts 0ms
+00:02:55.750 : Map preprocess 1ms
+00:02:55.750 : distribute_countries_to_nodes 0ms
+00:02:55.750 : distribute_prohibited_vehicles_to_nodes: 0ms
+00:02:55.750 : <WARNING> Cannot distribute climate to sectors. File /map/autosave/poc001_minimal.climate.sii not found.
+00:02:55.759 : Building kdop tree for all sectors.
+00:02:55.759 : Sectors' trees finished.
+00:02:55.759 : Auto compound 8ms
+00:02:55.759 : [fs] device C:/Users/<user>/Documents/Euro Truck Simulator 2/mod/user_map mounted to user pool.
+00:02:55.760 : Sector distro: 0ms
+00:02:55.766 : Map successfuly saved ....
+00:02:55.786 : Check items 16ms
+00:02:55.786 : Building kdop tree for all sectors.
+00:02:55.786 : Sectors' trees finished.
+00:02:55.793 : Map save 67ms
+00:02:55.793 : mm_flush
+00:02:55.793 : Rebuilding whole map. Please wait....
+00:02:55.829 : Building kdop tree for all sectors.
+00:02:55.829 : Sectors' trees finished.
+00:02:55.846 : Building kdop tree for all sectors.
+00:02:55.846 : Sectors' trees finished.
+00:02:55.851 : Rebuild done.
+00:03:08.092 : Check map 15ms
+00:03:08.098 : Building kdop tree for all sectors.
+00:03:08.098 : Sectors' trees finished.
+00:03:08.099 : rebuild_roundabouts 0ms
+00:03:08.100 : Map preprocess 1ms
+00:03:08.100 : distribute_countries_to_nodes 0ms
+00:03:08.100 : distribute_prohibited_vehicles_to_nodes: 0ms
+00:03:08.100 : <WARNING> Cannot distribute climate to sectors. File /map/poc001_minimal.climate.sii not found.
+00:03:08.105 : Building kdop tree for all sectors.
+00:03:08.105 : Sectors' trees finished.
+00:03:08.105 : Auto compound 4ms
+00:03:08.105 : [fs] device C:/Users/<user>/Documents/Euro Truck Simulator 2/mod/user_map mounted to user pool.
+00:03:08.106 : Sector distro: 0ms
+00:03:08.111 : Map successfuly saved ....
+00:03:08.131 : Check items 15ms
+00:03:08.131 : Building kdop tree for all sectors.
+00:03:08.131 : Sectors' trees finished.
+00:03:08.138 : Map save 61ms

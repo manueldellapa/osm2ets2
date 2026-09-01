@@ -1,0 +1,9 @@
+EDITOR_SAVE_TRUCKLIB_READBACK_PASSED
+Map: <REPO_ROOT>/spikes/poc-001-ets2-native-output/manual-validation/run-01/after-editor/map/poc001_minimal.mbd
+Map items: 1
+Nodes: 2
+UID stability: STABLE
+Map UID: 0x42CBE855EFF3A4A6 -> 0x42CBE855EFF3A4A6
+Road UID: 0x4009C748E369FF6F -> 0x4009C748E369FF6F
+Backward node UID: 0x4837EA1366D62307 -> 0x4837EA1366D62307
+Forward node UID: 0x4AD607379629B1FF -> 0x4AD607379629B1FF

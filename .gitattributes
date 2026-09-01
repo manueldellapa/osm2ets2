@@ -1,0 +1,6 @@
+# ETS2 Map Editor generated binary/native artifacts
+spikes/poc-001-ets2-native-output/manual-validation/**/after-editor/map/** binary
+
+# Raw Windows validation evidence
+spikes/poc-001-ets2-native-output/manual-validation/**/*.log.txt binary
+spikes/poc-001-ets2-native-output/manual-validation/**/*.csv binary

@@ -1,14 +1,15 @@
 # PoC-001 — ETS2 Native Output Feasibility: risultati
 
-**Stato: `AWAITING_MANUAL_VALIDATION`**
+**Stato finale: `PASSED`**
 
-**Data fase automatica: 1 settembre 2026**
+**Data fase automatica e validazione manuale: 1 settembre 2026**
 
 La generazione programmata e la rilettura con TruckLib 0.5.1 sono riuscite in
-due directory indipendenti. Non è disponibile in questo ambiente il Map Editor
-ETS2 1.60.x su Windows 11 x64; apertura, visibilità, recompute, salvataggio e
-riapertura non sono stati simulati. Il PoC non è quindi `PASSED` e PoC-002 non è
-stato iniziato.
+due directory indipendenti. Entrambi gli output sono stati aperti, ricomputati,
+salvati, chiusi e riaperti nel Map Editor ETS2 1.60.1.7 su Windows 11 x64. La
+Road è rimasta visibile, nativa e selezionabile; il readback finale ha
+confermato una Road, due nodi, UID stabili e riferimenti integri. PoC-001 supera
+quindi il gate obbligatorio per lo scope minimale. PoC-002 non è stato iniziato.
 
 ## Perimetro e baseline
 
@@ -17,7 +18,9 @@ rettilinea da `A=(100,0,100)` a `B=(200,0,100)`. Non sono presenti OSM, Python,
 proiezioni, grafo stradale, intersezioni, prefab, CLI dell'MVP o pipeline
 end-to-end.
 
-Gli input canonici sono stati conservati senza modifiche:
+Gli input canonici sono stati congelati senza modifiche durante l'esecuzione.
+Gli hash seguenti identificano la baseline usata; il piano degli spike è stato
+aggiornato soltanto dopo la chiusura del gate:
 
 | Documento | SHA-256 |
 | --- | --- |
@@ -32,9 +35,14 @@ zero warning e zero errori.
 
 È stato consultato direttamente il catalogo base di un'installazione legittima
 macOS ETS2 1.60.1.7, Steam build `23966373`, per verificare gli asset. Questa
-installazione non sostituisce il collaudo Windows. Impronte, versioni e fonti
-sono registrate in
+fase è stata seguita dal collaudo target su Windows 11 x64, build OS
+`10.0.26200`, Map Editor `win_x64`, ETS2 `1.60.1.7s` revisione
+`26c95e307fd5`. Impronte, versioni e fonti sono registrate in
 [`baseline-and-source-verification.md`](../spikes/poc-001-ets2-native-output/evidence/baseline-and-source-verification.md).
+I log del collaudo riportano un solo mod locale attivo (`user_map`) e zero mod
+Workshop. L'installazione monta i DLC ufficiali presenti; gli asset della Road
+sono stati verificati separatamente negli archivi base, ma il ciclo editor non
+è una prova su un'installazione con i DLC fisicamente rimossi.
 
 ## Procedura eseguita
 
@@ -51,6 +59,15 @@ sono registrate in
 7. Ripetizione da zero come `run-01` e `run-02`.
 8. Smoke test del validatore post-editor sul set non modificato di `run-01`.
    Questo prova il validatore, non il salvataggio dell'editor.
+9. Copia separata di ciascun set minimale in
+   `Documents\Euro Truck Simulator 2\mod\user_map\map` su Windows 11 x64.
+10. Apertura diretta con `eurotrucks2.exe -edit poc001_minimal -noworkshop`;
+    verifica visiva e selezione della Road tramite il suo UID.
+11. Esecuzione di `Map > Recompute map`, salvataggio e chiusura completa.
+12. Riapertura diretta della mappa salvata e nuova selezione della stessa Road.
+13. Inventario del lifecycle dei file e conservazione dei log `editor.log.txt`.
+14. Readback TruckLib dei due set post-editor e confronto con i manifest
+    automatici originari.
 
 ## Risultati automatici
 
@@ -78,23 +95,55 @@ controllata coincidono. Gli hash completi sono nei manifest:
 - [`run-01/automatic-validation.json`](../spikes/poc-001-ets2-native-output/output/run-01/automatic-validation.json);
 - [`run-02/automatic-validation.json`](../spikes/poc-001-ets2-native-output/output/run-02/automatic-validation.json).
 
+I manifest conservano correttamente
+`gateStatus: AWAITING_MANUAL_VALIDATION`: descrivono lo stato immediatamente
+dopo la sola generazione. Il gate complessivo è chiuso dal verbale manuale
+separato.
+
+## Risultati Map Editor e readback finale
+
+Il verbale completo, con log, inventari, warning e confronto binario, è in
+[`manual-validation/results.md`](../spikes/poc-001-ets2-native-output/manual-validation/results.md).
+
+| Criterio | `run-01` | `run-02` |
+| --- | --- | --- |
+| Apertura diretta e caricamento settori | `PASSED` | `PASSED` |
+| Road visibile, nativa e selezionabile | `PASSED` | `PASSED` |
+| Road UID riconosciuto dall'editor | `PASSED` | `PASSED` |
+| `Map > Recompute map` | `PASSED` | `PASSED` |
+| Salvataggio e chiusura completa | `PASSED` | `PASSED` |
+| Riapertura e nuova selezione | `PASSED` | `PASSED` |
+| Readback TruckLib post-editor | `PASSED` | `PASSED` |
+| UID e riferimenti preservati | `PASSED` | `PASSED` |
+
+Entrambi i readback finali riportano
+`EDITOR_SAVE_TRUCKLIB_READBACK_PASSED`, `Map items: 1`, `Nodes: 2` e
+`UID stability: STABLE`. Gli UID elencati nella tabella automatica sono rimasti
+invariati dopo l'intero ciclo editor.
+
+Il set minimale aperto direttamente contiene `.mbd`, `.base`, `.data`,
+`.desc`, `.aux` e `.snd`, senza `.layer`. Al salvataggio, l'editor aggiunge
+`.layer`, `.set`, `.expa`, `autosave/` e la directory `.bak`; riscrive `.base`
+ma lascia byte per byte invariati `.mbd`, `.aux`, `.data`, `.desc` e `.snd`.
+Nessun file iniziale viene rimosso.
+
 ## Risposte agli aspetti tecnici richiesti
 
 | Aspetto | Risultato osservato |
 | --- | --- |
-| 1. Struttura minima candidata | `map/poc001_minimal.mbd` e cartella sorella `map/poc001_minimal/` con un settore. È il set prodotto, non ancora il set sufficiente dimostrato dall'editor. |
+| 1. Struttura minima verificata | `map/poc001_minimal.mbd` e cartella sorella `map/poc001_minimal/` con un settore `.base/.data/.desc/.aux/.snd`. Entrambi i run vengono aperti direttamente senza `.layer`. |
 | 2. Ruolo e contenuto `.mbd` | TruckLib scrive header 907 e metadati globali: map UID, start position/rotation, un campo settore di significato ignoto upstream, game tag, scale 19/3 e correzione UI Europe. Road e nodi non sono nel `.mbd`. |
 | 3. Sector files | `.base` contiene Road e nodi; `.data` il payload Road; `.aux` e `.snd` sono settori vuoti serializzati; `.desc` contiene metadati del settore. `.layer` non viene scritto con il layer predefinito. |
 | 4. Identificatori/UID | Map, Road e due nodi hanno UID a 64 bit non zero e distinti generati da TruckLib. I due run producono UID diversi. Il PoC non inventa né forza valori. |
 | 5. Nodi | Due nodi esterni: backward/red e forward/green. Il primo punta alla Road in avanti, il secondo all'indietro; i lati terminali sono null. Posizione serializzata fixed-point con fattore 256. |
 | 6. Strada | Un `Road` nativo TruckLib, tipo `ger1`, lunghezza riletta 100, zero terreno laterale, lato destro configurato con look `ger_1`, variante `broken_de` ed edge `ger_sh_15`. |
-| 7. Coordinate | Input `Vector3` esatti A/B; delta di 100 lungo X. TruckLib descrive le unità motore come metri e il readback mantiene i valori esatti. Il significato nel target editor resta da osservare. |
-| 8. Assi e orientamento | La settorizzazione TruckLib usa X/Z; Y è 0 nella fixture. Entrambi i nodi sono riletti con quaternion `(0,-0.70710677,0,0.70710677)`. Corrispondenza visiva, verso e asse verticale nell'editor non sono ancora convalidati. |
+| 7. Coordinate | Input `Vector3` esatti A/B; delta di 100 lungo X. TruckLib descrive le unità motore come metri e il readback post-editor mantiene i valori esatti. La trasformazione geografica resta fuori scope. |
+| 8. Assi e orientamento | La settorizzazione TruckLib usa X/Z; Y è 0 nella fixture. I nodi mantengono quaternion `(0,-0.70710677,0,0.70710677)` dopo l'editor. Il rettifilo lungo +X è visibile, ma la convenzione geografica completa resta a PoC-002. |
 | 9. Road look/definition | Tutti i token usati sono stati osservati direttamente negli archivi base ETS2 1.60.1.7; non sono stati dedotti dal solo sample. |
 | 10. Prefab/asset | `Road.Add` non richiede prefab per il rettifilo. Il modello stradale base referenziato esiste; nessun asset è stato copiato. |
-| 11. File aggiuntivi | TruckLib non ha prodotto `.layer`, `.epa` o `.set`. La necessità o creazione di questi file da parte dell'editor è irrisolta. Nessun file è stato aggiunto artificialmente. |
-| 12. Capacità TruckLib 0.5.1 | Scrittura e rilettura della struttura candidata riuscite su .NET 10/macOS ARM64. Proprietà e riferimenti sopravvivono al round trip TruckLib. |
-| 13. Compatibilità ETS2 1.60.x | TruckLib dichiara formato 907 per 1.59–1.60 e gli asset esistono nel catalogo locale 1.60.1.7. La compatibilità effettiva col Map Editor Windows resta non dimostrata. |
+| 11. File aggiuntivi | `.layer`, `.set` ed `.expa` non servono al bootstrap minimale; sono creati dall'editor insieme a backup e autosave. Nessun file è stato aggiunto artificialmente al generatore. |
+| 12. Capacità TruckLib 0.5.1 | Scrittura e rilettura riuscite su .NET 10/macOS ARM64; la rilettura riesce anche dopo il salvataggio ETS2 e preserva proprietà, UID e riferimenti. |
+| 13. Compatibilità ETS2 1.60.x | Verificata sperimentalmente con Map Editor Windows x64 ETS2 1.60.1.7, formato 907, per la singola Road/singolo settore testati. |
 
 ## Discrepanze e problemi incontrati
 
@@ -107,9 +156,26 @@ Il primo controllo automatico, che presumeva `.layer`, è stato corretto dopo
 aver verificato `WriteLayer` nel sorgente esatto. Nessun workaround o file
 fittizio è stato introdotto.
 
+La discrepanza è ora risolta empiricamente: il set TruckLib senza `.layer` viene
+aperto direttamente. Il lifecycle editor crea `.layer`, `.set` ed `.expa`; il
+nome realmente osservato è `.expa`, non `.epa`. Il generatore minimale non deve
+anticipare questi artefatti.
+
+I log `editor.log.txt` riportano warning/errori ambientali per `manifest.sii`,
+`background_map_legends.sii`, il file climate della mappa e, in una sessione,
+un identificatore Sign non trovato. Nessuno impedisce caricamento, recompute,
+salvataggio o riapertura. Il readback contiene sempre un solo map item Road,
+quindi nessun Sign è persistito nell'output del PoC.
+
+Smart App Control/`VerifiedAndReputableDesktop` ha bloccato su Windows
+l'assembly locale non firmato. La protezione non è stata disabilitata:
+generazione e readback sono stati eseguiti su macOS, il ciclo Map Editor target
+su Windows. È un rischio separato di firma/distribuzione da portare alla
+verifica ambiente/packaging; non modifica l'esito del formato nativo.
+
 ## Assunzioni
 
-Confermate automaticamente:
+Confermate dall'intero ciclo:
 
 - TruckLib 0.5.1 espone davvero le API necessarie per creare, salvare e riaprire
   una Map con una Road;
@@ -117,48 +183,52 @@ Confermate automaticamente:
 - il writer produce `.mbd` e settori formato 907;
 - UID e riferimenti vengono creati e serializzati senza assegnazioni manuali;
 - gli asset stradali scelti sono nel catalogo base locale 1.60.1.7;
-- un rettifilo non richiede prefab.
+- un rettifilo non richiede prefab;
+- il set TruckLib minimale è accettato direttamente dal Map Editor 1.60.1.7;
+- Road, nodi, UID e riferimenti persistono dopo recompute, save e riapertura;
+- `.layer`, `.set` ed `.expa` sono creati dal lifecycle editor e non sono
+  prerequisiti del bootstrap testato.
 
-Invalidata:
+Invalidate o corrette:
 
 - l'assunzione che una mappa sul layer predefinito produca sempre `.layer`.
-  TruckLib 0.5.1 lo omette deliberatamente.
+  TruckLib 0.5.1 lo omette deliberatamente e l'editor accetta l'output;
+- l'estensione osservata creata dall'editor è `.expa`, non `.epa`.
 
 Ancora aperte:
 
-- sufficienza del set di file e della collocazione;
-- accettazione di formato e metadati da parte del Map Editor 1.60.x;
-- visibilità, editabilità, assi/orientamento e significato delle unità nel target;
-- comportamento di recompute e salvataggio;
-- persistenza dopo chiusura e riapertura;
-- eventuale creazione di `.layer`, `.epa`, `.set` o altri file da parte
-  dell'editor.
+- trasformazione WGS84 → AEQD → coordinate ETS2 e scala 1:19;
+- convenzione geografica completa degli assi;
+- curve, catene e continuità fra segmenti;
+- intersezioni T/quattro vie e prefab;
+- conversione OSM e confine Python → JSON → C#;
+- comportamento multi-sector e limiti operativi;
+- esecuzione/distribuzione dell'adapter non firmato sotto Smart App Control.
 
 ## Criteri di successo
 
 | Criterio | Esito | Evidenza |
 | --- | --- | --- |
 | 1. Output generato programmaticamente | `PASSED` | due output e manifest |
-| 2. Map Editor 1.60.x apre senza errori bloccanti | `NOT_EXECUTED` | richiede Windows 11 x64 |
-| 3. Strada visibile | `NOT_EXECUTED` | richiede Map Editor |
-| 4. Map Editor salva | `NOT_EXECUTED` | richiede Map Editor |
-| 5. Chiusura e riapertura riuscite | `NOT_EXECUTED` | richiede Map Editor |
-| 6. Struttura valida dopo il salvataggio | `NOT_EXECUTED` | ciclo editor + confronto richiesti |
+| 2. Map Editor 1.60.x apre senza errori bloccanti | `PASSED` | log Windows di entrambi i run |
+| 3. Strada visibile | `PASSED` | osservazione manuale + UID trovato nel log |
+| 4. Map Editor salva | `PASSED` | `Map successfuly saved` + set post-editor |
+| 5. Chiusura e riapertura riuscite | `PASSED` | log separati di riapertura |
+| 6. Struttura valida dopo il salvataggio | `PASSED` | due readback TruckLib con UID stabili |
 
-La sola prima riga non soddisfa il gate. Lo stato complessivo resta quindi
-`AWAITING_MANUAL_VALIDATION`.
+Tutti i criteri obbligatori sono superati in entrambe le ripetizioni. Lo stato
+complessivo è `PASSED`.
 
 ## Conseguenze architetturali e prossima azione
 
-Non è ancora autorizzato considerare TruckLib 0.5.1 compatibile con il profilo
-`ets2-1.60-native-v1`, né avviare PoC-002. Il percorso `.mbd` + settori rimane
-una candidata tecnicamente scrivibile, con rischio concentrato
-nell'accettazione e persistenza nel Map Editor.
+Per lo scope verificato è confermata la fattibilità del percorso
+`ETS2-independent model → C# adapter → TruckLib → native ETS2 map`. TruckLib
+0.5.1 e il formato 907 possono essere mantenuti come baseline candidata del
+profilo `ets2-1.60-native-v1` per la Road rettilinea minimale.
 
-La prossima azione raccomandata è eseguire, senza modifiche manuali alla mappa,
-entrambi i cicli descritti in
-[`manual-validation/checklist.md`](../spikes/poc-001-ets2-native-output/manual-validation/checklist.md)
-su Windows 11 x64 con una build ETS2 1.60.x registrata. Se il set viene rifiutato
-o perde la strada al salvataggio, fermare lo spike con `FAILED`, conservare log
-e output e valutare prima una correzione circoscritta dell'adapter/TruckLib;
-writer o formato alternativi richiedono una revisione esplicita del PRD.
+PoC-001 non blocca più il gate successivo, ma non autorizza a trasferire il
+risultato a geometrie, topologie o pipeline non provate. PoC-002 non è stato
+iniziato in questa attività. Prima di avviarlo, il suo input deve restare
+limitato alle fixture e alle trasformazioni definite dal piano; il problema di
+firma/Smart App Control va registrato nella futura verifica ambiente senza
+disabilitare la protezione come workaround implicito.

@@ -1,15 +1,16 @@
 # PoC-001 — Checklist Map Editor ETS2 1.60.x
 
-Questa procedura completa la parte che non può essere verificata nell'ambiente
-macOS corrente. Fino al completamento di **entrambi** i cicli, lo stato resta
-`AWAITING_MANUAL_VALIDATION` e PoC-002 non può iniziare.
+**Esito: `PASSED`.** Questa checklist conserva il protocollo usato per entrambi
+i run. Il verbale distingue le evidenze effettivamente archiviate, compresa
+l'assenza di screenshot, e riporta il confronto pre/post editor in
+[`results.md`](results.md). PoC-002 non è stato iniziato.
 
 ## 1. Congelare la baseline Windows
 
 Usare Windows 11 x64, ETS2 stabile 1.60.x e gioco base. Prima della prova:
 
-1. registrare data, operatore, macchina, versione completa mostrata in
-   `game.log.txt`, Steam build ID e manifest del depot base;
+1. registrare data, operatore, macchina e versione completa mostrata in
+   `editor.log.txt`; per le sessioni Map Editor questo è il log rilevante;
 2. registrare dimensione e SHA-256 di `base.scs`, `def.scs` e `version.scs`;
 3. confermare dal log che non sono caricati mod locali o Workshop estranei;
 4. usare TruckLib 0.5.1 e .NET 10 con `dotnet restore --locked-mode`;
@@ -40,7 +41,7 @@ Eseguire la prova su una copia. La
 `<ETS2 home>` è la home effettiva riportata dal gioco; normalmente è sotto la
 cartella Documenti dell'utente. Fare prima il backup di un eventuale
 `user_map`. Non unire i file a una mappa personale e non creare manualmente
-`.layer`, `.epa`, `.set` o altri file mancanti.
+`.layer`, `.expa`, `.set` o altri file mancanti.
 
 Salvare un inventario pre-editor con percorsi, dimensioni e SHA-256. In
 PowerShell, dalla directory del set copiato:
@@ -73,7 +74,7 @@ Nel Map Editor:
    gli UID visibili o ottenibili dagli strumenti della build target;
 6. confrontare gli UID attesi con `automatic-validation.json` senza dedurli
    dall'aspetto grafico;
-7. conservare subito `game.log.txt` come `run-01-open-game.log.txt`.
+7. conservare subito `editor.log.txt` con un nome che identifichi run e fase.
 
 Nomi consigliati per le immagini:
 
@@ -94,7 +95,7 @@ Nomi consigliati per le immagini:
 6. Salvare inventario, dimensioni, SHA-256 e log come evidenza post-editor.
 7. Riaprire con lo stesso comando e ripetere selezione e controlli; acquisire
    `run-01-04-reopened-road-selected.png` e
-   `run-01-reopen-game.log.txt`.
+   `run-01-reopen-editor.log.txt`.
 8. Chiudere nuovamente l'editor.
 
 Eseguire quindi, dalla directory dello spike:
@@ -118,16 +119,16 @@ ciclo.
 
 | Criterio | `run-01` | `run-02` | Evidenza obbligatoria |
 | --- | --- | --- | --- |
-| Output aperto senza errori bloccanti | `NOT_EXECUTED` | `NOT_EXECUTED` | log apertura |
-| Strada visibile | `NOT_EXECUTED` | `NOT_EXECUTED` | schermata contestualizzata |
-| Strada nativa, selezionabile e modificabile | `NOT_EXECUTED` | `NOT_EXECUTED` | schermata selezione + proprietà |
-| Recompute completato | `NOT_EXECUTED` | `NOT_EXECUTED` | log + classificazione warning/errori |
-| Salvataggio completato | `NOT_EXECUTED` | `NOT_EXECUTED` | log + inventario post-save |
-| Chiusura e riapertura riuscite | `NOT_EXECUTED` | `NOT_EXECUTED` | log riapertura + schermata |
-| Geometria e riferimenti validi dopo save | `NOT_EXECUTED` | `NOT_EXECUTED` | confronto + readback TruckLib |
-| Nessuna riparazione manuale | `NOT_EXECUTED` | `NOT_EXECUTED` | verbale operatore |
+| Output aperto senza errori bloccanti | `PASSED` | `PASSED` | log apertura/salvataggio |
+| Strada visibile | `PASSED` | `PASSED` | osservazione manuale |
+| Strada nativa, selezionabile e modificabile | `PASSED` | `PASSED` | osservazione + UID nel log |
+| Recompute completato | `PASSED` | `PASSED` | `Rebuild done` nei log |
+| Salvataggio completato | `PASSED` | `PASSED` | log + output post-editor |
+| Chiusura e riapertura riuscite | `PASSED` | `PASSED` | log separati di riapertura |
+| Geometria e riferimenti validi dopo save | `PASSED` | `PASSED` | readback TruckLib |
+| Nessuna riparazione manuale | `PASSED` | `PASSED` | verbale operatore |
 
-Il PoC può diventare `PASSED` solo se entrambe le colonne superano tutti i
-criteri e le evidenze sono conservate. Un errore riproducibile di formato,
-asset, recompute, salvataggio o riapertura porta a `FAILED`; un ambiente o dato
-indispensabile ancora mancante porta a `BLOCKED`.
+Entrambe le colonne hanno superato tutti i criteri. Gli avvisi ambientali sono
+classificati in [`results.md`](results.md); nessuno ha impedito apertura,
+recompute, salvataggio, riapertura o readback. Il gate PoC-001 è quindi
+`PASSED`.

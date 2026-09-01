@@ -1,8 +1,9 @@
 # PoC-001 — Baseline e verifica delle fonti
 
 Rilevazione automatica: **1 settembre 2026**. Questi dati dimostrano versione,
-API, catalogo consultato e generazione locale. Non dimostrano il comportamento
-del Map Editor Windows.
+API, catalogo consultato e generazione locale. Il comportamento del Map Editor
+Windows, verificato successivamente, è documentato in
+[`../manual-validation/results.md`](../manual-validation/results.md).
 
 ## Input canonici congelati
 
@@ -87,7 +88,7 @@ proveniva da una sessione ordinaria con mod attivi e non è stato trattato come
 prova editor del PoC. Nessun asset o archivio proprietario è stato copiato nel
 repository.
 
-## Discrepanze aperte
+## Discrepanza risolta dalla validazione manuale
 
 La [guida SCS sui file di mappa](https://modding.scssoft.com/wiki/Tutorials/Map_Editor/Introduction_to_the_Map_Editor/Saving,_Loading,_Sectors,_and_Files)
 descrive cinque file di settore comprendenti `.layer`, con `.snd` aggiuntivo in
@@ -97,6 +98,19 @@ soltanto `.mbd` come file mappa. La documentazione TruckLib colloca inoltre
 l'output in `user_map/map`, mentre quella pagina SCS mostra una struttura più
 vecchia direttamente sotto `user_map`.
 
-Non sono stati creati file artificiali per colmare la differenza. Soltanto il
-ciclo nel Map Editor 1.60.x può determinare se il set TruckLib è sufficiente e
-quali file vengono eventualmente creati al salvataggio.
+Non sono stati creati file artificiali per colmare la differenza. Entrambi i
+run sono stati aperti direttamente dal Map Editor 1.60.1.7 senza `.layer`,
+`.set` o `.expa`, dimostrando che questi file non sono necessari al bootstrap
+minimale testato. Durante recompute/salvataggio l'editor ha poi creato:
+
+- `sec+0000+0000.layer`;
+- `poc001_minimal.set`;
+- `poc001_minimal.expa`;
+- directory `autosave/`;
+- directory `poc001_minimal.bak/`.
+
+Il settore `.base` è stato riscritto, mentre `.mbd`, `.aux`, `.data`, `.desc` e
+`.snd` sono rimasti byte per byte invariati. Il successivo readback TruckLib ha
+confermato in entrambi i run una Road, due nodi e UID stabili. La sufficienza è
+dimostrata per questa mappa a singola Road/singolo settore, senza estenderla ad
+altre strutture native.

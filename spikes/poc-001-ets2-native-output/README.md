@@ -1,8 +1,9 @@
 # PoC-001 — ETS2 Native Output Feasibility
 
-**Stato del gate: `AWAITING_MANUAL_VALIDATION`.** La generazione e la rilettura
-automatica sono riuscite; il ciclo obbligatorio nel Map Editor ETS2 1.60.x su
-Windows 11 x64 non è stato eseguito.
+**Stato finale del gate: `PASSED`.** Entrambi gli output sono stati aperti,
+ricomputati, salvati, chiusi e riaperti nel Map Editor ETS2 1.60.1.7 su Windows
+11 x64. I set post-editor sono stati riletti con TruckLib preservando Road,
+nodi, UID e riferimenti.
 
 Questo progetto è uno spike isolato. Non è un adapter di produzione e non fa
 parte automaticamente dell'architettura dell'MVP. Crea soltanto una mappa con
@@ -45,8 +46,14 @@ output/<run-id>/
 
 Il programma verifica formato 907, conteggi, UID, coordinate, proprietà della
 strada e riferimenti dopo `Map.Open`. L'assenza di `.layer` è intenzionale nel
-writer TruckLib quando tutti gli elementi usano il layer predefinito; la sua
-accettazione da parte del Map Editor resta da provare.
+writer TruckLib quando tutti gli elementi usano il layer predefinito. Il Map
+Editor accetta direttamente questo set minimale e crea `.layer`, `.set`,
+`.expa`, backup e autosave durante il proprio lifecycle.
+
+Il campo `gateStatus: AWAITING_MANUAL_VALIDATION` nei manifest automatici è
+deliberatamente conservato: descrive lo stato immediatamente dopo ogni nuova
+generazione. Il risultato manuale che chiude il gate è registrato separatamente
+in [`manual-validation/results.md`](manual-validation/results.md).
 
 ## Controllo dopo il salvataggio dell'editor
 
@@ -67,7 +74,8 @@ Il controllo richiede una strada con geometria, asset e riferimenti validi.
 Registra separatamente se l'editor ha conservato o cambiato gli UID, perché un
 cambio deve essere esaminato ma non dimostra da solo una corruzione semantica.
 
-La procedura completa e i nomi delle evidenze sono in
-[`manual-validation/checklist.md`](manual-validation/checklist.md). Il risultato
-tecnico è in [`tasks/poc-001-results.md`](../../tasks/poc-001-results.md).
-
+La procedura eseguita è in
+[`manual-validation/checklist.md`](manual-validation/checklist.md), le evidenze
+e il confronto pre/post editor in
+[`manual-validation/results.md`](manual-validation/results.md), e il verbale
+tecnico finale in [`tasks/poc-001-results.md`](../../tasks/poc-001-results.md).

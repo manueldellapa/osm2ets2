@@ -1,16 +1,21 @@
 # osm2ets2 MVP — Piano dei technical spike
 
-Data: **31 agosto 2026**. Stato: **pianificato; nessun PoC eseguito**.
+Data piano: **31 agosto 2026**. Stato aggiornato il **1 settembre 2026**:
+**PoC-001 `PASSED`; PoC-002–004 non eseguiti**.
 
 Fonte canonica: [PRD dell'MVP](prd-osm2ets2-mvp.md), in particolare §7, decisioni DT-01–DT-08, gate G0 e verifiche residue di §9. Questo documento scompone alcune verifiche del PRD in esperimenti; non modifica requisiti, soglie o decisioni adottate e non costituisce una dimostrazione di fattibilità.
 
-La consegna attuale è esclusivamente questo piano. Non prevede codice applicativo o di PoC, installazioni, download OSM, apertura del gioco o esecuzione degli esperimenti. Gli input, i programmi temporanei e le evidenze descritti sotto sono artefatti da preparare in una successiva attività autorizzata, non file già esistenti.
+Il piano è stato usato per eseguire esclusivamente PoC-001. Codice sperimentale,
+output ed evidenze sono in `spikes/poc-001-ets2-native-output/`; il verbale è in
+[poc-001-results.md](poc-001-results.md). PoC-002–004 e l'MVP non sono stati
+avviati. PRD e piano sono stati congelati tramite hash durante l'esperimento;
+questo aggiornamento di stato è successivo alla conclusione della validazione.
 
 ## 1. Ordine, dipendenze e rischio
 
 | Ordine | Spike | Assunzione principale | Rischio se falsa | Gate precedente | Stato |
 | --- | --- | --- | --- | --- | --- |
-| 1 | PoC-001 — ETS2 Native Output Feasibility | TruckLib produce una mappa nativa utilizzabile e persistente nel Map Editor target. | Invalida il percorso di output dell'intero progetto. | Nessuno. | `NOT_EXECUTED` |
+| 1 | PoC-001 — ETS2 Native Output Feasibility | TruckLib produce una mappa nativa utilizzabile e persistente nel Map Editor target. | Invalida il percorso di output dell'intero progetto. | Nessuno. | [`PASSED`](poc-001-results.md) |
 | 2 | PoC-002 — Coordinate and Geometry Validation | Proiezione, scala e conversione nativa rispettano orientamento e precisione richiesti. | Richiede revisione della trasformazione, del profilo o dei limiti. | PoC-001 `PASS`. | `NOT_EXECUTED` |
 | 3 | PoC-003 — Simple Road Topology | Strade, catene, T e quattro vie hanno connessioni native automatiche e persistenti. | Invalida il supporto minimo ai raccordi e può richiedere un diverso exporter. | PoC-001 e PoC-002 `PASS`. | `NOT_EXECUTED` |
 | 4 | PoC-004 — Minimal End-to-End OSM Conversion | Una piccola rete reale attraversa i livelli separati senza perdere geometria, semantica o adiacenze. | Richiede revisione dei contratti interni, della normalizzazione o del mapping. | PoC-001, PoC-002 e PoC-003 `PASS`. | `NOT_EXECUTED` |
@@ -402,4 +407,6 @@ Questi residui non sono ulteriori PoC da eseguire implicitamente con questa cons
 
 La sequenza potrà essere dichiarata completata soltanto con quattro verbali `PASS` applicabili alla stessa baseline, evidenze accessibili e un elenco esplicito delle verifiche residue. Eventuali assunzioni smentite devono avere una decisione revisionata e nuove prove, non una nota che ne ignora l'impatto.
 
-**Stato alla consegna del documento: PoC-001, PoC-002, PoC-003 e PoC-004 tutti `NOT_EXECUTED`. Nessuna compatibilità sperimentale dichiarata, nessun codice o dipendenza introdotti.**
+**Stato aggiornato: PoC-001 `PASSED` sulla baseline registrata; PoC-002,
+PoC-003 e PoC-004 `NOT_EXECUTED`. Il risultato e le sue limitazioni sono in
+[poc-001-results.md](poc-001-results.md).**
