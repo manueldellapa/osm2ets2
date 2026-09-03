@@ -1,0 +1,12 @@
+[project]
+name = "osm2ets2-poc002-coordinate-geometry"
+version = "0.0.0"
+description = "Isolated PoC-002 coordinate and geometry validation experiment"
+requires-python = "==3.14.7"
+dependencies = [
+  "pyproj==3.7.2",
+  "shapely==2.1.2",
+]
+
+[tool.uv]
+package = false

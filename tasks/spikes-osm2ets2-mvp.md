@@ -1,24 +1,33 @@
 # osm2ets2 MVP — Piano dei technical spike
 
-Data piano: **31 agosto 2026**. Stato aggiornato il **1 settembre 2026**:
-**PoC-001 `PASSED`; PoC-002–004 non eseguiti**.
+Data piano: **31 agosto 2026**. Stato aggiornato il **3 settembre 2026**:
+**PoC-001 `PASSED`; PoC-002 v1 `FAIL`; rerun PoC-002 revisionato
+`AWAITING_MANUAL_VALIDATION` dopo il `PASS` automatico; PoC-003–004
+`NOT_EXECUTED` e bloccati**.
 
-Fonte canonica: [PRD dell'MVP](prd-osm2ets2-mvp.md), in particolare §7, decisioni DT-01–DT-08, gate G0 e verifiche residue di §9. Questo documento scompone alcune verifiche del PRD in esperimenti; non modifica requisiti, soglie o decisioni adottate e non costituisce una dimostrazione di fattibilità.
+Fonte canonica: [PRD dell'MVP](prd-osm2ets2-mvp.md), in particolare §7, decisioni DT-01–DT-08, gate G0 e verifiche residue di §9. Questo documento scompone alcune verifiche del PRD in esperimenti e recepisce la revisione DT-07; non modifica autonomamente requisiti, soglie o decisioni adottate e non costituisce una dimostrazione di fattibilità.
 
-Il piano è stato usato per eseguire esclusivamente PoC-001. Codice sperimentale,
-output ed evidenze sono in `spikes/poc-001-ets2-native-output/`; il verbale è in
-[poc-001-results.md](poc-001-results.md). PoC-002–004 e l'MVP non sono stati
-avviati. PRD e piano sono stati congelati tramite hash durante l'esperimento;
-questo aggiornamento di stato è successivo alla conclusione della validazione.
+Il piano è stato usato per eseguire PoC-001 e, dopo il relativo `PASS`,
+esclusivamente PoC-002. Codice ed evidenze sono negli spike isolati
+`spikes/poc-001-ets2-native-output/` e
+`spikes/poc-002-coordinate-geometry/`; i verbali sono in
+[poc-001-results.md](poc-001-results.md) e
+[poc-002-results.md](poc-002-results.md). PoC-003, PoC-004 e l'MVP non sono
+stati avviati. PRD e piano sono stati congelati tramite hash durante ciascun
+esperimento; questo aggiornamento di stato è successivo alla validazione e
+alla revisione DT-07 causata dal `FAIL` di PoC-002 v1. La specifica del rerun
+revisionato resta la fotografia congelata pre-run; il
+[verbale separato](poc-002-revised-rerun-results.md) registra il `PASS`
+automatico del 3 settembre e il gate Windows ancora aperto.
 
 ## 1. Ordine, dipendenze e rischio
 
 | Ordine | Spike | Assunzione principale | Rischio se falsa | Gate precedente | Stato |
 | --- | --- | --- | --- | --- | --- |
 | 1 | PoC-001 — ETS2 Native Output Feasibility | TruckLib produce una mappa nativa utilizzabile e persistente nel Map Editor target. | Invalida il percorso di output dell'intero progetto. | Nessuno. | [`PASSED`](poc-001-results.md) |
-| 2 | PoC-002 — Coordinate and Geometry Validation | Proiezione, scala e conversione nativa rispettano orientamento e precisione richiesti. | Richiede revisione della trasformazione, del profilo o dei limiti. | PoC-001 `PASS`. | `NOT_EXECUTED` |
-| 3 | PoC-003 — Simple Road Topology | Strade, catene, T e quattro vie hanno connessioni native automatiche e persistenti. | Invalida il supporto minimo ai raccordi e può richiedere un diverso exporter. | PoC-001 e PoC-002 `PASS`. | `NOT_EXECUTED` |
-| 4 | PoC-004 — Minimal End-to-End OSM Conversion | Una piccola rete reale attraversa i livelli separati senza perdere geometria, semantica o adiacenze. | Richiede revisione dei contratti interni, della normalizzazione o del mapping. | PoC-001, PoC-002 e PoC-003 `PASS`. | `NOT_EXECUTED` |
+| 2 | PoC-002 — Coordinate and Geometry Validation | Proiezione, scala e conversione nativa rispettano orientamento e precisione richiesti. | Richiede revisione della trasformazione, del profilo o dei limiti. | PoC-001 `PASS`. | v1 [`FAIL`](poc-002-results.md); rerun revisionato [`AWAITING_MANUAL_VALIDATION`](poc-002-revised-rerun-results.md) dopo `PASS` automatico; gate non superato |
+| 3 | PoC-003 — Simple Road Topology | Strade, catene, T e quattro vie hanno connessioni native automatiche e persistenti. | Invalida il supporto minimo ai raccordi e può richiedere un diverso exporter. | PoC-001 e PoC-002 `PASS`. | `NOT_EXECUTED`; bloccato |
+| 4 | PoC-004 — Minimal End-to-End OSM Conversion | Una piccola rete reale attraversa i livelli separati senza perdere geometria, semantica o adiacenze. | Richiede revisione dei contratti interni, della normalizzazione o del mapping. | PoC-001, PoC-002 e PoC-003 `PASS`. | `NOT_EXECUTED`; bloccato |
 
 La sequenza elimina prima il rischio di formato, poi rende affidabili le misure necessarie a valutare i raccordi, infine introduce OSM e il confine Python/C#. La fattibilità delle intersezioni resta un rischio architetturale elevato: PoC-002 deve restare limitato alle fixture indicate, senza diventare sviluppo del motore geografico completo.
 
@@ -149,13 +158,24 @@ JSON, immagini o geometrie esportate in altri formati non sostituiscono il gate 
 
 ## 4. PoC-002 — Coordinate and Geometry Validation
 
+| Esecuzione | Criteri | Stato | Effetto |
+| --- | --- | --- | --- |
+| PoC-002 v1 | Criteri originali congelati prima del run del 1 settembre 2026 | **`FAIL`** | Risultato storico preservato; ha causato la revisione DT-07. |
+| PoC-002 revised rerun | Modello a stadi e Q256 adottato dalla revisione DT-07 del 2 settembre 2026 | **`AWAITING_MANUAL_VALIDATION`** (`PASS` automatico) | Il gate PoC-002 resta non superato; PoC-003 è bloccato. |
+
+Le sottosezioni fino a «Impatto architetturale in caso di fallimento»
+conservano il piano e i criteri originali di v1. Non vanno usate per
+riclassificare il risultato; la specifica congelata del futuro rerun è nella
+sezione successiva e in
+[`revised-rerun-spec.md`](../spikes/poc-002-coordinate-geometry/revised-rerun-spec.md).
+
 ### Obiettivo
 
 Validare con pochi punti e segmenti controllati il percorso **WGS84 → AEQD locale → metri locali → scala → coordinate ETS2 → Map Editor**, separando accuratezza numerica, orientamento e adattamento alla geometria nativa.
 
 ### Assunzione verificata e collegamenti al PRD
 
-**Assunzioni ancora aperte:** origine e proiezione conservano le proprietà metriche richieste; la scala è applicata una sola volta; la corrispondenza candidata `X=E, Y=H, Z=-N` e la precisione nativa sono compatibili con il profilo.
+**Assunzioni formulate per v1:** origine e proiezione conservano le proprietà metriche richieste; la scala è applicata una sola volta; la corrispondenza candidata `X=E, Y=H, Z=-N` e la precisione nativa sono compatibili con il profilo. Il run ha confermato automaticamente proiezione, scaling e aritmetica dell'adapter, ha smentito la compatibilità con il criterio nativo originale di 1 mm e non ha verificato la semantica visuale degli assi nel Map Editor.
 
 Riferimenti: [PRD](prd-osm2ets2-mvp.md), **DT-07 (§7.9)**, confini di **DT-03**, tolleranze di **DT-04** e dominio di **DT-08**; **FR-3, FR-13, FR-18–FR-22, FR-31, FR-38**; **US-006** e parte geometrica di **US-008**. Copre la porzione coordinate di **POC-ETS2**, parte di **POC-ENV** e il dubbio su assi/unità/precisione di §9; non è **POC-LIMITS**.
 
@@ -202,7 +222,7 @@ Calcolare area e diagonale geodetiche prima di accettare le fixture di bordo; ap
 
 Tabella dei punti a ogni stadio, definizione AEQD, origine e scale, convenzione degli assi dimostrata o smentita, procedura di misura, errori e incertezze, piccolo output nativo per le fixture e verbale del ciclo editor. Il segmento ritagliato include la provenienza degli estremi sintetici. Non è richiesto uno schema completo dell'IR di prodotto.
 
-### Criteri di successo
+### Criteri di successo v1 (storici, congelati)
 
 | Controllo | Soglia o risultato richiesto |
 | --- | --- |
@@ -216,7 +236,7 @@ Tabella dei punti a ogni stadio, definizione AEQD, origine e scale, convenzione 
 
 Per ogni disuguaglianza, l'incertezza della misura deve rientrare nel budget e non essere usata per aumentarlo. L'orientamento deve essere riconoscibile nell'editor e verificato numericamente; una schermata non prova precisione millimetrica.
 
-### Criteri di fallimento
+### Criteri di fallimento v1 (storici, congelati)
 
 Assi/segni/unità diversi dall'ipotesi, scala applicata due volte, origine instabile, attraversamento perso, errore superiore al budget, coordinate non finite o alterazioni dopo salvataggio. Se il metodo di misura non può distinguere il rispetto della soglia, l'esito è `BLOCKED`. Un caso deliberatamente fuori dominio è un controllo negativo, non un fallimento della trasformazione se viene rifiutato correttamente.
 
@@ -231,6 +251,49 @@ Ordine latitudine/longitudine, confusione fra nord e asse Z, precisione del form
 ### Impatto architetturale in caso di fallimento
 
 Una diversa convenzione nativa richiede revisione esplicita della corrispondenza nel solo adapter, lasciando E/N/H nel modello neutro, e ripetizione del PoC. Errori di origine, clipping o proiezione riaprono DT-07 nella trasformazione. Precisione nativa incompatibile richiede riesame di rappresentazione, origine o limiti DT-07/DT-08; non aumentare tacitamente le tolleranze. Perdita al salvataggio può riaprire PoC-001. Nessun avvio di PoC-003 finché il gate non è superato.
+
+### Decisione successiva a v1 e criteri congelati del rerun revisionato
+
+La [revisione DT-07](prd-osm2ets2-mvp.md)
+adotta per il MVP la quantizzazione Q256 come stadio deterministico esplicito
+dell'adapter selezionato. La RCA prova la regola soltanto per
+**TruckLib 0.5.1** e **`TruckLib.ScsMap.Node.Position`**; non la generalizza a
+ogni coordinata ETS2, altro writer/versione o al Map Editor. Poiché DT-02 usa
+proprio questa combinazione, il vincolo è applicabile all'architettura scelta.
+
+Il futuro rerun deve esercitare la pipeline completa, senza assorbire uno
+stadio nel successivo:
+
+```text
+WGS84 → AEQD float64 → discretizzazione float64 → scaling float64
+→ E/N/H float64 → mapping X/Y/Z → Vector3 float32
+→ Q256 Node.Position → persistenza Map Editor
+```
+
+| Controllo revisionato | Risultato obbligatorio |
+| --- | --- |
+| Riferimento, origine e dominio | Ripetere tutti i controlli v1: riferimento indipendente, ordine lon/lat, origini esplicita/derivata, clipping/provenienza/densificazione, bbox area/diagonale, raggio, finitezza. |
+| Andata/ritorno geografico | Errore massimo **0,001 m**, invariato. |
+| Discretizzazione proiettata | Scostamento massimo **0,01 m prima dello scaling**, invariato. |
+| Scala | Applicazione unica e uniforme; confronti a `s=1` e `s=0,1` nello stadio float64 della scena. |
+| float64 → float32 | Errore euclideo 3D aggiunto massimo **0,001 m della scena**, prima di Q256. |
+| Q256 di `Node.Position` | Per ogni float32 `f_a` finito su X/Y/Z, `expected_q_a = trunc_toward_zero(f_a * 256f)`; il codice `Int32` scritto e quello ricostruito dal readback coincidono **esattamente** con `expected_q_a`. La posizione attesa è `expected_q_a/256f`. |
+| Limiti Q256 | Riportare `Δ=1/256 m`, perdita `<Δ` per asse, `<sqrt(2)/256 m` su X/Z e `<sqrt(3)/256 m` in 3D; sono proprietà della rappresentazione, non tolleranze aggiuntive. |
+| Geometria nativa dei rettifili | Hausdorff simmetrica massima **1,0 m della scena**, invariata e distinta dalla riconciliazione Q256. |
+| Persistenza Map Editor | Dopo recompute/save/chiusura/riapertura, `q_after = q_before = q_expected` per ogni nodo e componente X/Y/Z; qualsiasi delta intero è drift da registrare e investigare. Nessun secondo budget Q256. |
+| Assi/orientamento | L'aritmetica `X=E, Y=H, Z=-N` va distinta dalla sua semantica geografica, da confermare o respingere visualmente e numericamente nel target Windows. |
+
+Le sonde native devono coprire X, Y e Z indipendentemente, coordinate positive,
+negative, zero e valori float immediatamente sotto/sopra i bordi Q256. Vanno
+riusate tutte le classi di fixture congelate di v1, comprese scale 1/0,1,
+offset 0,001/0,01/0,1 m come traslazioni, le due bbox di bordo, il punto vicino
+al raggio e il segmento attraversante. Gli attesi Q256 si calcolano dal valore
+float32 effettivamente fornito a `Node.Position`, non dal float64 originario.
+
+Lo stato intermedio `AWAITING_MANUAL_VALIDATION` è ammesso soltanto se tutti i
+controlli automatici revisionati superano e manca il ciclo Windows; non è un
+`PASS` e non sblocca PoC-003. La specifica operativa completa è congelata in
+[`revised-rerun-spec.md`](../spikes/poc-002-coordinate-geometry/revised-rerun-spec.md).
 
 ## 5. PoC-003 — Simple Road Topology
 
@@ -407,6 +470,11 @@ Questi residui non sono ulteriori PoC da eseguire implicitamente con questa cons
 
 La sequenza potrà essere dichiarata completata soltanto con quattro verbali `PASS` applicabili alla stessa baseline, evidenze accessibili e un elenco esplicito delle verifiche residue. Eventuali assunzioni smentite devono avere una decisione revisionata e nuove prove, non una nota che ne ignora l'impatto.
 
-**Stato aggiornato: PoC-001 `PASSED` sulla baseline registrata; PoC-002,
-PoC-003 e PoC-004 `NOT_EXECUTED`. Il risultato e le sue limitazioni sono in
-[poc-001-results.md](poc-001-results.md).**
+**Stato aggiornato: PoC-001 `PASSED` sulla baseline registrata; PoC-002 v1
+`FAIL` sotto i criteri originali congelati; rerun PoC-002 revisionato
+`AWAITING_MANUAL_VALIDATION` dopo il `PASS` automatico; PoC-003 e PoC-004
+`NOT_EXECUTED` e bloccati. Risultati e limitazioni sono in
+[poc-001-results.md](poc-001-results.md) e
+[poc-002-results.md](poc-002-results.md), con il rerun distinto in
+[poc-002-revised-rerun-results.md](poc-002-revised-rerun-results.md). Il gate
+PoC-002 non è superato e la sequenza resta ferma.**

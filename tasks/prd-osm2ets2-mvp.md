@@ -1,8 +1,16 @@
 # PRD: osm2ets2 — MVP di conversione della rete stradale OSM per ETS2
 
-Data: 31 agosto 2026
+Data iniziale: 31 agosto 2026
 
-Stato: requisiti MVP e decisioni tecniche adottate; compatibilità sperimentale da validare, nessuna funzionalità implementata
+Revisione DT-07: 2 settembre 2026
+
+Esecuzione automatica del rerun PoC-002 revisionato: 3 settembre 2026
+
+Stato: requisiti MVP e decisioni tecniche adottate; PoC-001 `PASSED`;
+PoC-002 v1 `FAIL` sotto i criteri originali congelati; rerun PoC-002 con
+criteri revisionati `AWAITING_MANUAL_VALIDATION` dopo il `PASS` automatico;
+PoC-003 e PoC-004 `NOT_EXECUTED` e bloccati. Nessuna funzionalità MVP di
+produzione è implementata.
 
 Ambito: dalla selezione di una piccola area OSM a una base stradale modificabile nel Map Editor di Euro Truck Simulator 2
 
@@ -24,9 +32,24 @@ Alla verifica del 31 agosto 2026, il commit `8ddfea6` contiene i tre file inizia
 | `LICENSE` | Contiene il testo GNU GPL versione 2. Non determina la licenza dei dati OSM o degli asset del gioco. |
 | `.gitignore` | Contiene regole prevalentemente Python. Suggerisce un possibile orientamento, ma non conferma uno stack adottato. |
 
-Non sono presenti `AGENTS.md` applicabili, codice applicativo, manifest di dipendenze, test, configurazioni CI o ADR. Oltre al presente documento non esistono altri PRD. Non esistono quindi API, moduli o comandi di qualità da riutilizzare o da dichiarare già disponibili.
+Alla stessa verifica non erano presenti `AGENTS.md` applicabili, codice
+applicativo, manifest di dipendenze, test, configurazioni CI o ADR. Oltre al
+presente documento non esistevano altri PRD. Non esistevano quindi API, moduli
+o comandi di qualità da riutilizzare o da dichiarare già disponibili.
 
 Tutto il comportamento descritto di seguito è da costruire. Il perimetro funzionale deriva dalla richiesta dell'utente; le scelte tecniche DT-01–DT-08 (§7) sono ora adottate a seguito del confronto delle alternative richiesto. I dettagli marcati come assunzioni o PoC non sono fatti verificati. La compatibilità ETS2 richiede G0 (§7.2).
+
+**Aggiornamento del 2 settembre 2026:** le righe precedenti conservano la
+fotografia iniziale del repository. Da allora sono stati aggiunti esclusivamente
+spike sperimentali: PoC-001 ha superato il controllo nativo minimo e PoC-002 v1
+ha prodotto `FAIL`, causando la revisione di precisione DT-07 in §7.9. Questo
+non equivale a un'implementazione del prodotto né al superamento di G0.
+
+**Aggiornamento del 3 settembre 2026:** il rerun PoC-002 revisionato ha
+superato tutti i criteri automatici congelati ed è
+`AWAITING_MANUAL_VALIDATION`. Il ciclo Windows Map Editor, la persistenza Q256
+post-editor e la semantica geografica visuale degli assi restano non eseguiti;
+il gate PoC-002 e G0 non sono quindi superati.
 
 ### 1.2 Baseline adottata per delimitare il MVP
 
@@ -38,7 +61,7 @@ Tutto il comportamento descritto di seguito è da costruire. Il perimetro funzio
 | Scala | Fattore geometrico uniforme configurabile; valore predefinito `1`, cioè scala geometrica 1:1. |
 | Altimetria | Base planare per le strade ordinarie. Ponti, tunnel e separazioni verticali sono riconosciuti e segnalati, non ricostruiti automaticamente. |
 | Intersezioni | Grafo OSM corretto; nell'output nativo, raccordi semplici a T e a quattro bracci entro un profilo verificato. È ammesso il riuso minimo di prefab già presenti nel gioco. Non è prevista la generazione di nuovi prefab. |
-| Output | Mappa nativa `.mbd` con settori tramite TruckLib 0.5.1, modello intermedio neutro e report; verifica nel Map Editor obbligatoria e ancora da eseguire. |
+| Output | Mappa nativa `.mbd` con settori tramite TruckLib 0.5.1, modello intermedio neutro e report; il collaudo Map Editor completo del prodotto resta obbligatorio e non eseguito. Gli esiti parziali degli spike sono riepilogati in §9. |
 | Compatibilità | ETS2 1.60.x stabile su Windows 11 x64 per il collaudo editor; core/CLI/adapter da verificare anche su Ubuntu 24.04 x64 e macOS 14+ ARM64. |
 
 Il riuso di raccordi semplici serve a rendere verificabile il requisito di rete connessa: non equivale a un generatore generale di junction, rotatorie o svincoli. Se questa capacità minima non è tecnicamente dimostrabile, il MVP non soddisfa il suo criterio principale; un grafo JSON o un insieme di strade sovrapposte non può sostituirla.
@@ -65,7 +88,10 @@ La rete sorgente può contenere componenti separate reali. Il tool deve conserva
 
 ## 3. User stories
 
-I criteri seguenti sono condizioni future di accettazione. Per ogni storia sono richiesti i test pertinenti e i controlli di qualità che verranno configurati nel progetto secondo §7.7; attualmente non esistono comandi repository per eseguirli.
+I criteri seguenti sono condizioni future di accettazione. Per ogni storia sono
+richiesti i test pertinenti e i controlli di qualità che verranno configurati
+nel prodotto secondo §7.7; i comandi presenti negli spike isolati non
+costituiscono ancora la suite del prodotto.
 
 ### US-001: Avviare una conversione con parametri comprensibili
 
@@ -176,6 +202,9 @@ I criteri seguenti sono condizioni future di accettazione. Per ogni storia sono 
 - [ ] Una catena stradale con un tratto curvo viene generata come elementi stradali modificabili, non soltanto come immagine, mesh decorativa o linea di riferimento.
 - [ ] I tratti consecutivi supportati hanno connessioni native persistenti e non soltanto estremità sovrapposte.
 - [ ] L'adattamento alle geometrie native rispetta i limiti e le tolleranze congelati in G0; le differenze misurate sono riportate.
+- [ ] Con TruckLib 0.5.1, i codici Q256 di ogni `Node.Position` coincidono
+      esattamente con i codici attesi prima dell'editor e restano invariati
+      dopo ricalcolo, salvataggio, chiusura e riapertura, secondo DT-07.
 - [ ] Dopo apertura/importazione, eventuale ricalcolo previsto, salvataggio, chiusura e riapertura, strade, geometrie e connessioni restano disponibili.
 - [ ] Versioni, formato nativo e prerequisiti sono dichiarati; un target esplicitamente incompatibile non riceve una conferma di compatibilità.
 - [ ] Il percorso di verifica reale nel Map Editor è documentato e superato sull'ambiente target. Il solo test del serializzatore non è sufficiente.
@@ -280,7 +309,7 @@ Le way OSM sono sequenze ordinate di nodi; la coincidenza spaziale non sostituis
 
 ### 4.3 Coordinate, geometria e mapping
 
-- **FR-18:** Il sistema deve trasformare WGS84 in AEQD ellissoidale locale secondo DT-07, produrre coordinate neutre est/nord/altezza e lasciare all'adapter la convenzione ETS2 verificata. Deve registrare CRS, origine, unità, versioni e parametri necessari a riprodurre la trasformazione.
+- **FR-18:** Il sistema deve trasformare WGS84 in AEQD ellissoidale locale secondo DT-07, produrre coordinate neutre est/nord/altezza e lasciare all'adapter la convenzione ETS2 verificata. Deve registrare CRS, origine, unità, versioni, parametri e misure separate per gli stadi float64 geografico/geometrico, scaling, float32 dell'adapter, Q256 di `Node.Position` e persistenza editor.
 - **FR-19:** La scala deve moltiplicare uniformemente le distanze planimetriche rispetto all'origine deterministica; il default è `1`. La scala geometrica non deve essere confusa con i parametri del gioco per distanze di navigazione, tempo o economia.
 - **FR-20:** L'esportatore deve applicare il piano di riferimento alle sole geometrie rappresentabili nel profilo planare; non deve inventare un modello di elevazione o dedurre quote reali dai layer.
 - **FR-21:** Semplificazione, campionamento e adattamento alle curve native devono preservare topologia e punti vincolati e rispettare tolleranze misurabili del profilo. Non è prevista una semplificazione lossy opzionale attiva di default.
@@ -292,10 +321,10 @@ Le way OSM sono sequenze ordinate di nodi; la coincidenza spaziale non sostituis
 
 ### 4.4 Output per il Map Editor
 
-- **FR-27:** Il sistema deve usare l'adapter C#/.NET 10 con TruckLib 0.5.1 per produrre il progetto nativo `.mbd` con settori scelto in DT-02, contenente elementi stradali editabili nel Map Editor. L'IR generica è un artefatto intermedio e non soddisfa da sola il requisito.
+- **FR-27:** Il sistema deve usare l'adapter C#/.NET 10 con TruckLib 0.5.1 per produrre il progetto nativo `.mbd` con settori scelto in DT-02, contenente elementi stradali editabili nel Map Editor. Per ogni `TruckLib.ScsMap.Node.Position` l'adapter deve calcolare e verificare esattamente i codici Q256 richiesti da DT-07. L'IR generica è un artefatto intermedio e non soddisfa da sola il requisito.
 - **FR-28:** Catene stradali e raccordi semplici del profilo devono avere connessioni native persistenti, dimostrate dopo apertura/importazione e dopo salvataggio e riapertura.
 - **FR-29:** Il profilo iniziale deve coprire T e incroci a quattro bracci nel perimetro e nelle soglie DT-04, usando prefab esistenti verificati in POC-JUNCTION; rotatorie e junction complesse sono rinviate. Configurazioni fuori profilo devono avere posizione, motivazione e connessioni da rifinire esplicite.
-- **FR-30:** Il progetto deve includere gli artefatti di §6.2 e istruzioni complete di apertura/importazione, eventuale ricalcolo, salvataggio e controllo, senza richiedere la ricostruzione manuale delle parti dichiarate convertite.
+- **FR-30:** Il progetto deve includere gli artefatti di §6.2 e istruzioni complete di apertura/importazione, ricalcolo, salvataggio, chiusura, riapertura e controllo, compreso il confronto componente per componente dei codici Q256 prima/dopo editor previsto da DT-07, senza richiedere la ricostruzione manuale delle parti dichiarate convertite. Il readback TruckLib resta diagnostico e non sostituisce il ciclo editor.
 - **FR-31:** Il sistema deve registrare profilo target, versione del formato e dell'adattatore, requisiti di gioco e asset. La compatibilità dichiarata deve essere limitata alle combinazioni collaudate.
 
 ### 4.5 Operatività, report e riproducibilità
@@ -378,11 +407,11 @@ I nomi seguenti definiscono il contratto adottato per l'output generato e non de
 
 | Artefatto previsto | Contenuto richiesto |
 | --- | --- |
-| `project.json` | Versione schema, esito, hash sorgente, data snapshot se nota, bbox richiesta/effettiva, trasformazione, scala, profilo, versioni e indice degli artefatti. |
+| `project.json` | Versione schema, esito, hash sorgente, data snapshot se nota, bbox richiesta/effettiva, trasformazione, scala, modello di precisione DT-07, profilo, versioni e indice degli artefatti. |
 | `network.json` | Grafo geografico versionato con geometrie WGS84, attributi normalizzati, adiacenze, ID e provenienza; nessuna struttura binaria o dipendenza ETS2. |
 | `map-model.json` | Modello mappa indipendente da ETS2, in coordinate locali della scena con unità esplicite, connettività richiesta e riferimenti al grafo sorgente; input dell'adapter, separato dal profilo nativo. |
-| `report.json` | Contatori riconciliabili, tempi misurati, diagnostiche, esclusioni, conversioni parziali e connessioni da rifinire. |
-| `IMPORT.md` | Prerequisiti e sequenza esatta per apertura/importazione, eventuale ricalcolo, salvataggio, riapertura e verifica. Include compatibilità, attribuzione e limitazioni. |
+| `report.json` | Contatori riconciliabili, tempi misurati, diagnostiche, esclusioni, conversioni parziali e connessioni da rifinire; massimi numerici separati per stadio e riconciliazione completa dei codici Q256 attesi/effettivi. |
+| `IMPORT.md` | Prerequisiti e sequenza esatta per apertura/importazione, ricalcolo, salvataggio, chiusura, riapertura e verifica, incluso il confronto dei codici Q256 prima/dopo editor. Include compatibilità, attribuzione e limitazioni. |
 | Output nativo | Progetto `.mbd`, cartella settori corrispondente e accessori necessari al target; elementi stradali editabili, non sostituibili dal formato generico. |
 | Snapshot acquisito | Obbligatorio per la modalità bbox online; formato leggibile dalla modalità `--input`, metadati e hash. Non è richiesta una copia del file locale fornito dall'utente. |
 
@@ -418,6 +447,9 @@ La tolleranza di adattamento delle curve e quella per l'inserimento dei raccordi
 
 Le otto scelte seguenti sono adottate come baseline progettuale il 31 agosto 2026, in risposta alla richiesta di chiusura delle decisioni tecniche. Non costituiscono una dichiarazione di implementazione o di compatibilità sperimentale.
 
+DT-07 è stata revisionata esplicitamente il 2 settembre 2026 in conseguenza del
+`FAIL` di PoC-002 v1. DT-01–DT-06 e DT-08 restano invariate.
+
 - **Confermato:** requisito dell'utente, evidenza del repository o comportamento documentato da una fonte primaria citata.
 - **Adottato:** scelta del progetto dopo confronto delle alternative; vincolante per la successiva implementazione fino a revisione esplicita.
 - **Da validare con PoC:** proprietà della combinazione concreta di strumenti, asset e dati che la sola documentazione non dimostra.
@@ -430,14 +462,23 @@ Le otto scelte seguenti sono adottate come baseline progettuale il 31 agosto 202
 | DT-04 | Rettifili, curve, continuità e T/4-vie semplici; riuso di un catalogo minimo di prefab esistenti. Rotatorie rinviate. | Identificatori, varianti, connettori e campo di applicabilità dei prefab. |
 | DT-05 | **CPython 3.14.7**, uv, osmium, pyproj, Shapely, argparse/logging, pytest/Hypothesis, Ruff/mypy. | Ambiente risolto e riproducibile sulle piattaforme dichiarate. |
 | DT-06 | `.osm` e `.osm.pbf` locali obbligatori; primo provider remoto **Overpass configurabile**, senza endpoint obbligatorio nel dominio. | Risposte complete, attraversamenti, policy dell'istanza, replay offline. |
-| DT-07 | WGS84 → **AEQD ellissoidale locale** → coordinate est/nord in metri; float64, scala geometrica distinta dal formato ETS2. | Punti di controllo, errore numerico e convenzione degli assi nativi. |
+| DT-07 | WGS84 → **AEQD ellissoidale locale** → E/N/H float64; scala geometrica esplicita; conversione float32 separata; per l'adapter selezionato, serializzazione Q256 di `TruckLib.ScsMap.Node.Position` verificata per TruckLib 0.5.1; persistenza editor separata. | Rerun completo PoC-002 sui criteri revisionati; semantica degli assi e stabilità dei codici Q256 dopo il ciclo Map Editor. |
 | DT-08 | Profilo di ammissione **25 km² / diagonale 10 km**, con limiti espliciti di file, elementi e richieste. | Consumo reale e arresto controllato ai limiti. |
 
-Le versioni nominate sono scelte di baseline, non dipendenze già installate. I lock, gli schemi e i profili citati di seguito sono artefatti da introdurre nell'implementazione, non file esistenti.
+Le versioni nominate restano scelte di baseline del prodotto. Gli spike hanno
+risolto soltanto i sottoinsiemi necessari ai propri esperimenti; lock, schemi e
+profili completi del prodotto restano artefatti da introdurre
+nell'implementazione.
 
 ### 7.2 G0 — PoC obbligatori prima di dichiarare il MVP utilizzabile
 
-G0 conserva il suo ruolo di verifica iniziale dell'esportazione. La scelta di un adattatore è ora chiusa; la dimostrazione che funzioni rimane aperta. Le prove seguenti **non sono state eseguite** in questa attività documentale.
+G0 conserva il suo ruolo di verifica iniziale dell'esportazione. PoC-001 ha
+superato il percorso nativo minimo. PoC-002 v1 ha prodotto `FAIL` rispetto alla
+soglia numerica originale e ha causato la revisione DT-07 documentata in §7.9;
+il rerun sui criteri revisionati ha `PASS` automatico ed è
+`AWAITING_MANUAL_VALIDATION`. G0 non è superato e PoC-003 e PoC-004 restano
+`NOT_EXECUTED`, bloccati dal gate PoC-002 non superato. La tabella seguente
+conserva l'insieme delle prove richieste, non il loro stato di esecuzione.
 
 | Prova | Evidenza richiesta e condizione di superamento |
 | --- | --- |
@@ -590,13 +631,13 @@ POC-JUNCTION deve produrre il catalogo con identificatori, varianti, porte, dipe
 
 Il parser scelto supporta XML/PBF ma gli oggetti esposti durante lo streaming hanno durata limitata: il modello deve copiarne i dati, non trattenerli. È prevista una lettura per raccogliere way/riferimenti e una seconda per risolvere i nodi se necessaria, così l'ordine del file non diventa un requisito nascosto. [Formati pyosmium](https://docs.osmcode.org/pyosmium/latest/user_manual/07-Input-Formats-And-Other-Sources/), [oggetti streaming](https://docs.osmcode.org/pyosmium/latest/user_manual/01-First-Steps/).
 
-**Politica di versionamento adottata:** fissare le versioni esatte sopra indicate per il primo PoC, incluse [uv 0.12.7](https://pypi.org/project/uv/0.12.7/) e [HTTPX 0.28.1](https://pypi.org/project/httpx/0.28.1/); fissare patch SDK .NET e dipendenze transitive nel bootstrap. Le famiglie degli strumenti di sviluppo sono scelte, mentre le patch saranno registrate nel lock. I lock e gli hash non esistono ancora e non sono dichiarati risolti. Nessuna dipendenza `latest`, nessun aggiornamento automatico durante `build`; aggiornamenti intenzionali dopo i controlli. Il lock universale non sostituisce una matrice di test. [Layout uv](https://docs.astral.sh/uv/concepts/projects/layout/), [lock e sincronizzazione](https://docs.astral.sh/uv/concepts/projects/sync/), [versionamento Ruff](https://docs.astral.sh/ruff/versioning/).
+**Politica di versionamento adottata:** fissare le versioni esatte sopra indicate per i PoC pertinenti e per il prodotto, incluse [uv 0.12.7](https://pypi.org/project/uv/0.12.7/) e [HTTPX 0.28.1](https://pypi.org/project/httpx/0.28.1/); fissare patch SDK .NET e dipendenze transitive nel bootstrap. Le famiglie degli strumenti di sviluppo sono scelte, mentre le patch saranno registrate nel lock. Il lock isolato di PoC-002 copre soltanto il suo sottoinsieme geografico e non risolve il lock completo del prodotto, inclusi osmium e HTTPX. Nessuna dipendenza `latest`, nessun aggiornamento automatico durante `build`; aggiornamenti intenzionali dopo i controlli. Il lock universale non sostituisce una matrice di test. [Layout uv](https://docs.astral.sh/uv/concepts/projects/layout/), [lock e sincronizzazione](https://docs.astral.sh/uv/concepts/projects/sync/), [versionamento Ruff](https://docs.astral.sh/ruff/versioning/).
 
 **Piattaforme adottate:** Windows 11 x64, Ubuntu 24.04 x64 e macOS 14+ ARM64 per core, CLI e contratto dell'adapter. Il collaudo completo Map Editor è obbligatorio solo su Windows 11 x64; nessuna equivalenza editor su Linux/macOS è dichiarata. La generazione nativa senza editor sugli altri sistemi deve essere verificata come parte della matrice; eventuali blocchi di packaging non possono essere nascosti. Mac Intel e altre architetture sono fuori dalla matrice iniziale. Il minimo macOS ARM64 riflette le wheel pyproj scelte, non un limite generale del progetto.
 
 **Controlli di qualità da introdurre:** test pytest/Hypothesis di parsing, invarianti topologiche, proiezione, errori e contratti; Ruff check e format check; mypy strict; compilazione C# con nullable abilitato e avvisi trattati come errori sul codice proprio; test del confine adapter e fixture native in G0. Non è necessario scegliere ora un ulteriore framework di unit test C#: il contratto del processo deve essere esercitato dalla suite di integrazione.
 
-Non sono comandi già presenti nel repository. La futura documentazione dovrà riportare i comandi reali associati ai manifest creati nell'implementazione. Le soppressioni di typing verso librerie native devono essere locali e motivate, senza disabilitazioni globali. [pytest](https://docs.pytest.org/en/stable/), [Hypothesis](https://hypothesis.readthedocs.io/en/latest/), [Ruff](https://docs.astral.sh/ruff/), [mypy](https://mypy.readthedocs.io/en/stable/).
+Non sono ancora comandi della suite del prodotto. La futura documentazione dovrà riportare i comandi reali associati ai manifest creati nell'implementazione; i comandi degli spike restano evidenze isolate. Le soppressioni di typing verso librerie native devono essere locali e motivate, senza disabilitazioni globali. [pytest](https://docs.pytest.org/en/stable/), [Hypothesis](https://hypothesis.readthedocs.io/en/latest/), [Ruff](https://docs.astral.sh/ruff/), [mypy](https://mypy.readthedocs.io/en/stable/).
 
 Logging e CLI devono includere codici diagnostici, riepiloghi e percorsi; i log non sostituiscono il report. La forma `--bbox=<west,south,east,north>` evita ambiguità con valori occidentali negativi ed è quella da documentare. HTTPX distingue timeout di connessione/lettura da un limite totale: il budget complessivo va applicato dall'orchestratore. [argparse](https://docs.python.org/3.14/library/argparse.html), [logging](https://docs.python.org/3.14/library/logging.html), [HTTPX: timeout](https://www.python-httpx.org/advanced/timeouts/), [HTTPX: streaming](https://www.python-httpx.org/quickstart/#streaming-responses).
 
@@ -648,14 +689,109 @@ PROJ documenta AEQD con forma ellissoidale, origine configurabile e coordinate p
 3. CRS metrico locale **AEQD ellissoidale WGS84**, centro `(lon0,lat0)`, falsi est/nord zero e unità metri. Definizione completa WKT2/PROJJSON e versioni PROJ/pyproj nel manifest; nessun codice EPSG inventato per il CRS locale.
 4. Il modello mappa usa **E, N, H**: est, nord e quota di riferimento in metri della scena. Per il piano MVP `H=0` significa quota convenzionale, non altitudine reale. La scala `s` si applica una volta: `E=s·e`, `N=s·n`; il default è `s=1`.
 5. Fra nodi consecutivi si adotta l'interpolazione lineare nel piano longitudine/latitudine della sorgente. Il ritaglio avviene su questi segmenti contro la bbox WGS84 **prima** della proiezione metrica, nella fase di trasformazione. I tratti risultanti vengono densificati prima/durante la proiezione quanto serve a limitare lo scostamento dalla curva proiettata a **1 cm metrico prima dello scaling**. Non si proiettano soltanto estremi lontani per poi unirli con una retta, né si sostituisce la bbox con quella dei quattro angoli proiettati. I punti sintetici conservano la way, il segmento sorgente e il parametro di interpolazione; non creano connessioni per sola coincidenza. Segmenti che attraversano l'antimeridiano sono fuori dal dominio del profilo e devono essere diagnosticati, non interpretati come linee attraverso tutto il mondo.
-6. Core, geometrie e IR usano **float64**; ID e topologia non dipendono da uguaglianze approssimate. JSON rifiuta NaN/infinito e non arrotonda le coordinate per finalità di presentazione. Solo l'adapter effettua le conversioni numeriche richieste dal formato.
+6. Core, geometrie, scaling e IR usano **float64**; ID e topologia non dipendono da uguaglianze approssimate. JSON rifiuta NaN/infinito e non arrotonda le coordinate per finalità di presentazione. Dopo la corrispondenza degli assi, soltanto l'adapter converte le coordinate scena nel `Vector3` float32 richiesto da TruckLib e poi nella rappresentazione Q256 descritta sotto. Input, output ed errore di ciascuno stadio devono restare distinti.
 7. Le trasformazioni non richiedono download di griglie: rete PROJ disabilitata; errori o coordinate non finite danno errore, non fallback silenziosi.
 
 Il comportamento di `always_xy` e il controllo degli errori sono documentati da [pyproj Transformer](https://pyproj4.github.io/pyproj/stable/api/transformer.html).
 
-**Assunzione ETS2 esplicita da provare:** l'adapter adotterà inizialmente la corrispondenza `X=E`, `Y=H`, `Z=-N`, con origine nativa zero. Questa scelta di orientamento, l'unità e la precisione nativa devono superare POC-ETS2 con una fixture asimmetrica, est/nord e distanze note. Non è una trasformazione verso la mappa base `europe` e non viene presentata come specifica proprietaria verificata. La convenzione resta nell'adapter, quindi una correzione non modifica il modello neutro.
+**Assunzione ETS2 ancora aperta:** l'aritmetica dell'adapter
+`X=E`, `Y=H`, `Z=-N`, con origine nativa zero, è stata verificata
+automaticamente, ma la sua correttezza geografica e visuale nel Map Editor non
+lo è. Il target Windows deve confermare o respingere segni, direzioni e
+orientamento con fixture asimmetriche e distanze note. La prova Q256 non
+dimostra la semantica degli assi. Non si tratta di una trasformazione verso la
+mappa base `europe`; la convenzione resta confinata all'adapter.
 
-**Budget di precisione adottati, da verificare:** errore di andata/ritorno geografico massimo **1 mm** su punti di controllo nel dominio; discretizzazione delle geometrie proiettate massimo **1 cm prima dello scaling**; errore aggiunto dalla conversione numerica nativa massimo **1 mm della scena**. Sono soglie ingegneristiche, non una promessa di accuratezza dei dati OSM. Le tolleranze di adattamento road/prefab, maggiori e distinte, sono in DT-04. I test devono usare valori di riferimento indipendenti, non soltanto una trasformazione seguita dalla propria inversa, e includere una way lunga con entrambi gli estremi fuori dalla bbox.
+#### Revisione DT-07 del 2 settembre 2026 — precisione Q256 dell'adapter selezionato
+
+**Requisito precedente e causa della revisione.** PoC-002 v1 è `FAIL` sotto il
+criterio originale congelato «errore aggiunto dalla conversione numerica nativa
+massimo 0,001 m della scena». Il massimo osservato è
+**0,004277268693810707 m**. Il risultato storico e tutte le sue misure restano
+in [poc-002-results.md](poc-002-results.md); non vengono rivalutati con i nuovi
+criteri. La
+[RCA Q256](../spikes/poc-002-coordinate-geometry/evidence/native-q256-rca.md)
+ha dimostrato che TruckLib 0.5.1 serializza
+`TruckLib.ScsMap.Node.Position` con
+`(int)(Position.<axis> * 256f)` e rilegge dividendo per `256f`. Per input
+float32 finiti e nel dominio MVP, il cast tronca verso zero. Pacchetto,
+SourceLink e tag risolvono al commit upstream
+`bd745344fc52d3b2d70ce9ac7c88d61b99934805`, registrato nella RCA. Il `FAIL`
+ha quindi causato questa revisione; non viene fatto scomparire dalla revisione.
+Per le esecuzioni successive, il singolo criterio combinato è sostituito dai
+criteri per stadio sotto elencati; per PoC-002 v1 resta il criterio storico con
+cui il run è stato giudicato.
+
+**Ambito dell'evidenza.** La regola è provata esclusivamente per
+**TruckLib 0.5.1** e **`TruckLib.ScsMap.Node.Position`** nel percorso esercitato.
+Non dimostra la rappresentazione di ogni coordinata ETS2, di altri campi,
+writer o versioni, né il comportamento interno del Map Editor. È comunque un
+vincolo applicabile all'architettura MVP perché DT-02 seleziona esattamente
+questo adapter e questa versione.
+
+| Alternativa | Valutazione | Esito |
+| --- | --- | --- |
+| Conservare il requisito generale di 1 mm cambiando writer o rappresentazione | Richiederebbe riaprire DT-02 e ripetere le prove native. Non esiste evidenza che un altro writer o percorso nativo eviti Q256. | Non scelta per il MVP; resta investigabile solo con nuova evidenza. |
+| Allineare preventivamente la geometria alla griglia Q256 | Renderebbe esatto il writer rispetto a un input già quantizzato, ma anticiperebbe una modifica geometrica esplicita e non renderebbe vero il confronto originale con il float64 neutro. | Non scelta. |
+| Modellare la quantizzazione Q256 come stadio deterministico esplicito | Corrisponde all'implementazione selezionata, conserva neutro il modello E/N/H float64 e offre un oracolo intero esatto invece di una tolleranza arbitraria. | **Adottata per il MVP.** |
+
+**Pipeline numerica vincolante dopo la revisione:**
+
+```text
+WGS84
+  → AEQD float64
+  → geometria e discretizzazione float64
+  → scaling float64
+  → modello neutro E/N/H float64
+  → mapping degli assi e Vector3 float32
+  → serializzazione deterministica Q256 di Node.Position
+  → persistenza ETS2 Map Editor, verificata separatamente
+```
+
+**Criteri di precisione adottati per il futuro rerun:**
+
+| Stadio | Criterio obbligatorio |
+| --- | --- |
+| A. WGS84 ↔ AEQD | Errore geodetico massimo **0,001 m** sui controlli indipendenti. |
+| B. Discretizzazione proiettata | Scostamento massimo **0,01 m prima dello scaling**. |
+| C. float64 → float32 nell'adapter | Errore euclideo 3D aggiunto massimo **0,001 m della scena**, misurato prima di Q256. |
+| D. Q256 TruckLib 0.5.1 | Per ogni componente float32 finita `f_a` di X, Y e Z, `expected_q_a = trunc_toward_zero(f_a * 256f)`. L'`Int32` serializzato e il codice ricostruito dal readback devono coincidere **esattamente** con `expected_q_a`; `expected_native_a = expected_q_a / 256f`. Non si usa una tolleranza floating sostitutiva. |
+| E. Geometria nativa dei rettifili | Distanza di Hausdorff simmetrica massima **1,0 m della scena**, come in DT-04, misurata indipendentemente dai controlli numerici per stadio. |
+
+La scala resta uniforme e applicata una sola volta in float64 prima del confine
+float32/Q256. I rapporti fra `s=1` e `s=0,1` si valutano nello stadio scena
+float64; la quantizzazione successiva non può essere reinterpretata come scala
+non uniforme né assorbita nel suo budget.
+
+Con `Δ = 1/256 m = 0,00390625 m`, la perdita deterministica del solo stadio
+Q256 rispetto all'input float32 ha i seguenti estremi superiori:
+
+| Componente della perdita Q256 | Limite matematico |
+| --- | ---: |
+| Per asse | `< 1/256 m` |
+| Piano orizzontale X/Z | `< sqrt(2)/256 m` (`< 0,005524271728019903 m`) |
+| Spazio 3D | `< sqrt(3)/256 m` (`< 0,0067658234670659265 m`) |
+
+Questi limiti descrivono la perdita della rappresentazione selezionata; non
+sono una tolleranza discrezionale da sommare agli altri budget o da usare per
+accettare un codice errato.
+
+**Persistenza Map Editor separata.** Prima dell'editor si congelano identità
+dei nodi e codici Q256 X/Y/Z attesi ed effettivi. Dopo
+**Map → Recompute map → Save → chiusura completa → riapertura**, per ogni nodo
+deve valere `q_after = q_before = q_expected` componente per componente. Ogni
+delta intero diverso da zero fallisce il criterio di persistenza e richiede
+indagine; non è concesso un secondo intervallo Q256 a ogni salvataggio. Il
+readback TruckLib è diagnostico e non sostituisce il ciclo editor. Nessuna
+misura post-editor è ancora disponibile.
+
+**Conseguenze della decisione.** Il report deve conservare il valore float32,
+il codice Q256 atteso/effettivo e la perdita rappresentativa per ogni asse o
+una riconciliazione completa equivalente. Un cambio di TruckLib, writer o
+rappresentazione riapre DT-02/DT-07 e richiede nuova evidenza. PoC-002 doveva
+essere rieseguito integralmente con questi criteri: la parte automatica del
+rerun del 3 settembre 2026 è `PASS`, ma il ciclo Windows resta in attesa. Il
+gate PoC-002 non è superato e PoC-003 resta bloccato.
 
 **Scala adottata:** valore finito `s>0`, con default `1`; nessuna promessa che ogni scala sia esportabile. L'estensione nativa deve rispettare DT-08 e i vincoli dei modelli devono essere controllati dopo scaling. Strade/prefab non vengono rimpiccioliti come asset; una riduzione eccessiva può produrre casi non supportati. `NormalScale`/`CityScale` o altri metadati del gioco non sono usati al posto della trasformazione delle coordinate; i loro valori coerenti con il progetto autonomo restano un dettaglio del PoC nativo.
 
@@ -725,10 +861,10 @@ Le dipendenze scelte sono progetti open-source; l'inventario di distribuzione de
 | Topologia | T/X con nodo condiviso, attraversamento senza nodo comune, anelli, archi paralleli, componenti separate e nodi distinti coincidenti. |
 | Direzione/verticalità | `oneway=-1`, eccezioni alle implicazioni, layer differenti su estremità connesse, ponte/tunnel non appiattito, rotatoria conservata ma non dichiarata esportata. |
 | Confini/coordinate | Way lunga con estremi esterni, entrata/uscita, tangenza al bordo, clipping WGS84 e densificazione della curva proiettata, controllo est/nord e distanze indipendenti, replay asimmetrico. |
-| Modello/adapter | IR priva di token nativi, schema sconosciuto, numeri non finiti, errori del processo, input invariato, corrispondenza degli ID e dei collegamenti. |
+| Modello/adapter | IR priva di token nativi, schema sconosciuto, numeri non finiti, errori del processo, input invariato, corrispondenza degli ID e dei collegamenti; budget float64 → float32; codici Q256 esatti su X/Y/Z separatamente per positivi, negativi, zero e adiacenze ai bordi, alle scale 1 e 0,1; limiti teorici riportati. |
 | Geometria/raccordi | T e 4-vie entro e fuori profilo; curve oltre tolleranza, asset mancanti, sovrapposizione di raccordi, deformazioni non ammesse. |
 | Risorse/report | Ogni soglia, decompressione, timeout, conversione parziale in area, clipping fuori area senza falso `partial`, conteggi `not acquired`, output atomico. |
-| Editor | Elementi editabili, connessioni native dopo ricalcolo/salvataggio/riapertura, log, fixture sintetica e area reale. |
+| Editor | Elementi editabili, connessioni native dopo ricalcolo/salvataggio/riapertura, log, fixture sintetica e area reale; assi/orientamento visuali; uguaglianza esatta dei codici Q256 X/Y/Z pre/post-editor per ogni nodo identificato. |
 
 Non è richiesto un browser per il collaudo della CLI. Se manca un ambiente ETS2 idoneo, il controllo manuale resta non eseguito; la documentazione e un parser binario non lo sostituiscono.
 
@@ -743,7 +879,7 @@ Il criterio principale è: **su una piccola area OSM reale, un comando di conver
 | Compatibilità | G0 superato e ripetuto sul profilo/versione distribuiti. |
 | Percorso utente | US-012 completata su snapshot reale fissato e documentato; modalità bbox verificata separatamente. |
 | Topologia supportata | Nessuna adiacenza sorgente supportata persa e nessuna adiacenza spuria introdotta; controllo sia sul grafo sia sull'output nativo. |
-| Geometria | Punti di controllo, orientamento e scala corretti; scostamenti entro le tolleranze congelate nel profilo, senza rettifiche manuali delle parti dichiarate riuscite. |
+| Geometria | Punti di controllo, orientamento e scala corretti; budget geografico, discretizzazione e float32 rispettati separatamente; codici Q256 esatti secondo DT-07; scostamenti entro DT-04, senza rettifiche manuali delle parti dichiarate riuscite. |
 | Copertura | Ogni way candidata ha un esito riconciliabile; nessuna omissione o conversione parziale non dichiarata. |
 | Riproducibilità | Stessi dati/configurazione/versioni producono lo stesso contenuto semantico verificato. |
 | Integrità | Input e progetti esistenti restano invariati, anche nei casi di errore coperti. |
@@ -755,13 +891,25 @@ Durata, memoria, numero di elementi e quota di rete esportata saranno misurati s
 
 ## 9. Chiusura delle decisioni e verifiche ancora aperte
 
-Le decisioni **DT-01–DT-08 sono chiuse come scelte progettuali**: versione target, output, architettura, perimetro dei raccordi, stack, provider, coordinate e limiti non sono più alternative lasciate all'implementatore. La compatibilità della combinazione scelta resta da dimostrare; non è stata eseguita alcuna implementazione o prova nel Map Editor.
+Le decisioni **DT-01–DT-08 sono chiuse come scelte progettuali**, con DT-07
+revisionata il 2 settembre 2026: versione target, output, architettura,
+perimetro dei raccordi, stack, provider, coordinate e limiti non sono
+alternative lasciate all'implementatore. Gli spike aggiunti non costituiscono
+implementazione del prodotto e G0 resta da completare.
+
+| Esecuzione | Criteri | Stato | Effetto sul gate |
+| --- | --- | --- | --- |
+| PoC-001 | Baseline nativa minimale congelata | `PASSED` | Consente di preparare PoC-002 sulla stessa baseline. |
+| PoC-002 v1 | Criteri originali congelati prima del run del 1 settembre 2026 | **`FAIL`** | Risultato storico preservato; ha causato la revisione DT-07. |
+| PoC-002 revised rerun | Modello di precisione revisionato in §7.9 | **`AWAITING_MANUAL_VALIDATION`** (`PASS` automatico) | Il gate PoC-002 non è superato finché manca il ciclo Windows. |
+| PoC-003 / PoC-004 | Gate successivi | **`NOT_EXECUTED`** | Restano bloccati dal mancato `PASS` del rerun PoC-002. |
 
 | Elemento residuo | Natura | Evidenza che lo chiude |
 | --- | --- | --- |
 | Build completa ETS2 1.60.x e catalogo base | Dato sperimentale, non versione da inventare | POC-ETS2 con versione installata, profilo, asset e log; nessuna promessa su tutte le patch. |
 | Set minimo di file nativi e metadati del progetto | Dettaglio di formato non sufficientemente dimostrato | Progetto generato da TruckLib 0.5.1 apribile, ricomputabile e persistente dopo riapertura. |
-| Assi nativi, unità e precisione | Assunzione esplicita del profilo | Fixture asimmetrica, distanze note e soglie DT-07; correggere solo la trasformazione dell'adapter se necessario. |
+| Semantica degli assi e orientamento | Assunzione ancora aperta; l'aritmetica `X=E, Y=H, Z=-N` ha superato il rerun automatico ma non prova il significato geografico visuale | Ciclo Windows PoC-002 completo sulle fixture asimmetriche. |
+| Persistenza Q256 nel Map Editor | Nessun risultato post-editor disponibile; la RCA non descrive il comportamento interno dell'editor | Uguaglianza esatta dei codici `q_after = q_before = q_expected` dopo recompute/save/chiusura/riapertura. |
 | Identificatori/varianti T e 4-vie, compatibilità road/prefab | Spike tecnico necessario | POC-JUNCTION con soli asset base e rispetto dei limiti DT-04. Nessun token del sample upstream è assunto valido. |
 | Lock completo, patch SDK e dipendenze transitive | Chiusura riproducibile dell'ambiente scelto | POC-ENV sulle piattaforme adottate; le versioni dirette già scelte, compresa uv, restano quelle di DT-05. |
 | Integrazione Overpass e comportamento dell'istanza scelta | Verifica di un contratto documentato | POC-OSM con attraversamenti, errori, completezza e replay; nessuna garanzia di disponibilità del servizio pubblico. |
@@ -780,7 +928,7 @@ Nessuna di queste verifiche può essere marcata come superata sulla base della s
 | DT-04 | FR-12, FR-15, FR-21–FR-25, FR-28–FR-29; US-007, US-008, US-009. |
 | DT-05 | FR-1, FR-4, FR-18, FR-32, FR-36, FR-39; tutte le storie per qualità e ambiente. |
 | DT-06 | FR-1, FR-3–FR-6, FR-13, FR-16, FR-37; US-001–US-004, US-011. |
-| DT-07 | FR-3, FR-13, FR-18–FR-22, FR-36; US-005, US-006, US-011. |
+| DT-07 | FR-3, FR-13, FR-18–FR-22, FR-27, FR-30–FR-31, FR-36, FR-38; US-005, US-006, US-008, US-011. |
 | DT-08 | FR-2, FR-6–FR-8, FR-12, FR-17, FR-22, FR-34–FR-35; US-001–US-005, US-010–US-012. |
 
 ## 10. Impatto sul repository
@@ -794,6 +942,13 @@ I percorsi esistenti probabilmente interessati dalla futura implementazione sono
 | `LICENSE` | Riferimento da preservare per la licenza del progetto; nessuna modifica prevista da questo PRD. |
 | `tasks/prd-osm2ets2-mvp.md` | Specifica del perimetro e riferimento per le verifiche di consegna. |
 
-Codice, fixture, test, manifest e CI dovranno essere introdotti durante l'implementazione; la loro collocazione non è ancora definita e non viene descritta come esistente. Non sono necessari migrazioni, API web, autenticazione o database per soddisfare il perimetro attuale.
+Il codice, le fixture, i test, i manifest e la CI del **prodotto** dovranno
+essere introdotti durante l'implementazione; gli artefatti già presenti sotto
+`spikes/` restano esperimenti isolati e non ne definiscono la collocazione. Non
+sono necessari migrazioni, API web, autenticazione o database per soddisfare
+il perimetro attuale.
 
-Questo aggiornamento modifica soltanto il PRD esistente. Non modifica codice, test, infrastruttura o configurazione; non installa dipendenze, non acquisisce dati OSM reali e non esegue il Map Editor.
+La revisione del 2 settembre 2026 modifica la decisione DT-07 e la relativa
+documentazione PoC-002. Il rerun automatico del 3 settembre applica la
+decisione senza cambiarla e senza modificare codice di prodotto o evidenze
+numeriche storiche. Non acquisisce dati OSM e non esegue il Map Editor.

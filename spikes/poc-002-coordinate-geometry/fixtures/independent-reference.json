@@ -1,0 +1,125 @@
+{
+  "bbox_references": {
+    "area_limit_bbox": {
+      "area_refinement_delta_m2": 1.8998980522155762e-07,
+      "diagonal_ratio": 0.7000713874567497,
+      "ellipsoidal_geodesic_polygon_area_m2": 24499998.625091914,
+      "ellipsoidal_geodesic_polygon_area_ratio": 0.9799999450036766,
+      "max_corner_diagonal_m": 7000.7138745674965,
+      "middle_height_m": 4900.00000028526,
+      "middle_width_m": 4999.999897337683
+    },
+    "diagonal_limit_bbox": {
+      "area_refinement_delta_m2": 5.234032869338989e-07,
+      "diagonal_ratio": 0.9751409374708521,
+      "ellipsoidal_geodesic_polygon_area_m2": 9699998.861591365,
+      "ellipsoidal_geodesic_polygon_area_ratio": 0.3879999544636546,
+      "max_corner_diagonal_m": 9751.40937470852,
+      "middle_height_m": 1000.0000000031426,
+      "middle_width_m": 9699.999250259816
+    }
+  },
+  "candidate_extent_origin_without_bbox": {
+    "lat_deg": 41.8,
+    "lon_deg": 12.6,
+    "selection_stage": "all candidate geometry before later mapping exclusions"
+  },
+  "canonical_baseline": {
+    "head": "2117b848300644e6876cb301368bdf774c9c436d",
+    "prd_sha256": "c5e8d6f1a51a8980a042e53b40bf49ee1dc0dc6c8c9d1521a5659e50432e1e97",
+    "spike_plan_sha256": "25ef624812d0661f87991d290a950b552c49f776d4aced67b50368fc61ec7571"
+  },
+  "control_points": [
+    {
+      "construction_azimuth_deg": 90.0,
+      "construction_distance_m": 123.456,
+      "direct_final_forward_azimuth_deg": 90.00099324256057,
+      "expected_distance_m": 123.4560000027194,
+      "expected_final_forward_azimuth_deg": 90.00099324280676,
+      "expected_initial_azimuth_deg": 90.00000000032803,
+      "id": "east"
+    },
+    {
+      "construction_azimuth_deg": 0.0,
+      "construction_distance_m": 234.567,
+      "direct_final_forward_azimuth_deg": 0.0,
+      "expected_distance_m": 234.56700000055315,
+      "expected_final_forward_azimuth_deg": 359.99999999949586,
+      "expected_initial_azimuth_deg": 359.99999999949586,
+      "id": "north"
+    },
+    {
+      "construction_azimuth_deg": 270.0,
+      "construction_distance_m": 345.678,
+      "direct_final_forward_azimuth_deg": 269.9972189111791,
+      "expected_distance_m": 345.677999996642,
+      "expected_final_forward_azimuth_deg": 269.99721891105844,
+      "expected_initial_azimuth_deg": 269.99999999988285,
+      "id": "west"
+    },
+    {
+      "construction_azimuth_deg": 180.0,
+      "construction_distance_m": 456.789,
+      "direct_final_forward_azimuth_deg": 180.0,
+      "expected_distance_m": 456.78899999931093,
+      "expected_final_forward_azimuth_deg": 180.00000000025886,
+      "expected_initial_azimuth_deg": 180.0000000002589,
+      "id": "south"
+    },
+    {
+      "construction_azimuth_deg": 37.125,
+      "construction_distance_m": 321.123,
+      "direct_final_forward_azimuth_deg": 37.126559399590846,
+      "expected_distance_m": 321.1229999987215,
+      "expected_final_forward_azimuth_deg": 37.12655939935278,
+      "expected_initial_azimuth_deg": 37.12499999973015,
+      "id": "oblique"
+    }
+  ],
+  "crossing_clip_reference": {
+    "algorithm": "analytic Liang-Barsky in longitude/latitude",
+    "clipped_end": {
+      "lat_deg": 41.892605059011636,
+      "lon_deg": 12.550838636638654
+    },
+    "clipped_start": {
+      "lat_deg": 41.88824510288118,
+      "lon_deg": 12.433961363361346
+    },
+    "t_enter": 0.12748819240787224,
+    "t_exit": 0.8725118075921278
+  },
+  "distance_semantics": {
+    "aeqd_projected": "Euclidean easting/northing distance before scale; radial equality is expected only from the centre",
+    "geodesic": "Vincenty ellipsoidal surface distance on WGS84",
+    "scene_native": "Euclidean E/N/H or mapped X/Y/Z distance after explicit geometry scale"
+  },
+  "expected_origin": {
+    "lat_deg": 41.8902,
+    "lon_deg": 12.4924
+  },
+  "frozen_on": "2026-09-01",
+  "method": {
+    "ellipsoid_provenance": "https://epsg.org/ellipsoid_7030/WGS-84.html",
+    "implementation": "Python standard library only; no pyproj, PROJ, Shapely, or GeographicLib",
+    "name": "Vincenty direct/inverse on the WGS84 ellipsoid",
+    "primary_method_provenance": "https://www.ngs.noaa.gov/PC_PROD/Inv_Fwd/readme.htm",
+    "source_path": "spikes/poc-002-coordinate-geometry/reference/freeze_reference.py",
+    "source_sha256": "17691ebcb230385a5a575d2032b45f4dda422032abe3a2d219bfb4a9ac395517"
+  },
+  "native_radius_reference": {
+    "admission_bbox_id": "diagonal_limit_bbox",
+    "expected_backward_unscaled_radius_m": 4699.99999999655,
+    "expected_forward_initial_azimuth_deg": 86.99999999998994,
+    "expected_forward_unscaled_radius_m": 4799.999999998821,
+    "expected_initial_azimuth_deg": 86.99999999998997,
+    "expected_road_initial_azimuth_deg": 87.03776327419321,
+    "expected_scaled_radius_m": 9887.999999997572,
+    "expected_scaled_road_length_m": 206.00000000464036,
+    "expected_unscaled_road_length_m": 100.00000000225259,
+    "native_radius_ratio": 0.9887999999997572,
+    "scale": 2.06
+  },
+  "poc": "PoC-002 \u2014 Coordinate and Geometry Validation",
+  "schema_version": 1
+}

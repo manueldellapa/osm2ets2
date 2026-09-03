@@ -1,0 +1,8 @@
+.python/
+.venv/
+__pycache__/
+*.py[cod]
+csharp/bin/
+csharp/obj/
+output/
+manual-validation/runs/

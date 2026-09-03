@@ -1,0 +1,1065 @@
+{
+  "schemaVersion": 1,
+  "poc": "PoC-002 \u2014 Native Q256 root-cause analysis",
+  "statusUnderFrozenCriteria": "FAIL",
+  "scope": "Diagnostic only: direct TruckLib Node serialization plus read-only analysis of the existing PoC-002 adapter report; no map regeneration and no Map Editor run.",
+  "environment": {
+    "runtime": ".NET 10.0.11",
+    "runtimeVersion": "10.0.11",
+    "os": "macOS 26.6.2",
+    "processArchitecture": "Arm64",
+    "truckLibPackage": "0.5.1",
+    "truckLibAssemblyVersion": "0.5.1.0",
+    "truckLibInformationalVersion": "0.5.1.0\u002Bbd745344fc52d3b2d70ce9ac7c88d61b99934805"
+  },
+  "upstreamImplementation": {
+    "repositoryCommit": "bd745344fc52d3b2d70ce9ac7c88d61b99934805",
+    "positionInputType": "System.Numerics.Vector3 / System.Single per axis",
+    "fixedPointFactorExpression": "private const float fixedPointFactor = 256f",
+    "serializeExpression": "(int)(Position.\u003Caxis\u003E * fixedPointFactor)",
+    "deserializeExpression": "ReadInt32() / fixedPointFactor",
+    "encodedType": "signed Int32, little-endian via BinaryWriter.Write(Int32)",
+    "sourceUrl": "https://github.com/sk-zk/TruckLib/blob/bd745344fc52d3b2d70ce9ac7c88d61b99934805/TruckLib/ScsMap/Node.cs#L353-L397"
+  },
+  "confirmedRule": {
+    "inputDomain": "finite float32 scene coordinates within the validated native radius",
+    "encodedInteger": "trunc_toward_zero(float32_scene_axis * 256f)",
+    "decodedMetres": "encoded_integer / 256f",
+    "gridStepMetres": 0.00390625,
+    "axesIndependent": true,
+    "boundarySemantics": "Positive half-open cells truncate down; negative half-open cells truncate up toward zero; (-1/256, \u002B1/256) maps to zero."
+  },
+  "ruleClassification": {
+    "probeCount": 45,
+    "truncationTowardZeroMatches": 45,
+    "floorMatches": 27,
+    "roundToNearestEvenMatches": 27,
+    "confirmedRule": "truncation toward zero after float32 multiplication by 256f"
+  },
+  "theoreticalBounds": {
+    "scope": "fixed-point quantization error measured from the float32 serializer input",
+    "truncationPerAxisStrictUpperBoundMetres": 0.00390625,
+    "truncationHorizontalXzStrictUpperBoundMetres": 0.005524271728019903,
+    "truncationThreeDimensionalStrictUpperBoundMetres": 0.0067658234670659265,
+    "nearestPerAxisUpperBoundMetres": 0.001953125,
+    "nearestHorizontalXzUpperBoundMetres": 0.0027621358640099515,
+    "nearestThreeDimensionalUpperBoundMetres": 0.0033829117335329633
+  },
+  "existingFixtureEvidence": {
+    "sourceReportFileName": "adapter-validation.json",
+    "sourceReportSha256": "d0f412c2c9ffc9d5404ffe0cbb0a4825e6ad78b90ada1bf3b30e4c5610ec0b1f",
+    "existingGateStatus": "FAIL",
+    "roadCount": 8,
+    "endpointCount": 16,
+    "axisComponentCount": 48,
+    "allReadbackComponentsOnQ256Grid": true,
+    "maximumGridResidualMetres": 0,
+    "allReadbackComponentsMatchConfirmedRule": true,
+    "maximumRuleResidualMetres": 0,
+    "allYComponentsZero": true,
+    "maximumDoubleToFloat3dMetres": 0.0003793050975375676,
+    "maximumFloatToReadback3dMetres": 0.004269108137924589,
+    "maximumDoubleToReadback3dMetres": 0.004277268693810707
+  },
+  "currentCriterionAssessment": {
+    "frozenNativeCriterionMetres": 0.001,
+    "universallyAchievableForArbitraryQ256NodeCoordinates": false,
+    "reason": "Q256 truncation has a per-axis error supremum of 1/256 m; even hypothetical nearest has a per-axis bound of 1/512 m, both greater than 0.001 m.",
+    "observedNativeOnlyErrorWithinTruncationXzBound": true,
+    "observedNativeOnlyErrorExceedsHypotheticalNearest3dBound": true,
+    "statusUnderFrozenCriterion": "FAIL"
+  },
+  "directSerializerProbeCount": 45,
+  "directSerializerProbes": [
+    {
+      "case": "negative-zero-neighbour",
+      "axis": "X",
+      "inputFloat": -1E-45,
+      "inputFloatBitsHex": "0x80000001",
+      "scaledFloat": -3.59E-43,
+      "scaledFloatBitsHex": "0x80000100",
+      "expectedEncodedInteger": 0,
+      "encoded": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "positionBytesLittleEndianHex": "000000000000000000000000",
+      "decoded": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "signedAxisErrorMetres": 1E-45,
+      "absoluteAxisErrorMetres": 1.401298464324817E-45
+    },
+    {
+      "case": "negative-zero-neighbour",
+      "axis": "Y",
+      "inputFloat": -1E-45,
+      "inputFloatBitsHex": "0x80000001",
+      "scaledFloat": -3.59E-43,
+      "scaledFloatBitsHex": "0x80000100",
+      "expectedEncodedInteger": 0,
+      "encoded": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "positionBytesLittleEndianHex": "000000000000000000000000",
+      "decoded": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "signedAxisErrorMetres": 1E-45,
+      "absoluteAxisErrorMetres": 1.401298464324817E-45
+    },
+    {
+      "case": "negative-zero-neighbour",
+      "axis": "Z",
+      "inputFloat": -1E-45,
+      "inputFloatBitsHex": "0x80000001",
+      "scaledFloat": -3.59E-43,
+      "scaledFloatBitsHex": "0x80000100",
+      "expectedEncodedInteger": 0,
+      "encoded": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "positionBytesLittleEndianHex": "000000000000000000000000",
+      "decoded": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "signedAxisErrorMetres": 1E-45,
+      "absoluteAxisErrorMetres": 1.401298464324817E-45
+    },
+    {
+      "case": "zero",
+      "axis": "X",
+      "inputFloat": 0,
+      "inputFloatBitsHex": "0x00000000",
+      "scaledFloat": 0,
+      "scaledFloatBitsHex": "0x00000000",
+      "expectedEncodedInteger": 0,
+      "encoded": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "positionBytesLittleEndianHex": "000000000000000000000000",
+      "decoded": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "signedAxisErrorMetres": 0,
+      "absoluteAxisErrorMetres": 0
+    },
+    {
+      "case": "zero",
+      "axis": "Y",
+      "inputFloat": 0,
+      "inputFloatBitsHex": "0x00000000",
+      "scaledFloat": 0,
+      "scaledFloatBitsHex": "0x00000000",
+      "expectedEncodedInteger": 0,
+      "encoded": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "positionBytesLittleEndianHex": "000000000000000000000000",
+      "decoded": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "signedAxisErrorMetres": 0,
+      "absoluteAxisErrorMetres": 0
+    },
+    {
+      "case": "zero",
+      "axis": "Z",
+      "inputFloat": 0,
+      "inputFloatBitsHex": "0x00000000",
+      "scaledFloat": 0,
+      "scaledFloatBitsHex": "0x00000000",
+      "expectedEncodedInteger": 0,
+      "encoded": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "positionBytesLittleEndianHex": "000000000000000000000000",
+      "decoded": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "signedAxisErrorMetres": 0,
+      "absoluteAxisErrorMetres": 0
+    },
+    {
+      "case": "positive-zero-neighbour",
+      "axis": "X",
+      "inputFloat": 1E-45,
+      "inputFloatBitsHex": "0x00000001",
+      "scaledFloat": 3.59E-43,
+      "scaledFloatBitsHex": "0x00000100",
+      "expectedEncodedInteger": 0,
+      "encoded": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "positionBytesLittleEndianHex": "000000000000000000000000",
+      "decoded": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "signedAxisErrorMetres": -1E-45,
+      "absoluteAxisErrorMetres": 1.401298464324817E-45
+    },
+    {
+      "case": "positive-zero-neighbour",
+      "axis": "Y",
+      "inputFloat": 1E-45,
+      "inputFloatBitsHex": "0x00000001",
+      "scaledFloat": 3.59E-43,
+      "scaledFloatBitsHex": "0x00000100",
+      "expectedEncodedInteger": 0,
+      "encoded": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "positionBytesLittleEndianHex": "000000000000000000000000",
+      "decoded": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "signedAxisErrorMetres": -1E-45,
+      "absoluteAxisErrorMetres": 1.401298464324817E-45
+    },
+    {
+      "case": "positive-zero-neighbour",
+      "axis": "Z",
+      "inputFloat": 1E-45,
+      "inputFloatBitsHex": "0x00000001",
+      "scaledFloat": 3.59E-43,
+      "scaledFloatBitsHex": "0x00000100",
+      "expectedEncodedInteger": 0,
+      "encoded": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "positionBytesLittleEndianHex": "000000000000000000000000",
+      "decoded": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "signedAxisErrorMetres": -1E-45,
+      "absoluteAxisErrorMetres": 1.401298464324817E-45
+    },
+    {
+      "case": "positive-0.001",
+      "axis": "X",
+      "inputFloat": 0.001,
+      "inputFloatBitsHex": "0x3A83126F",
+      "scaledFloat": 0.256,
+      "scaledFloatBitsHex": "0x3E83126F",
+      "expectedEncodedInteger": 0,
+      "encoded": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "positionBytesLittleEndianHex": "000000000000000000000000",
+      "decoded": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "signedAxisErrorMetres": -0.001,
+      "absoluteAxisErrorMetres": 0.0010000000474974513
+    },
+    {
+      "case": "positive-0.001",
+      "axis": "Y",
+      "inputFloat": 0.001,
+      "inputFloatBitsHex": "0x3A83126F",
+      "scaledFloat": 0.256,
+      "scaledFloatBitsHex": "0x3E83126F",
+      "expectedEncodedInteger": 0,
+      "encoded": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "positionBytesLittleEndianHex": "000000000000000000000000",
+      "decoded": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "signedAxisErrorMetres": -0.001,
+      "absoluteAxisErrorMetres": 0.0010000000474974513
+    },
+    {
+      "case": "positive-0.001",
+      "axis": "Z",
+      "inputFloat": 0.001,
+      "inputFloatBitsHex": "0x3A83126F",
+      "scaledFloat": 0.256,
+      "scaledFloatBitsHex": "0x3E83126F",
+      "expectedEncodedInteger": 0,
+      "encoded": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "positionBytesLittleEndianHex": "000000000000000000000000",
+      "decoded": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "signedAxisErrorMetres": -0.001,
+      "absoluteAxisErrorMetres": 0.0010000000474974513
+    },
+    {
+      "case": "negative-0.001",
+      "axis": "X",
+      "inputFloat": -0.001,
+      "inputFloatBitsHex": "0xBA83126F",
+      "scaledFloat": -0.256,
+      "scaledFloatBitsHex": "0xBE83126F",
+      "expectedEncodedInteger": 0,
+      "encoded": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "positionBytesLittleEndianHex": "000000000000000000000000",
+      "decoded": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "signedAxisErrorMetres": 0.001,
+      "absoluteAxisErrorMetres": 0.0010000000474974513
+    },
+    {
+      "case": "negative-0.001",
+      "axis": "Y",
+      "inputFloat": -0.001,
+      "inputFloatBitsHex": "0xBA83126F",
+      "scaledFloat": -0.256,
+      "scaledFloatBitsHex": "0xBE83126F",
+      "expectedEncodedInteger": 0,
+      "encoded": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "positionBytesLittleEndianHex": "000000000000000000000000",
+      "decoded": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "signedAxisErrorMetres": 0.001,
+      "absoluteAxisErrorMetres": 0.0010000000474974513
+    },
+    {
+      "case": "negative-0.001",
+      "axis": "Z",
+      "inputFloat": -0.001,
+      "inputFloatBitsHex": "0xBA83126F",
+      "scaledFloat": -0.256,
+      "scaledFloatBitsHex": "0xBE83126F",
+      "expectedEncodedInteger": 0,
+      "encoded": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "positionBytesLittleEndianHex": "000000000000000000000000",
+      "decoded": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "signedAxisErrorMetres": 0.001,
+      "absoluteAxisErrorMetres": 0.0010000000474974513
+    },
+    {
+      "case": "positive-0.01",
+      "axis": "X",
+      "inputFloat": 0.01,
+      "inputFloatBitsHex": "0x3C23D70A",
+      "scaledFloat": 2.56,
+      "scaledFloatBitsHex": "0x4023D70A",
+      "expectedEncodedInteger": 2,
+      "encoded": {
+        "x": 2,
+        "y": 0,
+        "z": 0
+      },
+      "positionBytesLittleEndianHex": "020000000000000000000000",
+      "decoded": {
+        "x": 0.0078125,
+        "y": 0,
+        "z": 0
+      },
+      "signedAxisErrorMetres": -0.0021874998,
+      "absoluteAxisErrorMetres": 0.002187499776482582
+    },
+    {
+      "case": "positive-0.01",
+      "axis": "Y",
+      "inputFloat": 0.01,
+      "inputFloatBitsHex": "0x3C23D70A",
+      "scaledFloat": 2.56,
+      "scaledFloatBitsHex": "0x4023D70A",
+      "expectedEncodedInteger": 2,
+      "encoded": {
+        "x": 0,
+        "y": 2,
+        "z": 0
+      },
+      "positionBytesLittleEndianHex": "000000000200000000000000",
+      "decoded": {
+        "x": 0,
+        "y": 0.0078125,
+        "z": 0
+      },
+      "signedAxisErrorMetres": -0.0021874998,
+      "absoluteAxisErrorMetres": 0.002187499776482582
+    },
+    {
+      "case": "positive-0.01",
+      "axis": "Z",
+      "inputFloat": 0.01,
+      "inputFloatBitsHex": "0x3C23D70A",
+      "scaledFloat": 2.56,
+      "scaledFloatBitsHex": "0x4023D70A",
+      "expectedEncodedInteger": 2,
+      "encoded": {
+        "x": 0,
+        "y": 0,
+        "z": 2
+      },
+      "positionBytesLittleEndianHex": "000000000000000002000000",
+      "decoded": {
+        "x": 0,
+        "y": 0,
+        "z": 0.0078125
+      },
+      "signedAxisErrorMetres": -0.0021874998,
+      "absoluteAxisErrorMetres": 0.002187499776482582
+    },
+    {
+      "case": "negative-0.01",
+      "axis": "X",
+      "inputFloat": -0.01,
+      "inputFloatBitsHex": "0xBC23D70A",
+      "scaledFloat": -2.56,
+      "scaledFloatBitsHex": "0xC023D70A",
+      "expectedEncodedInteger": -2,
+      "encoded": {
+        "x": -2,
+        "y": 0,
+        "z": 0
+      },
+      "positionBytesLittleEndianHex": "feffffff0000000000000000",
+      "decoded": {
+        "x": -0.0078125,
+        "y": 0,
+        "z": 0
+      },
+      "signedAxisErrorMetres": 0.0021874998,
+      "absoluteAxisErrorMetres": 0.002187499776482582
+    },
+    {
+      "case": "negative-0.01",
+      "axis": "Y",
+      "inputFloat": -0.01,
+      "inputFloatBitsHex": "0xBC23D70A",
+      "scaledFloat": -2.56,
+      "scaledFloatBitsHex": "0xC023D70A",
+      "expectedEncodedInteger": -2,
+      "encoded": {
+        "x": 0,
+        "y": -2,
+        "z": 0
+      },
+      "positionBytesLittleEndianHex": "00000000feffffff00000000",
+      "decoded": {
+        "x": 0,
+        "y": -0.0078125,
+        "z": 0
+      },
+      "signedAxisErrorMetres": 0.0021874998,
+      "absoluteAxisErrorMetres": 0.002187499776482582
+    },
+    {
+      "case": "negative-0.01",
+      "axis": "Z",
+      "inputFloat": -0.01,
+      "inputFloatBitsHex": "0xBC23D70A",
+      "scaledFloat": -2.56,
+      "scaledFloatBitsHex": "0xC023D70A",
+      "expectedEncodedInteger": -2,
+      "encoded": {
+        "x": 0,
+        "y": 0,
+        "z": -2
+      },
+      "positionBytesLittleEndianHex": "0000000000000000feffffff",
+      "decoded": {
+        "x": 0,
+        "y": 0,
+        "z": -0.0078125
+      },
+      "signedAxisErrorMetres": 0.0021874998,
+      "absoluteAxisErrorMetres": 0.002187499776482582
+    },
+    {
+      "case": "positive-0.1",
+      "axis": "X",
+      "inputFloat": 0.1,
+      "inputFloatBitsHex": "0x3DCCCCCD",
+      "scaledFloat": 25.6,
+      "scaledFloatBitsHex": "0x41CCCCCD",
+      "expectedEncodedInteger": 25,
+      "encoded": {
+        "x": 25,
+        "y": 0,
+        "z": 0
+      },
+      "positionBytesLittleEndianHex": "190000000000000000000000",
+      "decoded": {
+        "x": 0.09765625,
+        "y": 0,
+        "z": 0
+      },
+      "signedAxisErrorMetres": -0.0023437515,
+      "absoluteAxisErrorMetres": 0.0023437514901161194
+    },
+    {
+      "case": "positive-0.1",
+      "axis": "Y",
+      "inputFloat": 0.1,
+      "inputFloatBitsHex": "0x3DCCCCCD",
+      "scaledFloat": 25.6,
+      "scaledFloatBitsHex": "0x41CCCCCD",
+      "expectedEncodedInteger": 25,
+      "encoded": {
+        "x": 0,
+        "y": 25,
+        "z": 0
+      },
+      "positionBytesLittleEndianHex": "000000001900000000000000",
+      "decoded": {
+        "x": 0,
+        "y": 0.09765625,
+        "z": 0
+      },
+      "signedAxisErrorMetres": -0.0023437515,
+      "absoluteAxisErrorMetres": 0.0023437514901161194
+    },
+    {
+      "case": "positive-0.1",
+      "axis": "Z",
+      "inputFloat": 0.1,
+      "inputFloatBitsHex": "0x3DCCCCCD",
+      "scaledFloat": 25.6,
+      "scaledFloatBitsHex": "0x41CCCCCD",
+      "expectedEncodedInteger": 25,
+      "encoded": {
+        "x": 0,
+        "y": 0,
+        "z": 25
+      },
+      "positionBytesLittleEndianHex": "000000000000000019000000",
+      "decoded": {
+        "x": 0,
+        "y": 0,
+        "z": 0.09765625
+      },
+      "signedAxisErrorMetres": -0.0023437515,
+      "absoluteAxisErrorMetres": 0.0023437514901161194
+    },
+    {
+      "case": "negative-0.1",
+      "axis": "X",
+      "inputFloat": -0.1,
+      "inputFloatBitsHex": "0xBDCCCCCD",
+      "scaledFloat": -25.6,
+      "scaledFloatBitsHex": "0xC1CCCCCD",
+      "expectedEncodedInteger": -25,
+      "encoded": {
+        "x": -25,
+        "y": 0,
+        "z": 0
+      },
+      "positionBytesLittleEndianHex": "e7ffffff0000000000000000",
+      "decoded": {
+        "x": -0.09765625,
+        "y": 0,
+        "z": 0
+      },
+      "signedAxisErrorMetres": 0.0023437515,
+      "absoluteAxisErrorMetres": 0.0023437514901161194
+    },
+    {
+      "case": "negative-0.1",
+      "axis": "Y",
+      "inputFloat": -0.1,
+      "inputFloatBitsHex": "0xBDCCCCCD",
+      "scaledFloat": -25.6,
+      "scaledFloatBitsHex": "0xC1CCCCCD",
+      "expectedEncodedInteger": -25,
+      "encoded": {
+        "x": 0,
+        "y": -25,
+        "z": 0
+      },
+      "positionBytesLittleEndianHex": "00000000e7ffffff00000000",
+      "decoded": {
+        "x": 0,
+        "y": -0.09765625,
+        "z": 0
+      },
+      "signedAxisErrorMetres": 0.0023437515,
+      "absoluteAxisErrorMetres": 0.0023437514901161194
+    },
+    {
+      "case": "negative-0.1",
+      "axis": "Z",
+      "inputFloat": -0.1,
+      "inputFloatBitsHex": "0xBDCCCCCD",
+      "scaledFloat": -25.6,
+      "scaledFloatBitsHex": "0xC1CCCCCD",
+      "expectedEncodedInteger": -25,
+      "encoded": {
+        "x": 0,
+        "y": 0,
+        "z": -25
+      },
+      "positionBytesLittleEndianHex": "0000000000000000e7ffffff",
+      "decoded": {
+        "x": 0,
+        "y": 0,
+        "z": -0.09765625
+      },
+      "signedAxisErrorMetres": 0.0023437515,
+      "absoluteAxisErrorMetres": 0.0023437514901161194
+    },
+    {
+      "case": "positive-boundary-below",
+      "axis": "X",
+      "inputFloat": 0.99999994,
+      "inputFloatBitsHex": "0x3F7FFFFF",
+      "scaledFloat": 255.99998,
+      "scaledFloatBitsHex": "0x437FFFFF",
+      "expectedEncodedInteger": 255,
+      "encoded": {
+        "x": 255,
+        "y": 0,
+        "z": 0
+      },
+      "positionBytesLittleEndianHex": "ff0000000000000000000000",
+      "decoded": {
+        "x": 0.99609375,
+        "y": 0,
+        "z": 0
+      },
+      "signedAxisErrorMetres": -0.0039061904,
+      "absoluteAxisErrorMetres": 0.0039061903953552246
+    },
+    {
+      "case": "positive-boundary-below",
+      "axis": "Y",
+      "inputFloat": 0.99999994,
+      "inputFloatBitsHex": "0x3F7FFFFF",
+      "scaledFloat": 255.99998,
+      "scaledFloatBitsHex": "0x437FFFFF",
+      "expectedEncodedInteger": 255,
+      "encoded": {
+        "x": 0,
+        "y": 255,
+        "z": 0
+      },
+      "positionBytesLittleEndianHex": "00000000ff00000000000000",
+      "decoded": {
+        "x": 0,
+        "y": 0.99609375,
+        "z": 0
+      },
+      "signedAxisErrorMetres": -0.0039061904,
+      "absoluteAxisErrorMetres": 0.0039061903953552246
+    },
+    {
+      "case": "positive-boundary-below",
+      "axis": "Z",
+      "inputFloat": 0.99999994,
+      "inputFloatBitsHex": "0x3F7FFFFF",
+      "scaledFloat": 255.99998,
+      "scaledFloatBitsHex": "0x437FFFFF",
+      "expectedEncodedInteger": 255,
+      "encoded": {
+        "x": 0,
+        "y": 0,
+        "z": 255
+      },
+      "positionBytesLittleEndianHex": "0000000000000000ff000000",
+      "decoded": {
+        "x": 0,
+        "y": 0,
+        "z": 0.99609375
+      },
+      "signedAxisErrorMetres": -0.0039061904,
+      "absoluteAxisErrorMetres": 0.0039061903953552246
+    },
+    {
+      "case": "positive-boundary",
+      "axis": "X",
+      "inputFloat": 1,
+      "inputFloatBitsHex": "0x3F800000",
+      "scaledFloat": 256,
+      "scaledFloatBitsHex": "0x43800000",
+      "expectedEncodedInteger": 256,
+      "encoded": {
+        "x": 256,
+        "y": 0,
+        "z": 0
+      },
+      "positionBytesLittleEndianHex": "000100000000000000000000",
+      "decoded": {
+        "x": 1,
+        "y": 0,
+        "z": 0
+      },
+      "signedAxisErrorMetres": 0,
+      "absoluteAxisErrorMetres": 0
+    },
+    {
+      "case": "positive-boundary",
+      "axis": "Y",
+      "inputFloat": 1,
+      "inputFloatBitsHex": "0x3F800000",
+      "scaledFloat": 256,
+      "scaledFloatBitsHex": "0x43800000",
+      "expectedEncodedInteger": 256,
+      "encoded": {
+        "x": 0,
+        "y": 256,
+        "z": 0
+      },
+      "positionBytesLittleEndianHex": "000000000001000000000000",
+      "decoded": {
+        "x": 0,
+        "y": 1,
+        "z": 0
+      },
+      "signedAxisErrorMetres": 0,
+      "absoluteAxisErrorMetres": 0
+    },
+    {
+      "case": "positive-boundary",
+      "axis": "Z",
+      "inputFloat": 1,
+      "inputFloatBitsHex": "0x3F800000",
+      "scaledFloat": 256,
+      "scaledFloatBitsHex": "0x43800000",
+      "expectedEncodedInteger": 256,
+      "encoded": {
+        "x": 0,
+        "y": 0,
+        "z": 256
+      },
+      "positionBytesLittleEndianHex": "000000000000000000010000",
+      "decoded": {
+        "x": 0,
+        "y": 0,
+        "z": 1
+      },
+      "signedAxisErrorMetres": 0,
+      "absoluteAxisErrorMetres": 0
+    },
+    {
+      "case": "positive-boundary-above",
+      "axis": "X",
+      "inputFloat": 1.0000001,
+      "inputFloatBitsHex": "0x3F800001",
+      "scaledFloat": 256.00003,
+      "scaledFloatBitsHex": "0x43800001",
+      "expectedEncodedInteger": 256,
+      "encoded": {
+        "x": 256,
+        "y": 0,
+        "z": 0
+      },
+      "positionBytesLittleEndianHex": "000100000000000000000000",
+      "decoded": {
+        "x": 1,
+        "y": 0,
+        "z": 0
+      },
+      "signedAxisErrorMetres": -1.1920929E-07,
+      "absoluteAxisErrorMetres": 1.1920928955078125E-07
+    },
+    {
+      "case": "positive-boundary-above",
+      "axis": "Y",
+      "inputFloat": 1.0000001,
+      "inputFloatBitsHex": "0x3F800001",
+      "scaledFloat": 256.00003,
+      "scaledFloatBitsHex": "0x43800001",
+      "expectedEncodedInteger": 256,
+      "encoded": {
+        "x": 0,
+        "y": 256,
+        "z": 0
+      },
+      "positionBytesLittleEndianHex": "000000000001000000000000",
+      "decoded": {
+        "x": 0,
+        "y": 1,
+        "z": 0
+      },
+      "signedAxisErrorMetres": -1.1920929E-07,
+      "absoluteAxisErrorMetres": 1.1920928955078125E-07
+    },
+    {
+      "case": "positive-boundary-above",
+      "axis": "Z",
+      "inputFloat": 1.0000001,
+      "inputFloatBitsHex": "0x3F800001",
+      "scaledFloat": 256.00003,
+      "scaledFloatBitsHex": "0x43800001",
+      "expectedEncodedInteger": 256,
+      "encoded": {
+        "x": 0,
+        "y": 0,
+        "z": 256
+      },
+      "positionBytesLittleEndianHex": "000000000000000000010000",
+      "decoded": {
+        "x": 0,
+        "y": 0,
+        "z": 1
+      },
+      "signedAxisErrorMetres": -1.1920929E-07,
+      "absoluteAxisErrorMetres": 1.1920928955078125E-07
+    },
+    {
+      "case": "negative-boundary-below",
+      "axis": "X",
+      "inputFloat": -1.0000001,
+      "inputFloatBitsHex": "0xBF800001",
+      "scaledFloat": -256.00003,
+      "scaledFloatBitsHex": "0xC3800001",
+      "expectedEncodedInteger": -256,
+      "encoded": {
+        "x": -256,
+        "y": 0,
+        "z": 0
+      },
+      "positionBytesLittleEndianHex": "00ffffff0000000000000000",
+      "decoded": {
+        "x": -1,
+        "y": 0,
+        "z": 0
+      },
+      "signedAxisErrorMetres": 1.1920929E-07,
+      "absoluteAxisErrorMetres": 1.1920928955078125E-07
+    },
+    {
+      "case": "negative-boundary-below",
+      "axis": "Y",
+      "inputFloat": -1.0000001,
+      "inputFloatBitsHex": "0xBF800001",
+      "scaledFloat": -256.00003,
+      "scaledFloatBitsHex": "0xC3800001",
+      "expectedEncodedInteger": -256,
+      "encoded": {
+        "x": 0,
+        "y": -256,
+        "z": 0
+      },
+      "positionBytesLittleEndianHex": "0000000000ffffff00000000",
+      "decoded": {
+        "x": 0,
+        "y": -1,
+        "z": 0
+      },
+      "signedAxisErrorMetres": 1.1920929E-07,
+      "absoluteAxisErrorMetres": 1.1920928955078125E-07
+    },
+    {
+      "case": "negative-boundary-below",
+      "axis": "Z",
+      "inputFloat": -1.0000001,
+      "inputFloatBitsHex": "0xBF800001",
+      "scaledFloat": -256.00003,
+      "scaledFloatBitsHex": "0xC3800001",
+      "expectedEncodedInteger": -256,
+      "encoded": {
+        "x": 0,
+        "y": 0,
+        "z": -256
+      },
+      "positionBytesLittleEndianHex": "000000000000000000ffffff",
+      "decoded": {
+        "x": 0,
+        "y": 0,
+        "z": -1
+      },
+      "signedAxisErrorMetres": 1.1920929E-07,
+      "absoluteAxisErrorMetres": 1.1920928955078125E-07
+    },
+    {
+      "case": "negative-boundary",
+      "axis": "X",
+      "inputFloat": -1,
+      "inputFloatBitsHex": "0xBF800000",
+      "scaledFloat": -256,
+      "scaledFloatBitsHex": "0xC3800000",
+      "expectedEncodedInteger": -256,
+      "encoded": {
+        "x": -256,
+        "y": 0,
+        "z": 0
+      },
+      "positionBytesLittleEndianHex": "00ffffff0000000000000000",
+      "decoded": {
+        "x": -1,
+        "y": 0,
+        "z": 0
+      },
+      "signedAxisErrorMetres": 0,
+      "absoluteAxisErrorMetres": 0
+    },
+    {
+      "case": "negative-boundary",
+      "axis": "Y",
+      "inputFloat": -1,
+      "inputFloatBitsHex": "0xBF800000",
+      "scaledFloat": -256,
+      "scaledFloatBitsHex": "0xC3800000",
+      "expectedEncodedInteger": -256,
+      "encoded": {
+        "x": 0,
+        "y": -256,
+        "z": 0
+      },
+      "positionBytesLittleEndianHex": "0000000000ffffff00000000",
+      "decoded": {
+        "x": 0,
+        "y": -1,
+        "z": 0
+      },
+      "signedAxisErrorMetres": 0,
+      "absoluteAxisErrorMetres": 0
+    },
+    {
+      "case": "negative-boundary",
+      "axis": "Z",
+      "inputFloat": -1,
+      "inputFloatBitsHex": "0xBF800000",
+      "scaledFloat": -256,
+      "scaledFloatBitsHex": "0xC3800000",
+      "expectedEncodedInteger": -256,
+      "encoded": {
+        "x": 0,
+        "y": 0,
+        "z": -256
+      },
+      "positionBytesLittleEndianHex": "000000000000000000ffffff",
+      "decoded": {
+        "x": 0,
+        "y": 0,
+        "z": -1
+      },
+      "signedAxisErrorMetres": 0,
+      "absoluteAxisErrorMetres": 0
+    },
+    {
+      "case": "negative-boundary-above",
+      "axis": "X",
+      "inputFloat": -0.99999994,
+      "inputFloatBitsHex": "0xBF7FFFFF",
+      "scaledFloat": -255.99998,
+      "scaledFloatBitsHex": "0xC37FFFFF",
+      "expectedEncodedInteger": -255,
+      "encoded": {
+        "x": -255,
+        "y": 0,
+        "z": 0
+      },
+      "positionBytesLittleEndianHex": "01ffffff0000000000000000",
+      "decoded": {
+        "x": -0.99609375,
+        "y": 0,
+        "z": 0
+      },
+      "signedAxisErrorMetres": 0.0039061904,
+      "absoluteAxisErrorMetres": 0.0039061903953552246
+    },
+    {
+      "case": "negative-boundary-above",
+      "axis": "Y",
+      "inputFloat": -0.99999994,
+      "inputFloatBitsHex": "0xBF7FFFFF",
+      "scaledFloat": -255.99998,
+      "scaledFloatBitsHex": "0xC37FFFFF",
+      "expectedEncodedInteger": -255,
+      "encoded": {
+        "x": 0,
+        "y": -255,
+        "z": 0
+      },
+      "positionBytesLittleEndianHex": "0000000001ffffff00000000",
+      "decoded": {
+        "x": 0,
+        "y": -0.99609375,
+        "z": 0
+      },
+      "signedAxisErrorMetres": 0.0039061904,
+      "absoluteAxisErrorMetres": 0.0039061903953552246
+    },
+    {
+      "case": "negative-boundary-above",
+      "axis": "Z",
+      "inputFloat": -0.99999994,
+      "inputFloatBitsHex": "0xBF7FFFFF",
+      "scaledFloat": -255.99998,
+      "scaledFloatBitsHex": "0xC37FFFFF",
+      "expectedEncodedInteger": -255,
+      "encoded": {
+        "x": 0,
+        "y": 0,
+        "z": -255
+      },
+      "positionBytesLittleEndianHex": "000000000000000001ffffff",
+      "decoded": {
+        "x": 0,
+        "y": 0,
+        "z": -0.99609375
+      },
+      "signedAxisErrorMetres": 0.0039061904,
+      "absoluteAxisErrorMetres": 0.0039061903953552246
+    }
+  ]
+}

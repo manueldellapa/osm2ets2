@@ -1,0 +1,205 @@
+{
+  "area_limit_bbox": {
+    "east": 12.522523008576625,
+    "north": 41.91225793274802,
+    "south": 41.86814206725198,
+    "west": 12.462276991423375
+  },
+  "candidate_geometry_extent_without_bbox": {
+    "geometries": [
+      {
+        "id": "candidate-west-south",
+        "later_mapping_excluded": false,
+        "points": [
+          {
+            "lat_deg": 41.795,
+            "lon_deg": 12.59
+          },
+          {
+            "lat_deg": 41.802,
+            "lon_deg": 12.598
+          }
+        ]
+      },
+      {
+        "id": "candidate-east-north-excluded-later",
+        "later_mapping_excluded": true,
+        "points": [
+          {
+            "lat_deg": 41.799,
+            "lon_deg": 12.603
+          },
+          {
+            "lat_deg": 41.805,
+            "lon_deg": 12.61
+          }
+        ]
+      }
+    ]
+  },
+  "control_bbox": {
+    "east": 12.501436902572987,
+    "north": 41.896952428392254,
+    "south": 41.883447571607746,
+    "west": 12.483363097427013
+  },
+  "control_points": [
+    {
+      "id": "east",
+      "lat_deg": 41.89019999036584,
+      "lon_deg": 12.493887546458609
+    },
+    {
+      "id": "north",
+      "lat_deg": 41.89231186210456,
+      "lon_deg": 12.492399999999975
+    },
+    {
+      "id": "west",
+      "lat_deg": 41.8901999244677,
+      "lon_deg": 12.488234855459837
+    },
+    {
+      "id": "south",
+      "lat_deg": 41.88608741850506,
+      "lon_deg": 12.492399999999975
+    },
+    {
+      "id": "oblique",
+      "lat_deg": 41.89250514680676,
+      "lon_deg": 12.494735408697693
+    }
+  ],
+  "crossing_segment": {
+    "bbox_id": "diagonal_limit_bbox",
+    "end": {
+      "lat_deg": 41.893351133249716,
+      "lon_deg": 12.570838636638653
+    },
+    "source_segment_index": 0,
+    "source_way_id": "synthetic-way-crossing-001",
+    "start": {
+      "lat_deg": 41.8874990286431,
+      "lon_deg": 12.413961363361347
+    }
+  },
+  "diagonal_limit_bbox": {
+    "east": 12.550838636638654,
+    "north": 41.89470161892817,
+    "south": 41.88569838107183,
+    "west": 12.433961363361346
+  },
+  "frozen_on": "2026-09-01",
+  "native_fixture_plan": [
+    {
+      "control_id": "east",
+      "id": "east-scale-1",
+      "kind": "projected_control",
+      "scale": 1.0
+    },
+    {
+      "control_id": "north",
+      "id": "north-scale-1",
+      "kind": "projected_control",
+      "scale": 1.0
+    },
+    {
+      "control_id": "oblique",
+      "id": "oblique-scale-1",
+      "kind": "projected_control",
+      "scale": 1.0
+    },
+    {
+      "control_id": "oblique",
+      "id": "oblique-scale-0.1",
+      "kind": "projected_control",
+      "scale": 0.1
+    },
+    {
+      "id": "tiny-offsets",
+      "kind": "tiny_translated_roads"
+    },
+    {
+      "id": "near-native-radius",
+      "kind": "native_radius"
+    }
+  ],
+  "native_radius_fixture": {
+    "backward": {
+      "expected_unscaled_radius_m": 4699.99999999655,
+      "lat_deg": 41.892400681338515,
+      "lon_deg": 12.548955590207242
+    },
+    "bbox_id": "diagonal_limit_bbox",
+    "expected_scaled_radius_m": 9887.999999997572,
+    "expected_scaled_road_length_m": 206.00000000464036,
+    "expected_unscaled_road_length_m": 100.00000000225259,
+    "forward": {
+      "expected_unscaled_radius_m": 4799.999999998821,
+      "lat_deg": 41.892447201727535,
+      "lon_deg": 12.550158942726512
+    },
+    "scale": 2.06
+  },
+  "origin": {
+    "lat_deg": 41.8902,
+    "lon_deg": 12.4924
+  },
+  "poc": "PoC-002 \u2014 Coordinate and Geometry Validation",
+  "scale_factors": [
+    1.0,
+    0.1
+  ],
+  "schema_version": 1,
+  "tiny_translated_roads": [
+    {
+      "end_enh_m": {
+        "e": 100.001,
+        "h": 0.0,
+        "n": 0.0
+      },
+      "id": "tiny-offset-0.001",
+      "offset_m_pre_scale": 0.001,
+      "scale": 1.0,
+      "start_enh_m": {
+        "e": 0.001,
+        "h": 0.0,
+        "n": 0.0
+      }
+    },
+    {
+      "end_enh_m": {
+        "e": 100.01,
+        "h": 0.0,
+        "n": 0.0
+      },
+      "id": "tiny-offset-0.01",
+      "offset_m_pre_scale": 0.01,
+      "scale": 1.0,
+      "start_enh_m": {
+        "e": 0.01,
+        "h": 0.0,
+        "n": 0.0
+      }
+    },
+    {
+      "end_enh_m": {
+        "e": 100.1,
+        "h": 0.0,
+        "n": 0.0
+      },
+      "id": "tiny-offset-0.1",
+      "offset_m_pre_scale": 0.1,
+      "scale": 1.0,
+      "start_enh_m": {
+        "e": 0.1,
+        "h": 0.0,
+        "n": 0.0
+      }
+    }
+  ],
+  "wgs84": {
+    "inverse_flattening": 298.257223563,
+    "semi_major_axis_m": 6378137.0
+  }
+}

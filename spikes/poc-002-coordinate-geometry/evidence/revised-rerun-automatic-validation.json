@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "criteriaId": "poc-002-q256-rerun-v2",
+  "runId": "poc-002-q256-rerun-v2-20260903T171732Z",
+  "executedAtDate": "2026-09-03",
+  "historicalV1Status": "FAIL",
+  "revisedAutomaticValidation": "PASS",
+  "revisedRerunState": "AWAITING_MANUAL_VALIDATION",
+  "manualMapEditorCycle": "NOT_EXECUTED",
+  "gatePoc002Passed": false,
+  "frozenSpecification": {
+    "path": "spikes/poc-002-coordinate-geometry/revised-rerun-spec.md",
+    "sha256": "d2d594ea582f91c0f4669d087b845c3b54d098e23341bebe08efa936625d8894"
+  },
+  "environment": {
+    "operatingSystem": "macOS 26.6.2",
+    "architecture": "Arm64",
+    "uv": "0.12.7",
+    "python": "CPython 3.14.7 standard GIL",
+    "pyproj": "3.7.2",
+    "proj": "9.5.1",
+    "projNetworkEnabled": false,
+    "shapely": "2.1.2",
+    "dotnetSdk": "10.0.400",
+    "dotnetRuntime": "10.0.11",
+    "truckLibPackage": "0.5.1",
+    "truckLibAssembly": "0.5.1.0",
+    "nativeMapFormat": 907
+  },
+  "chainOfCustody": {
+    "preRunManifestSha256": "76b15b6d370fc62f97c942dd1421366fdab0eaf7a7193f8b3912431484c9906f",
+    "pythonValidationSha256": "7859fd1c08b638c131ff26d62116883ff9e87a19d6a5bfa8ab45332d24e06482",
+    "neutralModelSha256": "cf41d2d620372d238c10ce3f7b6323517f45cb345afb459bc04c8c1767d01651",
+    "generationAAdapterSha256": "7beb98d915aeb8dc893729d4083699fcc83008cc4dccac1685cde49649e49e2c",
+    "generationBAdapterSha256": "9dad3637a2a4b6b85ba9d9f4a4bfc94fba31540f50b5c26def5ea5f9e7db9713",
+    "generationASemanticSha256": "5b3e211bb9aaedbedf7713140bf49a61af010f05f33f6edcb38587a67de003cb",
+    "generationBSemanticSha256": "5b3e211bb9aaedbedf7713140bf49a61af010f05f33f6edcb38587a67de003cb",
+    "aggregateAutomaticValidationSha256": "92fad2485734242539f51dc2b700fd1c269abee980bdec0fcd0d920f3369f9e1"
+  },
+  "testResults": {
+    "pythonUnitTestsPassed": 32,
+    "pythonUnitTestsFailed": 0,
+    "pythonAutomaticChecksPassed": 13,
+    "pythonAutomaticChecksFailed": 0,
+    "dotnetBuildWarnings": 0,
+    "dotnetBuildErrors": 0,
+    "dotnetSelfTest": "PASS",
+    "dotnetFormat": "PASS"
+  },
+  "maximumErrors": {
+    "geographicRoundTripMetres": 1.5784160034357844e-9,
+    "independentRadialDifferenceMetres": 2.197225512645673e-9,
+    "projectedDiscretizationIncludingConvergenceMetres": 0.0016188550535592983,
+    "scaleRatio": 1.3877787807814457e-17,
+    "float64ToFloat32ThreeDimensionalMetres": 0.0003793050975375676,
+    "q256GeneratedAxisMetres": 0.0031890869140625,
+    "q256DirectProbeAxisMetres": 0.0039061903953552246,
+    "q256HorizontalXzMetres": 0.004269108137924589,
+    "q256ThreeDimensionalMetres": 0.004269108137924589,
+    "nativeStraightRoadHausdorffMetres": 0.004277268693810707,
+    "nativePlanarRadiusMetres": 9888.000282196546
+  },
+  "q256": {
+    "rule": "expected_q = trunc_toward_zero(float32_axis * 256f)",
+    "exactGeneratedAxisAgreementPerGeneration": "48/48",
+    "exactGeneratedAxisAgreement": {
+      "X": "16/16",
+      "Y": "16/16",
+      "Z": "16/16"
+    },
+    "directSerializerProbesPerGeneration": {
+      "X": "15/15",
+      "Y": "15/15",
+      "Z": "15/15"
+    },
+    "gridStepMetres": 0.00390625,
+    "perAxisStrictUpperBoundMetres": 0.00390625,
+    "horizontalXzStrictUpperBoundMetres": 0.005524271728019903,
+    "threeDimensionalStrictUpperBoundMetres": 0.0067658234670659265
+  },
+  "nativeGeneration": {
+    "independentProcessCount": 2,
+    "mapsPerGeneration": 6,
+    "roadsPerGeneration": 8,
+    "nodesPerGeneration": 16,
+    "nativeFilesPerGeneration": 36,
+    "semanticEvidenceByteExact": true,
+    "binaryUidsAndHashesExpectedDeterministic": false
+  },
+  "axisMapping": {
+    "arithmetic": "PASS: X=E, Y=H, Z=-N",
+    "mapEditorGeographicSemantics": "PENDING"
+  },
+  "remainingGate": {
+    "platform": "Windows 11 x64",
+    "ets2Build": "1.60.1.7",
+    "requiredCycle": "open and inspect -> Map > Recompute map -> Save -> close completely -> reopen -> inspect again",
+    "numericInvariant": "q_after == q_before == q_expected for every node and X/Y/Z component",
+    "additionalQ256Allowance": false
+  }
+}
